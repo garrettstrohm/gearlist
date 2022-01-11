@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :user_adventure_items
   resources :user_items
   resources :trip_items
   resources :user_trips
