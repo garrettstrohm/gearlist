@@ -14,6 +14,9 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import {useState} from "react"
+import {useDispatch, useSelector} from 'react-redux'
+import {setCurrentUser} from './userSlice.js'
+
 
 function Copyright(props) {
   return (
@@ -37,17 +40,26 @@ function Login() {
         password: ""
     })
 
-    console.log(form)
+    const dispatch = useDispatch()
+    const user = useSelector(state => state.user.user)
+    console.log(user)
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+const handleSubmit = (e) => {
+    e.preventDefault();
+    const configObj = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(form)
+    }
+    fetch('/login', configObj)
+    .then(r => {
+        if (r.ok){
+            r.json().then(data => dispatch(setCurrentUser(data)))
+        }
+    })
+};
 
   function handleChange(e){
     setForm({
