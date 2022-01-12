@@ -1,4 +1,4 @@
 class UserAdventureItem < ApplicationRecord
-  belongs_to :adventure
+  belongs_to :user_trip
   belongs_to :item
 end
