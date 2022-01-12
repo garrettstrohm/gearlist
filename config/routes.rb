@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get '/me', to: 'users#show'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  post "password/reset", to: "password_resets#create"
 
   get '*path',
       to: 'fallback#index',
