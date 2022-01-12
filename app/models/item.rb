@@ -3,6 +3,8 @@ class Item < ApplicationRecord
     has_many :trip_items
     has_many :users, through: :user_items
     has_many :trips, through: :trip_items
+    has_many :user_adventure_items
+    has_many :user_trips, through: :user_adventure_items
 
     validates :name, presence: true
 end

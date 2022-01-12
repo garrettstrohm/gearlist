@@ -47,12 +47,12 @@ ActiveRecord::Schema.define(version: 2022_01_11_234713) do
   end
 
   create_table "user_adventure_items", force: :cascade do |t|
-    t.bigint "adventure_id", null: false
+    t.bigint "user_trip_id", null: false
     t.bigint "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["adventure_id"], name: "index_user_adventure_items_on_adventure_id"
     t.index ["item_id"], name: "index_user_adventure_items_on_item_id"
+    t.index ["user_trip_id"], name: "index_user_adventure_items_on_user_trip_id"
   end
 
   create_table "user_items", force: :cascade do |t|
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2022_01_11_234713) do
   add_foreign_key "trip_items", "trips"
   add_foreign_key "trips", "users"
   add_foreign_key "user_adventure_items", "items"
-  add_foreign_key "user_adventure_items", "user_trips", column: "adventure_id"
+  add_foreign_key "user_adventure_items", "user_trips"
   add_foreign_key "user_items", "items"
   add_foreign_key "user_items", "trips"
   add_foreign_key "user_items", "users"
