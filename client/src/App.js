@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import HomePage from "./main/HomePage.js"
 import Login from "./userAuth/Login";
 import Signup from "./userAuth/Signup.js";
-import {Route, Routes, useNavigate} from "react-router-dom"
+import {Route, Routes, useNavigate, useLocation} from "react-router-dom"
 import ForgotPassword from "./userAuth/ForgotPassword";
 import ForgotPasswordResetForm from "./userAuth/ForgotPasswordResetForm";
 import {useDispatch, useSelector} from 'react-redux'
@@ -12,6 +12,8 @@ function App() {
   const user = useSelector(state => state.user.user)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const location = useLocation()
+  console.log("location:", location)
 
   useEffect(() => {
     fetch("/me")
@@ -20,7 +22,7 @@ function App() {
         r.json().then((user) => {
           dispatch(setCurrentUser(user))
         })
-      } else{
+      } else if (location.pathname !== '/password/reset/edit'){
         navigate("/login")
       }
     })

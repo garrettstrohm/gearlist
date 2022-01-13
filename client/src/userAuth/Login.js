@@ -59,7 +59,6 @@ const handleSubmit = (e) => {
         if (r.ok){
             r.json().then(data => {
               dispatch(setCurrentUser(data))
-              console.log(user)
               navigate("/")
             })
         }
