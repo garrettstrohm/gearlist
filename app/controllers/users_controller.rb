@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:username, :first_name, :last_name, :email, :phone_number, :password, :password_confirmation, :password_reset_token, :password_reset_sent_at, :recovery_password)
+        params.permit(:username, :first_name, :last_name, :email, :phone_number, :password, :password_confirmation)
     end
 
     def generate_base64_token
