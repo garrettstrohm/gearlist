@@ -34,8 +34,8 @@ const theme = createTheme()
 
 function ForgotPasswordResetForm() {
     const [form, setForm] = useState({
-        token: "",
         email: "",
+        recoveryPassword: "",
         password: "",
         passwordConfirmation: ""
     })
@@ -55,14 +55,14 @@ function ForgotPasswordResetForm() {
             })
         } else {
         const formObj = {
-            token: form.token,
             email: form.email,
+            recovery_password: form.recoveryPassword,
             password: form.password,
             password_confirmation: form.passwordConfirmation
         }
         console.log(formObj)
         const configObj = {
-            method: "PATCH",
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -114,10 +114,10 @@ function ForgotPasswordResetForm() {
                   margin="normal"
                   required
                   fullWidth
-                  id="token"
-                  label="Token"
-                  name="token"
-                  value={form.token}
+                  id="email"
+                  label="Email"
+                  name="email"
+                  value={form.email}
                   onChange={handleChange}
                   autoFocus
                 />
@@ -125,10 +125,10 @@ function ForgotPasswordResetForm() {
                   margin="normal"
                   required
                   fullWidth
-                  id="email"
-                  label="Email"
-                  name="email"
-                  value={form.email}
+                  id="recoveryPassword"
+                  label="Recovery Password"
+                  name="recoveryPassword"
+                  value={form.recoveryPassword}
                   onChange={handleChange}
                   autoFocus
                 />
