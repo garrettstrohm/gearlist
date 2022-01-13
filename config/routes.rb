@@ -19,8 +19,8 @@ Rails.application.routes.draw do
   post "/password/reset", to: "password_resets#create"
   patch "/password/reset/edit", to: "password_resets#update"
   patch "/password", to: "passwords#update"
-  post '/forgot_password' => "passwords#forgot"
-  post '/reset_password' => "passwords#reset"
+  post '/forgot_password', to: "passwords#forgot"
+  post '/reset_password', to: "passwords#reset"
 
   get '*path',
       to: 'fallback#index',

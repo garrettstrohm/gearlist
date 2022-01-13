@@ -1,5 +1,6 @@
 class PasswordsController < ApplicationController
-
+    before_action :find_user
+    
     def forgot
         user = find_user
         token = generate_base64_token
@@ -12,9 +13,9 @@ class PasswordsController < ApplicationController
     
     def reset
         user = find_user
-        debugger
-        if user.authenticate_recovery_password(params[:recovery_password])
-            user.update!(password_params)
+        if user&.authenticate_recovery_password(params[:recovery_password])
+            debugger
+            user.update!(password: params[:password], password_confirmation: params[:password_confirmation])
             session[:user_id] = user.id
             render json: user, status: :ok
         end
