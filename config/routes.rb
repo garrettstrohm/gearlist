@@ -16,7 +16,11 @@ Rails.application.routes.draw do
   get '/me', to: 'users#show'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  post "password/reset", to: "password_resets#create"
+  post "/password/reset", to: "password_resets#create"
+  patch "/password/reset/edit", to: "password_resets#update"
+  patch "/password", to: "passwords#update"
+  post '/forgot_password' => "passwords#forgot"
+  patch '/reset_password' => "passwords#reset"
 
   get '*path',
       to: 'fallback#index',

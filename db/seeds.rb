@@ -8,8 +8,8 @@
 
 puts "Seeding..."
 #Users
-john = User.create(username: "johnsmith", password: "12345", password_confirmation: "12345", email: "johnsmith@notreal.com", phone_number: "5555555550", first_name: "John", last_name: "Smith")
-toby = User.create(username: "safariman", password: "12345", password_confirmation: "12345", email: "kudusimcomingforyou@notreal.com", phone_number: "5555555551", first_name: "Toby", last_name: "Narra")
+john = User.create(username: "johnsmith", password: "12345", password_confirmation: "12345", email: "garres4@vt.edu", phone_number: "5555555550", first_name: "John", last_name: "Smith")
+toby = User.create(username: "safariman", password: "12345", password_confirmation: "12345", email: "matteweva@gmail.com", phone_number: "5555555551", first_name: "Toby", last_name: "Narra")
 jenny = User.create(username: "jenny55", password: "12345", password_confirmation: "12345", email: "jennykloel@notreal.com", phone_number: "5555555552", first_name: "Jenny", last_name: "Loel")
 alexa = User.create(username: "alexasmith", password: "12345", password_confirmation: "12345", email: "alexafromamazon@notreal.com", phone_number: "5555555553", first_name: "Alexa", last_name: "Robot")
 trent = User.create(username: "ickython", password: "12345", password_confirmation: "12345", email: "theassembly@notreal.com", phone_number: "5555555554", first_name: "Trent", last_name: "Ickython")

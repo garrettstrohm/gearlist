@@ -11,10 +11,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {useDispatch, useSelector} from 'react-redux'
+import {setCurrentUser} from './userSlice.js'
 
 import {Link} from 'react-router-dom'
 import {useState} from "react"
-import LogoutButton from './LogoutButton';
 
 function Copyright(props) {
     return (
@@ -31,27 +32,60 @@ function Copyright(props) {
 
 const theme = createTheme()
 
-function ForgotPassword() {
+function ForgotPasswordResetForm() {
     const [form, setForm] = useState({
-        email: ""
+        token: "",
+        email: "",
+        password: "",
+        passwordConfirmation: ""
     })
+
+    const dispatch = useDispatch()
+    const user = useSelector(state => state.user.user)
+    console.log("user on forgot password", user)
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(form.password !== form.passwordConfirmation){
+            alert("Passwords don't match");
+            setForm({
+                ...form,
+                password: "",
+                passwordConfirmation: ""
+            })
+        } else {
+        const formObj = {
+            token: form.token,
+            email: form.email,
+            password: form.password,
+            password_confirmation: form.passwordConfirmation
+        }
+        console.log(formObj)
         const configObj = {
-            method: "POST",
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(form)
+            body: JSON.stringify(formObj)
         }
-        fetch('/forgot_password', configObj)
+        fetch('/reset_password', configObj)
         .then(r => r.json())
-        .then(data => {
-            alert(data.alert)
+        .then(user => {
+            if(user.error) {
+                alert(user.error)
+            } else {
+                fetch('/me')
+                .then(r => {
+                    if(r.ok){
+                        r.json().then(user => {
+                            dispatch(setCurrentUser(user))
+                        })
+                    }
+                })
+            }
         })
-        .catch(console.log)
-    };
+        };
+    }
 
     function handleChange(e){
         setForm({
@@ -76,7 +110,18 @@ function ForgotPassword() {
                 Password Reset
               </Typography>
               <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
-                <TextField
+              <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="token"
+                  label="Token"
+                  name="token"
+                  value={form.token}
+                  onChange={handleChange}
+                  autoFocus
+                />
+              <TextField
                   margin="normal"
                   required
                   fullWidth
@@ -84,6 +129,30 @@ function ForgotPassword() {
                   label="Email"
                   name="email"
                   value={form.email}
+                  onChange={handleChange}
+                  autoFocus
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="password"
+                  label="Password"
+                  name="password"
+                  type="password"
+                  value={form.password}
+                  onChange={handleChange}
+                  autoFocus
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="passwordConfirmation"
+                  type="password"
+                  label="Confirm Your Password"
+                  name="passwordConfirmation"
+                  value={form.passwordConfirmation}
                   onChange={handleChange}
                   autoFocus
                 />
@@ -99,7 +168,6 @@ function ForgotPassword() {
                   <Grid item xs>
                   </Grid>
                   <Grid item>
-                      <LogoutButton />
                     <Link to="/signup">
                       "Don't have an account? Sign Up"
                     </Link>
@@ -113,4 +181,4 @@ function ForgotPassword() {
       );
     }
 
-export default ForgotPassword
+export default ForgotPasswordResetForm;
