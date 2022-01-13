@@ -15,7 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useState} from "react"
 import {useDispatch, useSelector} from 'react-redux'
 import {setCurrentUser} from './userSlice.js'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 
 function Copyright(props) {
@@ -41,6 +41,7 @@ function Login() {
     })
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const user = useSelector(state => state.user.user)
     console.log(user)
 
@@ -56,7 +57,10 @@ const handleSubmit = (e) => {
     fetch('/login', configObj)
     .then(r => {
         if (r.ok){
-            r.json().then(data => dispatch(setCurrentUser(data)))
+            r.json().then(data => {
+              dispatch(setCurrentUser(data))
+              navigate("/")
+            })
         }
     })
 };

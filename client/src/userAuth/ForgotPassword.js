@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {useState} from "react"
 import LogoutButton from './LogoutButton';
 
@@ -36,6 +36,8 @@ function ForgotPassword() {
         email: ""
     })
 
+    const navigate = useNavigate()
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const configObj = {
@@ -49,6 +51,7 @@ function ForgotPassword() {
         .then(r => r.json())
         .then(data => {
             alert(data.alert)
+            navigate('/login')
         })
         .catch(console.log)
     };
@@ -95,6 +98,7 @@ function ForgotPassword() {
                 >
                   Reset Password
                 </Button>
+                </Box>
                 <Grid container>
                   <Grid item xs>
                   </Grid>
@@ -105,7 +109,6 @@ function ForgotPassword() {
                     </Link>
                   </Grid>
                 </Grid>
-              </Box>
             </Box>
             <Copyright sx={{ mt: 8, mb: 4 }} />
           </Container>
