@@ -1,17 +1,18 @@
 import { useState, useEffect } from "react";
+import Login from "./userAuth/Login";
+import {Route, Routes, useNavigate} from "react-router-dom"
+import ForgotPassword from "./userAuth/ForgotPassword";
+import ForgotPasswordResetForm from "./userAuth/ForgotPasswordResetForm";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
-  }, []);
 
   return (
     <div className="App">
-      <h1>Page Count: {count}</h1>
+      <Routes>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/forgotpassword" element={<ForgotPassword />}/>
+        <Route path="password/reset/edit" element={<ForgotPasswordResetForm />}/>
+      </Routes>
     </div>
   );
 }

@@ -6,7 +6,8 @@ class User < ApplicationRecord
     has_many :trips
     
     has_secure_password
-    validates :user_name, presence: true, uniqueness: true
-    validates :password, presence: true
+    has_secure_password :recovery_password, validations: false
+    validates :username, presence: true, uniqueness: true
     validates :email, format: /\w+@\w+\.{1}[a-zA-Z]{2,}/, presence: true, uniqueness: true
+
 end

@@ -10,14 +10,24 @@ class UsersController < ApplicationController
     def create
         user = User.create!(user_params)
         session[:user_id] = user.id
-        UserMailer.welcome_email(user).deliver_now
+        # UserMailer.welcome_email(user).deliver_now
         render json: user, status: :created
+    end
+
+    def update
+        user = User.find(params[:id])
+        user.update!(user_params)
+        render json: user, status: :ok
     end
 
     private
 
     def user_params
-        params.permit(:user_name, :first_name, :last_name, :email, :phone_number, :password, :password_confirmation)
+        params.permit(:username, :first_name, :last_name, :email, :phone_number, :password, :password_confirmation, :password_reset_token, :password_reset_sent_at, :recovery_password)
+    end
+
+    def generate_base64_token
+        SecureRandom.urlsafe_base64
     end
 
 end
