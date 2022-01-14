@@ -2,7 +2,7 @@ import Container from '@mui/material/Container';
 import TripCard from './TripCard';
 import {useSelector, useDispatch} from 'react-redux'
 import { setAllTrips } from './tripSlice';
-import Box from '@mui/material/Box';
+import List from '@mui/material/List';
 import Grid from '@mui/material/Grid'
 
 function TripCardContainer() {
@@ -20,9 +20,10 @@ function TripCardContainer() {
 
     return (
         <>
-            <Box sx={{overflow: 'auto'}}>
+            <h2 style={{textAlign: "center"}}>Your Organized Trips!</h2>
+            <List sx={{maxHeight: "600px", overflow: 'auto'}}>
                     {tripCardList}
-            </Box>
+            </List>
         </>
     )
 }

@@ -11,7 +11,7 @@ import Stack from '@mui/material/Stack';
 export default function AdventureCard({adventure, handleDelete}) {
 
   return (
-    <Card sx={{ maxWidth: "100%", maxHeight: "350px" }}>
+    <Card sx={{ maxWidth: "100%", maxHeight: "350px", margin: "0px 0px 10px 0px" }}>
       <CardActionArea>
         <CardMedia
           component="img"
