@@ -150,6 +150,19 @@ export default function CreateTripForm() {
               label="Location"
               id="location"
             />
+            <TextField
+              margin="normal"
+              multiline
+              maxRows={Infinity}
+              required
+              fullWidth
+              name="description"
+              value={form.description}
+              onChange={handleChange}
+              label="Description"
+              type="textarea"
+              id="description"
+            />
                 {/* {errors ? displayErrors: null } */}
             <Button
               type="submit"

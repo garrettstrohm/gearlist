@@ -7,7 +7,8 @@ import { CardActionArea } from '@mui/material';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
-export default function TripCard({trip}) {
+export default function TripCard({trip, handleDelete}) {
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
@@ -19,7 +20,7 @@ export default function TripCard({trip}) {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Lizard
+            {trip.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Lizards are a widespread group of squamate reptiles, with over 6,000
@@ -29,7 +30,7 @@ export default function TripCard({trip}) {
         <Stack direction="row" spacing={2} justifyContent="center">
             <Button variant="text">View</Button>
             <Button variant="text">Edit</Button>
-            <Button variant="text">Delete</Button>
+            <Button variant="text" onClick={() => handleDelete(trip.id)}>Delete</Button>
         </Stack>
       </CardActionArea>
     </Card>
