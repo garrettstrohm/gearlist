@@ -38,7 +38,7 @@ function App() {
         <Route path="/forgotpassword" element={<ForgotPassword />}/>
         <Route path="/password/reset/edit" element={<ForgotPasswordResetForm />}/>
         <Route path="/createtrip" element={<CreateTripForm />}/>
-        <Route path="/mytrip/:id" element={<TripPage.js/>}/>
+        <Route path="/mytrip/:id" element={<TripPage />}/>
         <Route exact path="/" element={<HomePage/>}/>
       </Routes>
     </div>

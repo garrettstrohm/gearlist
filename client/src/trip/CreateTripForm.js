@@ -43,6 +43,8 @@ export default function CreateTripForm() {
 
     })
 
+    console.log(form)
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
 

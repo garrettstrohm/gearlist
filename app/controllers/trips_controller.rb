@@ -7,7 +7,9 @@ class TripsController < ApplicationController
     end
 
     def show
-        render json: find_trip, status: :ok
+        if current_user.id == find_trip.user_id
+            render json: find_trip, status: :ok
+        end
     end
 
     def create
