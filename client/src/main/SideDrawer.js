@@ -43,10 +43,10 @@ export default function SideDrawer({state, setState, toggleDrawer}) {
   );
 
   return (
-    <div>
+    <>
       {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+          {/* <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button> */}
           <Drawer
             anchor={anchor}
             open={state[anchor]}
@@ -56,6 +56,6 @@ export default function SideDrawer({state, setState, toggleDrawer}) {
           </Drawer>
         </React.Fragment>
       ))}
-    </div>
+      </>
   );
 }

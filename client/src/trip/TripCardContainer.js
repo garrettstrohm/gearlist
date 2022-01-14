@@ -21,7 +21,7 @@ function TripCardContainer() {
     return (
         <>
             <h2 style={{textAlign: "center"}}>Your Organized Trips!</h2>
-            <List sx={{maxHeight: "600px", overflow: 'auto'}}>
+            <List sx={{maxHeight: "100vh", overflow: 'auto'}}>
                     {tripCardList}
             </List>
         </>

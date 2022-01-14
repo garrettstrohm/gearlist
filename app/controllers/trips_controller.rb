@@ -17,6 +17,11 @@ class TripsController < ApplicationController
         render json: trip, status: :created
     end
 
+    def update
+        @trip.update!(trip_params)
+        render json: @trip, status: :ok
+    end
+
     def destroy
         @trip.destroy
         head :no_content
