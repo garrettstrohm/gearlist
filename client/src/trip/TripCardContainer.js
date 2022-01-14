@@ -3,6 +3,7 @@ import TripCard from './TripCard';
 import {useSelector, useDispatch} from 'react-redux'
 import { setAllTrips } from './tripSlice';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid'
 
 function TripCardContainer() {
     const dispatch = useDispatch()
@@ -19,9 +20,9 @@ function TripCardContainer() {
 
     return (
         <>
-            <Container>
-                {tripCardList}
-            </Container>
+            <Box sx={{overflow: 'auto'}}>
+                    {tripCardList}
+            </Box>
         </>
     )
 }

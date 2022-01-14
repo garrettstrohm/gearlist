@@ -29,7 +29,7 @@ class TripsController < ApplicationController
     end
 
     def trip_params
-        params.permit(:title, :image, :date, :location)
+        params.permit(:title, :image, :date, :location, :description)
     end
 
 end

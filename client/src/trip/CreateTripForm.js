@@ -39,8 +39,8 @@ export default function CreateTripForm() {
         image: "",
         startDate: "",
         endDate: "",
-        location: ""
-
+        location: "",
+        description: ""
     })
 
     console.log(form)
@@ -54,15 +54,17 @@ export default function CreateTripForm() {
             [e.target.name]: e.target.value
         })
     }
-
+    console.log(form)
     function handleSubmit(e){
         e.preventDefault()
         const newTrip = {
             title: form.title,
             image: form.image,
             date: `${form.startDate} - ${form.endDate}`,
-            location: form.location
+            location: form.location,
+            description: form.description
         }
+        console.log(newTrip)
         const configObj = {
             method: "POST",
             headers: {
