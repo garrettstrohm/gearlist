@@ -10,11 +10,12 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import {useState} from 'react'
 import SideDrawer from './SideDrawer';
+import LogoutButton from '../userAuth/LogoutButton';
 
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = useState(null)
   const [state, setState] = useState({
-    left: true,
+    left: false,
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -78,6 +79,7 @@ export default function NavBar() {
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
                 <SideDrawer state={state} setState={setState} toggleDrawer={toggleDrawer}/>
+                <LogoutButton />
               </Menu>
         </Toolbar>
       </AppBar>

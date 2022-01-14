@@ -7,6 +7,7 @@ import ForgotPassword from "./userAuth/ForgotPassword";
 import ForgotPasswordResetForm from "./userAuth/ForgotPasswordResetForm";
 import {useDispatch, useSelector} from 'react-redux'
 import {setCurrentUser} from './userAuth/userSlice.js'
+import CreateTripForm from "./trip/CreateTripForm.js";
 
 function App() {
   const user = useSelector(state => state.user.user)
@@ -34,7 +35,8 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/forgotpassword" element={<ForgotPassword />}/>
-        <Route path="password/reset/edit" element={<ForgotPasswordResetForm />}/>
+        <Route path="/password/reset/edit" element={<ForgotPasswordResetForm />}/>
+        <Route path="/createtrip" element={<CreateTripForm />}/>
         <Route exact path="/" element={<HomePage/>}/>
       </Routes>
     </div>

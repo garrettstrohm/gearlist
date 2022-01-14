@@ -1,8 +1,10 @@
 import NavBar from './NavBar'
+import TripCardContainer from '../trip/TripCardContainer'
+import Grid from '@mui/material/Grid';
 import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {setAllTrips} from '../trip/tripSlice.js'
-import SideDrawer from './SideDrawer'
+import Box from '@mui/material/Box';
 
 function HomePage() {
     const dispatch = useDispatch()
@@ -21,6 +23,16 @@ function HomePage() {
 
         <div>
             <NavBar />
+            <Box sx={{height: '100vh', width: 1, overflow: 'auto', flexGrow: 1, backgroundColor: "#000"}}>
+            <Grid container spacing={3}>
+                <Grid item xs={6}>
+                    <TripCardContainer />
+                </Grid>
+                <Grid item xs={6}>
+
+                </Grid>
+            </Grid>
+            </Box>
         </div>
     )
 }
