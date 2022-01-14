@@ -35,7 +35,7 @@ export default function NavBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="absolute">
         <Toolbar>
           <IconButton
             size="large"
@@ -43,11 +43,12 @@ export default function NavBar() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            onClick={toggleDrawer("left", true)}
           >
-            <MenuIcon onClick={toggleDrawer("left", true)}/>
+            <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Photos
+            GearList
           </Typography>
               <IconButton
                 size="large"
