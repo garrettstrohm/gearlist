@@ -6,13 +6,13 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import Grid from '@mui/material/Grid'
+import { useNavigate } from 'react-router-dom';
 
 
 export default function TripCard({trip, handleDelete}) {
-
+    const navigate = useNavigate()
   return (
-        <Card sx={{ maxWidth: "100%", maxHeight: "350px", margin: "0px 0px 10px 0px" }}>
+        <Card sx={{ maxWidth: "100%", maxHeight: "350px", margin: "0px 0px 10px 0px" }} onClick={() => navigate(`/mytrip/${trip.id}`)}>
         <CardActionArea>
             <CardMedia
             component="img"
@@ -29,7 +29,6 @@ export default function TripCard({trip, handleDelete}) {
             </Typography>
             </CardContent>
             <Stack direction="row" spacing={20} justifyContent="center">
-                <Button variant="text">View</Button>
                 <Button variant="text">Edit</Button>
                 <Button variant="text" onClick={() => handleDelete(trip.id)}>Delete</Button>
             </Stack>

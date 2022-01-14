@@ -30,6 +30,8 @@ function App() {
     })
   }, [])
 
+  console.log("current user:", user)
+
   return (
     <div className="App">
       <Routes>
