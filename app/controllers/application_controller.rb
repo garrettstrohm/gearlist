@@ -4,6 +4,7 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordInvalid, with: :rescue_from_record_invalid
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
+    before_action :current_user
 private
 
     def authorize

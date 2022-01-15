@@ -10,11 +10,12 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import {useState} from 'react'
 import SideDrawer from './SideDrawer';
+import LogoutButton from '../userAuth/LogoutButton';
 
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = useState(null)
   const [state, setState] = useState({
-    left: true,
+    left: false,
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -35,19 +36,18 @@ export default function NavBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="absolute">
+      <AppBar position="absolute" sx={{backgroundColor: "#ABEBC6"}}>
         <Toolbar>
           <IconButton
             size="large"
             edge="start"
-            color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
+            sx={{ mr: 2, color: "#5D6D7E" }}
             onClick={toggleDrawer("left", true)}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#5D6D7E" }}>
             GearList
           </Typography>
               <IconButton
@@ -56,7 +56,7 @@ export default function NavBar() {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleMenu}
-                color="inherit"
+                sx={{color: "#5D6D7E"}}
               >
                 <AccountCircle />
               </IconButton>
@@ -78,6 +78,7 @@ export default function NavBar() {
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
                 <SideDrawer state={state} setState={setState} toggleDrawer={toggleDrawer}/>
+                <LogoutButton />
               </Menu>
         </Toolbar>
       </AppBar>
