@@ -7,8 +7,9 @@ class TripsController < ApplicationController
     end
 
     def show
-        if current_user.id == @trip.user_id
-            render json: @trip, status: :ok
+        trip = find_trip
+        if current_user.id == trip.user_id
+            render json: trip, status: :ok
         end
     end
 
@@ -18,23 +19,30 @@ class TripsController < ApplicationController
     end
 
     def update
-        @trip.update!(trip_params)
-        render json: @trip, status: :ok
+        # trip = find_trip
+        # if current_user.id == trip.user_id
+        #     trip.update!(trip_params)
+        #     render json: trip, status: :ok
+        # end
+        trip = current_user.trips.find(params[:id]).update!(trip_params)
+        
+        render json: trip, status: :ok
     end
 
     def destroy
-        @trip.destroy
+        trip = find_trip
+        trip.destroy
         head :no_content
     end
 
     private
 
     def find_trip
-        @trip = current_user.trips.find(params[:id])
+        Trip.find(params[:id])
     end
 
     def trip_params
-        params.permit(:title, :image, :date, :location, :description)
+        params.permit(:id, :title, :image, :date, :location, :description, :user_id)
     end
 
 end

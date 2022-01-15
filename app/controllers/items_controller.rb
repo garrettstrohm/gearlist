@@ -1,8 +1,7 @@
 class ItemsController < ApplicationController
 
     def create
-        item = Item.create!(item_params)
-        trip_item = TripItem.create!(item_id: item.id, trip_id: params[:id])
+        item = Item.create!(item_params).trip_items.create!(trip_id: params[:id])
         render json: item, status: :created
     end
 
@@ -11,5 +10,5 @@ class ItemsController < ApplicationController
     def item_params
         params.permit(:name, :description, :image)
     end
-
+    
 end
