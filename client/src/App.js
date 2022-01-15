@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect } from "react";
 import HomePage from "./main/HomePage.js"
 import Login from "./userAuth/Login";

@@ -1,16 +1,16 @@
 import React from 'react'
-import {useEffect} from 'react'
+import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { selectTrip } from './tripSlice'
 import {useParams} from 'react-router-dom'
 import NavBar from '../main/NavBar'
-import Grid from '@mui/material/Grid'
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container'
+import {setCurrentUser} from '../userAuth/userSlice.js'
+import {Row, Col, Container} from "react-bootstrap";
+
 
 function TripPage() {
+    const
     const selectedTrip = useParams()
     const trip = useSelector(state => state.trips.selectedTrip)
     const user = useSelector(state => state.user.user)
@@ -23,40 +23,70 @@ function TripPage() {
             dispatch(selectTrip(tripObj))
         })
     }, [])
+
+    useEffect(() => {
+        fetch("/me")
+        .then((r) => r.json())
+        .then(data => dispatch(setCurrentUser(data)))
+      }, [])
+
+
     console.log("user:", user)
     console.log(trip)
 
+      const containerStyle = {
+        padding: "5px", 
+        height: "40vh", 
+        maxWidth: "100%"
+      }
+
+      const containerClass = "border border-dark shadow overflow-auto"
 
     return (
         <div>
             <NavBar />
-            <Box sx={{position: "fixed", height: '100vh', width: "100%", flexGrow: 1, backgroundColor: "#EAECEE"}}>
-                <Grid container columnSpacing={2} justifyContent="center" padding="75px 20px" overflow="auto">
-                    <Grid item xs={4}>
-                    <Typography gutterBottom variant="h6" component="div" sx={{color: "#5D6D7E"}}>
+            <Container style={{'maxWidth': '95%'}}>
+                <Row style={{"paddingTop": "90px"}}>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#5D6D7E", paddingBottom: '10px' }}>
                         Welcome, {user.first_name} {user.last_name}!
                     </Typography>
-                        <Box sx={{maxWidth: "100%", maxHeight: "300px", marginTop: '20px', textAlign: 'center'}}>
-                            <img src={trip.image} alt={`${trip.title} image`} style={{'maxWidth': '100%', maxHeight: 'auto'}}/>
-                        </Box>
-                        <Box sx={{border: 1, borderColor: "#5D6D7E", maxWidth: '100%', height: "300px", overflow: 'auto', padding: '10px'}}>
-                            <Typography variant="p" sx={{color: "#5D6D7E"}}>
-                                {trip.description}
-                            </Typography>
-                        </Box>
-
-                    </Grid>
-                    <Grid item xs={4} sx={{textAlign: 'center'}}>
-                        <Typography gutterBottom variant="h4" component="div" sx={{color: "#5D6D7E"}}>
-                            {trip.title}
-                        </Typography>
-                        
-                    </Grid>
-                    <Grid item xs={4}>
-                        
-                    </Grid>
-                </Grid>
-            </Box>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#5D6D7E" }}>
+                        Current Trip: {trip.title}
+                    </Typography>
+                    <Col style={{"height": '45vh'}}>
+                        <Container style={containerStyle} className={containerClass}>
+                            <img src={trip.image} alt={trip.title} style={{'maxHeight': 'auto', 'maxWidth': '100%'}}/>
+                        </Container>
+                    </Col>
+                    <Col>
+                        <Container style={containerStyle} className={containerClass}>
+                            test
+                        </Container>    
+                    </Col>
+                    <Col>
+                        <Container style={containerStyle} className={containerClass}>
+                            Test
+                        </Container>    
+                    </Col>
+                </Row>
+                <Row style={{"paddingTop": "20px"}}>
+                    <Col style={{"height": '45vh'}}>
+                        <Container style={containerStyle} className={containerClass}>
+                            {trip.description}
+                        </Container>
+                    </Col>
+                    <Col>
+                        <Container style={containerStyle} className={containerClass}>
+                            Test
+                        </Container>    
+                    </Col>
+                    <Col>
+                        <Container style={containerStyle} className={containerClass}>
+                            Test
+                        </Container>    
+                    </Col>
+                </Row>
+            </Container>
         </div>
     )
 }

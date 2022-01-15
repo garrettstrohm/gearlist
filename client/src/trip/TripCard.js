@@ -11,6 +11,11 @@ import { useNavigate } from 'react-router-dom';
 
 export default function TripCard({trip, handleDelete}) {
     const navigate = useNavigate()
+
+    function onDelete(e){
+        e.stopPropagation();
+        handleDelete(trip.id)
+    }
   return (
         <Card sx={{ maxWidth: "100%", maxHeight: "350px", margin: "0px 0px 10px 0px" }} onClick={() => navigate(`/mytrip/${trip.id}`)}>
         <CardActionArea>
@@ -30,7 +35,7 @@ export default function TripCard({trip, handleDelete}) {
             </CardContent>
             <Stack direction="row" spacing={20} justifyContent="center">
                 <Button variant="text">Edit</Button>
-                <Button variant="text" onClick={() => handleDelete(trip.id)}>Delete</Button>
+                <Button variant="text" onClick={(e) => onDelete(e)}>Delete</Button>
             </Stack>
         </CardActionArea>
         </Card>

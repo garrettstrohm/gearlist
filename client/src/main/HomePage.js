@@ -35,7 +35,7 @@ function HomePage() {
         <div>
             <NavBar />
             <Box sx={{position: "fixed", height: '100vh', width: "100%", flexGrow: 1, backgroundColor: "#EAECEE"}}>
-            <Grid container columnSpacing={3} justifyContent="center" padding="100px 20px" overflow="auto">
+            <Grid container columnSpacing={3} justifyContent="center" padding="100px" overflow="auto">
                 <Grid item xs={6}>
                     <TripCardContainer />
                 </Grid>
