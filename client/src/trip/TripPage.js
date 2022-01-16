@@ -39,6 +39,12 @@ function TripPage() {
         })
     }, [toggle])
 
+    useEffect(() => {
+        fetch(`/adventurers/${selectedTrip.id}`)
+        .then(r => r.json())
+        .then(data => console.log("adventurers", data))
+    }, [])
+
     const containerStyle = {
     padding: "5px", 
     height: "40vh", 
@@ -56,7 +62,7 @@ function TripPage() {
 
     function handleInputSubmit(e){
         e.preventDefault()
-        
+
         const configObj = {
             method: "PATCH",
             headers: {

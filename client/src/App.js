@@ -29,7 +29,7 @@ function App() {
         navigate("/login")
       }
     })
-  }, [])
+  }, [location.pathname])
 
   console.log("current user:", user)
 

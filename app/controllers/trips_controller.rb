@@ -3,7 +3,8 @@ class TripsController < ApplicationController
     skip_before_action :find_trip, only: [:index, :create]
 
     def index
-        render json: current_user.trips, status: :ok
+        user = current_user
+        render json: user.trips, status: :ok
     end
 
     def show
