@@ -11,6 +11,7 @@ import TextField from '@mui/material/TextField';
 import AdventurerCardContainer from '../trip/AdventurerCardContainer'
 
 
+
 function TripPage() {
     const selectedTrip = useParams()
     const trip = useSelector(state => state.trips.selectedTrip)

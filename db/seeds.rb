@@ -9,7 +9,7 @@
 puts "Seeding..."
 #Users
 john = User.create(username: "johnsmith", password: "12345", password_confirmation: "12345", email: "garres4@vt.edu", phone_number: "5555555550", first_name: "John", last_name: "Smith")
-toby = User.create(username: "safariman", password: "12345", password_confirmation: "12345", email: "matteweva@gmail.com", phone_number: "5555555551", first_name: "Toby", last_name: "Narra")
+toby = User.create(username: "safariman", password: "12345", password_confirmation: "12345", email: "fake@fake.com", phone_number: "5555555551", first_name: "Toby", last_name: "Narra")
 jenny = User.create(username: "jenny55", password: "12345", password_confirmation: "12345", email: "jennykloel@notreal.com", phone_number: "5555555552", first_name: "Jenny", last_name: "Loel")
 alexa = User.create(username: "alexasmith", password: "12345", password_confirmation: "12345", email: "alexafromamazon@notreal.com", phone_number: "5555555553", first_name: "Alexa", last_name: "Robot")
 trent = User.create(username: "ickython", password: "12345", password_confirmation: "12345", email: "theassembly@notreal.com", phone_number: "5555555554", first_name: "Trent", last_name: "Ickython")
@@ -23,22 +23,22 @@ Trip.create(title: "Mountain Climbing in Denver, CO", image: "https://denvermoun
 Trip.create(title: "Fly-Fishing in Scotland!", image: "http://midcurrent.com/wp-content/uploads/2019/03/cast.jpg", date: "03/07/23 - 03/14/23", location: "Scotland", description: "We fishing for fishes in Scotland.", user_id: trent.id)
 
 #Items
-Item.create(name: "Soft Shotgun Case", quantity: 1, description: "You need a soft case to transport your shotgun in a packed jeep we will be taking to the field.", image: "https://scheels.scene7.com/is/image/Scheels/73761801618?wid=300&hei=300&qlt=60")
-Item.create(name: "Box of Shotshells", quantity: 10, description: "Bring atleast 10 boxes of ammo for the week. Make sure it is the appropriate gauge for your shotgun!", image: "https://storage.googleapis.com/content.ezadtv.com/truevalue-images/197259_000_001.png")
-Item.create(name: "Rubber Boots", quantity: 1, description: "Need waterproof books like muck boots.", image: "https://dks.scene7.com/is/image/GolfGalaxy/15MBOMRCTCSPRTXXXFBO_Black?qlt=70&wid=600&fmt=pjpeg")
-Item.create(name: "Personal Snacks", quantity: 20, description: "Bring a healthy amount of snacks for the field.", image: "https://www.kindsnacks.com/on/demandware.static/-/Sites-kind-snacks-master/default/dw375d7ee0/images/20802-main-protein-double-dark-chocolate-nut.png")
-Item.create(name: "Tip for Guides", quantity: 200, description: "Bring $200 to tip the guide", image: "https://storage.googleapis.com/afs-prod/media/7168e34cb2c944689d6cb2843fefce0e/2016.jpeg")
-Item.create(name: "Bottle of Liquor", quantity: 2, description: "We'll be here for a bit, and want to make sure we all split the responsibility. So bring a bottle or two to share!", image: "https://cdn.caskers.com/catalog/product/cache/ce56bc73870585a38310c58e499d2fd4/b/l/blanton_s_original_single_barrel_bourbon_whiskey_1.jpg")
-Item.create(name: "Set of Nice Clothing", quantity: 1, description: "May go to dinner at a nice restaurant one night. Have appropriate clothing for it", image: "https://i.pinimg.com/originals/4a/fe/21/4afe2104c2f9216c973e8423e3e40f3b.jpg")
+Item.create(name: "Soft Shotgun Case", description: "You need a soft case to transport your shotgun in a packed jeep we will be taking to the field.", image: "https://scheels.scene7.com/is/image/Scheels/73761801618?wid=300&hei=300&qlt=60")
+Item.create(name: "Box of Shotshells", description: "Bring atleast 10 boxes of ammo for the week. Make sure it is the appropriate gauge for your shotgun!", image: "https://storage.googleapis.com/content.ezadtv.com/truevalue-images/197259_000_001.png")
+Item.create(name: "Rubber Boots", description: "Need waterproof books like muck boots.", image: "https://dks.scene7.com/is/image/GolfGalaxy/15MBOMRCTCSPRTXXXFBO_Black?qlt=70&wid=600&fmt=pjpeg")
+Item.create(name: "Personal Snacks", description: "Bring a healthy amount of snacks for the field.", image: "https://www.kindsnacks.com/on/demandware.static/-/Sites-kind-snacks-master/default/dw375d7ee0/images/20802-main-protein-double-dark-chocolate-nut.png")
+Item.create(name: "Tip for Guides", description: "Bring $200 to tip the guide", image: "https://storage.googleapis.com/afs-prod/media/7168e34cb2c944689d6cb2843fefce0e/2016.jpeg")
+Item.create(name: "Bottle of Liquor", description: "We'll be here for a bit, and want to make sure we all split the responsibility. So bring a bottle or two to share!", image: "https://cdn.caskers.com/catalog/product/cache/ce56bc73870585a38310c58e499d2fd4/b/l/blanton_s_original_single_barrel_bourbon_whiskey_1.jpg")
+Item.create(name: "Set of Nice Clothing", description: "May go to dinner at a nice restaurant one night. Have appropriate clothing for it", image: "https://i.pinimg.com/originals/4a/fe/21/4afe2104c2f9216c973e8423e3e40f3b.jpg")
 
 #TripItems
-TripItem.create(trip_id: 1, item_id: 1)
-TripItem.create(trip_id: 1, item_id: 2)
-TripItem.create(trip_id: 1, item_id: 3)
-TripItem.create(trip_id: 1, item_id: 4)
-TripItem.create(trip_id: 1, item_id: 5)
-TripItem.create(trip_id: 1, item_id: 6)
-TripItem.create(trip_id: 1, item_id: 7)
+TripItem.create(trip_id: 1, item_id: 1, quantity: 1, acquired: false)
+TripItem.create(trip_id: 1, item_id: 2, quantity: 10, acquired: false)
+TripItem.create(trip_id: 1, item_id: 3, quantity: 1, acquired: false)
+TripItem.create(trip_id: 1, item_id: 4, quantity: 20, acquired: false)
+TripItem.create(trip_id: 1, item_id: 5, quantity: 200, acquired: false)
+TripItem.create(trip_id: 1, item_id: 6, quantity: 2, acquired: false)
+TripItem.create(trip_id: 1, item_id: 7, quantity: 1, acquired: false)
 
 #UserTrips
 UserTrip.create(trip_id: 1, user_id: 1)
