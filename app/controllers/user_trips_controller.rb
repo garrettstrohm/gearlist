@@ -5,7 +5,7 @@ class UserTripsController < ApplicationController
     end
 
     def adventurers
-        adventurers = current_user.user_trips.where(trip_id: params[:id])
+        adventurers = UserTrip.where(trip_id: params[:id])
         render json: adventurers, status: :ok
     end
 end

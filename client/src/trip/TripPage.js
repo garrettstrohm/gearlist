@@ -8,12 +8,14 @@ import Typography from '@mui/material/Typography';
 import {setCurrentUser} from '../userAuth/userSlice.js'
 import {Row, Col, Container} from "react-bootstrap";
 import TextField from '@mui/material/TextField';
+import AdventurerCardContainer from '../trip/AdventurerCardContainer'
 
 
 function TripPage() {
     const selectedTrip = useParams()
     const trip = useSelector(state => state.trips.selectedTrip)
     const user = useSelector(state => state.user.user)
+
     const dispatch = useDispatch()
     const [toggle, setToggle] = useState(true)
     const [form, setForm] = useState({
@@ -39,11 +41,6 @@ function TripPage() {
         })
     }, [toggle])
 
-    useEffect(() => {
-        fetch(`/adventurers/${selectedTrip.id}`)
-        .then(r => r.json())
-        .then(data => console.log("adventurers", data))
-    }, [])
 
     const containerStyle = {
     padding: "5px", 
@@ -104,7 +101,7 @@ function TripPage() {
                         </Col>
                         <Col>
                             <Container style={containerStyle} className={containerClass}>
-                                Test
+                                <AdventurerCardContainer />
                             </Container>    
                         </Col>
                     </Row>
