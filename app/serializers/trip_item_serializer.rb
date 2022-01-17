@@ -1,5 +1,5 @@
 class TripItemSerializer < ActiveModel::Serializer
-  attributes :id
-  has_one :item
-  has_one :trip
+  attributes :id, :quantity, :acquired, :item
+  belongs_to :item
+  belongs_to :trip
 end

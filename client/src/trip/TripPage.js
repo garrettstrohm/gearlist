@@ -8,7 +8,8 @@ import Typography from '@mui/material/Typography';
 import {setCurrentUser} from '../userAuth/userSlice.js'
 import {Row, Col, Container} from "react-bootstrap";
 import TextField from '@mui/material/TextField';
-import AdventurerCardContainer from '../trip/AdventurerCardContainer'
+import AdventurerCardContainer from './AdventurerCardContainer'
+import TripItemContainer from '../item/TripItemContainer'
 
 
 
@@ -19,6 +20,7 @@ function TripPage() {
 
     const dispatch = useDispatch()
     const [toggle, setToggle] = useState(true)
+    const [tripItems, setTripItems] = useState([])
     const [form, setForm] = useState({
         title: "",
         image: "",
@@ -32,6 +34,7 @@ function TripPage() {
         .then(r => r.json())
         .then(tripObj => {
             dispatch(selectTrip(tripObj))
+            setTripItems(tripObj.trip_items)
             setForm({
                 title: tripObj.title,
                 image: tripObj.image,
@@ -42,6 +45,7 @@ function TripPage() {
         })
     }, [toggle])
 
+    console.log(tripItems)
 
     const containerStyle = {
     padding: "5px", 
@@ -97,7 +101,7 @@ function TripPage() {
                         </Col>
                         <Col>
                             <Container style={containerStyle} className={containerClass}>
-                                test
+                                <TripItemContainer items={tripItems} setItems={setTripItems}/>
                             </Container>    
                         </Col>
                         <Col>

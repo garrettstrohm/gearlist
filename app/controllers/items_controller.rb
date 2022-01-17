@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
     def create
-        item = Item.create!(item_params).trip_items.create!(trip_id: params[:id])
+        item = Item.create!(item_params)
         render json: item, status: :created
     end
 
