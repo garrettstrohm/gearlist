@@ -1,15 +1,15 @@
 import React from 'react'
 import List from '@mui/material/List'
-import ItemCard from './ItemCard'
+import UserItemCard from './UserItemCard'
 import {useSelector, useDispatch} from 'react-redux'
 import { setAllUserItems } from './itemSlice'
 
 function UserItemContainer() {
     const items = useSelector(state => state.items.userItems)
-    const user = useSelector(state => state.user.user)
-    const itemList = items?.map(item => <ItemCard key={item.id} item={item} handleDelete={handleDelete}/>)
+    const itemList = items?.map(item => <UserItemCard key={item.id} item={item} handleDelete={handleDelete}/>)
     const dispatch = useDispatch()
-   
+    console.log('itemsnow:', items)
+
     function handleDelete(id){
         fetch(`/user_items/${id}`, {method: 'DELETE'})
         .then(() => {

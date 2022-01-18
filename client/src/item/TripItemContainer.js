@@ -1,12 +1,12 @@
 import React from 'react'
 import List from '@mui/material/List'
-import ItemCard from './ItemCard'
+import TripItemCard from './TripItemCard'
 import {useSelector, useDispatch} from 'react-redux'
 import { setAllTripItems } from './itemSlice'
 
 function TripItemContainer() {
     const items = useSelector(state => state.items.tripItems)
-    const itemList = items?.map(item => <ItemCard key={item.id} item={item} handleDelete={handleDelete}/>)
+    const itemList = items?.map(item => <TripItemCard key={item.id} item={item} handleDelete={handleDelete}/>)
     const dispatch = useDispatch()
     console.log("test",items)
 

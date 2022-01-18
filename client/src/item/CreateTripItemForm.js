@@ -18,7 +18,7 @@ export default function CreateTripItemForm({itemCategory}) {
         image: '',
         description: ''
     })
-    console.log(itemCategory)
+
     const dispatch = useDispatch()
    
     function handleChange(e){
@@ -69,11 +69,13 @@ export default function CreateTripItemForm({itemCategory}) {
             }
             fetch('/user_items', configObj)
             .then(r => r.json())
-            .then(data => dispatch(setAllUserItems([data, ...userItems])))
+            .then(data => {
+                dispatch(setAllUserItems([data, ...userItems]))
+                console.log(data)
+            })
         }
     }
 
-    console.log('form:', form)
 
   return (
     <div>

@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { selectTrip } from './tripSlice'
 import { setAllTripItems, setAllUserItems } from '../item/itemSlice'
+import {setAllAdventures} from '../adventure/adventureSlice'
 import {useParams} from 'react-router-dom'
 import NavBar from '../main/NavBar'
 import Typography from '@mui/material/Typography';
@@ -13,6 +14,8 @@ import TripItemContainer from '../item/TripItemContainer'
 import CreateTripItemForm from '../item/CreateTripItemForm'
 import CreateItemFilter from '../item/CreateItemFilter'
 import UserItemContainer from '../item/UserItemContainer'
+import AddAdventurerForm from './AddAdventurerForm'
+import Button from '@mui/material/Button'
 
 
 
@@ -31,6 +34,8 @@ function TripPage() {
         description: ""
     })
     const [itemCategory, setItemCategory] = useState('tripItem')
+    const [toggleItemForm, setToggleItemForm] = useState(false)
+    const [toggleAdventurerForm, setToggleAdventurerForm] = useState(false)
 
     useEffect(() => {
         fetch(`/trips/${selectedTrip.id}`)
@@ -57,6 +62,13 @@ function TripPage() {
         fetch(`/this_trips_user_items/${selectedTrip.id}`)
         .then(r => r.json())
         .then(items => dispatch(setAllUserItems(items)))
+    }, [])
+    useEffect(() => {
+        fetch(`/adventurers/${selectedTrip.id}`)
+        .then(r => r.json())
+        .then(data => {
+            dispatch(setAllAdventures(data))
+        })
     }, [])
 
 
@@ -112,18 +124,26 @@ function TripPage() {
                             Current Trip: {trip.title}
                         </Typography>
                         <Col style={{"height": '45vh'}}>
+                            <Button>Change Image</Button>
                             <Container style={containerStyle} className={containerClass}>
                                 <img src={trip.image} alt={trip.title} style={{'maxHeight': 'auto', 'maxWidth': '100%'}}/>
                             </Container>
                         </Col>
                         <Col>
+                            <Button onClick={() => setToggleItemForm(toggleItemForm => !toggleItemForm)}>Create Item</Button>
+                            { toggleItemForm ?
+                            <>
                             <CreateItemFilter handleCategoryChange={handleCategoryChange}/>
                             <CreateTripItemForm itemCategory={itemCategory}/>
+                            </> : null
+                            }
                             <Container style={containerStyle} className={containerClass}>
                                 <TripItemContainer />
                             </Container>    
                         </Col>
                         <Col>
+                            <Button onClick={()=>setToggleAdventurerForm(toggleAdventurerForm => !toggleAdventurerForm)}>Add Adventurer</Button>
+                            {toggleAdventurerForm ? <AddAdventurerForm /> : null}
                             <Container style={containerStyle} className={containerClass}>
                                 <AdventurerCardContainer />
                             </Container>    
@@ -166,7 +186,7 @@ function TripPage() {
                         </Col>
                         <Col>
                             <Container style={containerStyle} className={containerClass}>
-                                Test
+                                Here be the future chat box.
                             </Container>    
                         </Col>
                     </Row>

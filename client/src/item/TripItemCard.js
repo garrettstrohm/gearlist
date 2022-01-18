@@ -10,7 +10,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import { setAllTripItems } from './itemSlice';
 import {useState, useEffect} from 'react'
 
-function ItemCard({item, handleDelete}) {
+function TripItemCard({item, handleDelete}) {
     const [cardItem, setCardItem] = useState({
         acquired: item.acquired
     })
@@ -70,4 +70,4 @@ function ItemCard({item, handleDelete}) {
 }
 }
 
-export default ItemCard
+export default TripItemCard
