@@ -12,22 +12,22 @@ import {useNavigate} from 'react-router-dom'
 export default function AdventureCard({adventure, handleDelete}) {
 
   const navigate = useNavigate()
-  console.log(adventure.id)
+ 
   return (
     <Card sx={{ maxWidth: "100%", maxHeight: "350px", margin: "0px 0px 10px 0px" }} onClick={() => navigate(`/adventure/${adventure.id}`)}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="160"
-          image={adventure.image}
-          alt={`${adventure.title} image`}
+          image={adventure.trip.image}
+          alt={`${adventure.trip.title} image`}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {adventure.title}
+            {adventure.trip.title}
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{maxWidth: "100%", maxHeight:"50px"}} overflow="auto">
-            {adventure.description}
+            {adventure.trip.description}
           </Typography>
         </CardContent>
         <Stack direction="row" spacing={20} justifyContent="center">
