@@ -42,7 +42,9 @@ function ItemCard({item, handleDelete}) {
             setCardItem({acquired: data.acquired})
         })
     }
-
+    if(item === null){
+        return null
+    } else {
     return (
         <div>
             <Box sx={{ minWidth: 275, marginTop: '3px' }}>
@@ -65,6 +67,7 @@ function ItemCard({item, handleDelete}) {
             </Box>
         </div>
     )
+}
 }
 
 export default ItemCard

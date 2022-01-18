@@ -6,8 +6,9 @@ class TripItemsController < ApplicationController
     end
 
     def create
-        item = Item.find_or_create_by(item_params).trip_items.create!(trip_id: params[:id], quantity: params[:quantity], acquired: false)
-        render json: item, status: :created
+        item = Item.find_or_create_by(name: params[:name], description: params[:description], image: params[:image])
+        trip_item = item.trip_items.create!(trip_id: params[:trip_id], quantity: params[:quantity], acquired: params[:acquired])
+        render json: trip_item, status: :created
     end
 
     def update
@@ -32,7 +33,4 @@ class TripItemsController < ApplicationController
         params.permit(:id, :trip_id, :item_id, :quantity, :acquired)
     end
 
-    def item_params
-        params.permit(:name, :description, :image)
-    end
 end

@@ -17,7 +17,6 @@ function HomePage() {
         .then(r => r.json())
         .then(data => {
             dispatch(setAllTrips(data))
-            console.log(data)
         })
     },[])
 
@@ -26,7 +25,6 @@ function HomePage() {
         .then(r => r.json())
         .then(data => {
             dispatch(setAllAdventures(data))
-            console.log(data)
         })
     })
 

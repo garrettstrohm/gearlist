@@ -10,6 +10,8 @@ import {Row, Col, Container} from "react-bootstrap";
 import TextField from '@mui/material/TextField';
 import AdventurerCardContainer from './AdventurerCardContainer'
 import TripItemContainer from '../item/TripItemContainer'
+import CreateTripItemForm from '../item/CreateTripItemForm'
+import CreateItemFilter from '../item/CreateItemFilter'
 
 
 
@@ -27,6 +29,7 @@ function TripPage() {
         location: "",
         description: ""
     })
+    const [itemCategory, setItemCategory] = useState('tripItem')
 
     useEffect(() => {
         fetch(`/trips/${selectedTrip.id}`)
@@ -68,6 +71,10 @@ function TripPage() {
         })
     }
 
+    function handleCategoryChange(e){
+        setItemCategory(e.target.value)
+    }
+
     function handleInputSubmit(e){
         e.preventDefault()
 
@@ -106,6 +113,8 @@ function TripPage() {
                             </Container>
                         </Col>
                         <Col>
+                            <CreateItemFilter handleCategoryChange={handleCategoryChange}/>
+                            <CreateTripItemForm itemCategory={itemCategory}/>
                             <Container style={containerStyle} className={containerClass}>
                                 <TripItemContainer />
                             </Container>    
