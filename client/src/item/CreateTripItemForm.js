@@ -4,21 +4,21 @@ import  TextField  from '@mui/material/TextField';
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import {useState} from 'react'
-import { setAllTripItems } from './itemSlice';
+import { setAllTripItems, setAllUserItems } from './itemSlice';
 import {useSelector, useDispatch} from 'react-redux'
 
 export default function CreateTripItemForm({itemCategory}) {
     const tripItems = useSelector(state => state.items.tripItems)
+    const userItems = useSelector(state => state.items.userItems)
+    const user = useSelector(state => state.user.user)
     const selectedTrip = useSelector(state => state.trips.selectedTrip)
     const[form, setForm] = useState({
-        trip_id: selectedTrip.id,
         name:'',
         quantity:'',
         image: '',
-        description: '',
-        acquired: false
+        description: ''
     })
-
+    console.log(itemCategory)
     const dispatch = useDispatch()
    
     function handleChange(e){
@@ -31,16 +31,45 @@ export default function CreateTripItemForm({itemCategory}) {
     function handleSubmit(e){
         e.preventDefault()
         if(itemCategory === 'tripItem'){
+            const newTripItem = {
+                trip_id: selectedTrip.id,
+                name: form.name,
+                quantity: parseInt(form.quantity),
+                image: form.image,
+                description: form.description,
+                acquired: false
+            }
             const configObj = {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(form)
+                body: JSON.stringify(newTripItem)
             }
             fetch('/trip_items', configObj)
             .then(r => r.json())
             .then(data => dispatch(setAllTripItems([data, ...tripItems])))
+
+        } else if (itemCategory === 'userItem') {
+            const newUserItem = {
+                user_id: user.id,
+                trip_id: selectedTrip.id,
+                name: form.name,
+                quantity: parseInt(form.quantity),
+                image: form.image,
+                description: form.description,
+                acquired: false
+            }
+            const configObj = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newUserItem)
+            }
+            fetch('/user_items', configObj)
+            .then(r => r.json())
+            .then(data => dispatch(setAllUserItems([data, ...userItems])))
         }
     }
 

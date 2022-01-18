@@ -2,7 +2,7 @@ import React from 'react'
 import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { selectTrip } from './tripSlice'
-import { setAllTripItems } from '../item/itemSlice'
+import { setAllTripItems, setAllUserItems } from '../item/itemSlice'
 import {useParams} from 'react-router-dom'
 import NavBar from '../main/NavBar'
 import Typography from '@mui/material/Typography';
@@ -12,6 +12,7 @@ import AdventurerCardContainer from './AdventurerCardContainer'
 import TripItemContainer from '../item/TripItemContainer'
 import CreateTripItemForm from '../item/CreateTripItemForm'
 import CreateItemFilter from '../item/CreateItemFilter'
+import UserItemContainer from '../item/UserItemContainer'
 
 
 
@@ -49,10 +50,13 @@ function TripPage() {
     useEffect(() => {
         fetch(`/this_trips_items/${selectedTrip.id}`)
         .then(r => r.json())
-        .then(items => {
-            console.log(items)
-            dispatch(setAllTripItems(items))
-        })
+        .then(items => dispatch(setAllTripItems(items)))
+    }, [])
+
+    useEffect(() => {
+        fetch(`/this_trips_user_items/${selectedTrip.id}`)
+        .then(r => r.json())
+        .then(items => dispatch(setAllUserItems(items)))
     }, [])
 
 
@@ -157,7 +161,7 @@ function TripPage() {
                         </Col>
                         <Col>
                             <Container style={containerStyle} className={containerClass}>
-                                Test
+                                <UserItemContainer />
                             </Container>    
                         </Col>
                         <Col>
