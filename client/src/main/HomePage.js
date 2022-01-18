@@ -11,7 +11,8 @@ import { setAllAdventures } from '../adventure/adventureSlice';
 function HomePage() {
     const dispatch = useDispatch()
     const trips = useSelector(state => state.trips.trips)
-
+    const adventures = useSelector(state => state.adventures.adventures)
+    console.log('adv:', adventures)
     useEffect(() => {
         fetch('/trips')
         .then(r => r.json())
