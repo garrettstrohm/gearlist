@@ -6,12 +6,15 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import {useNavigate} from 'react-router-dom'
 
 
 export default function AdventureCard({adventure, handleDelete}) {
 
+  const navigate = useNavigate()
+  console.log(adventure.id)
   return (
-    <Card sx={{ maxWidth: "100%", maxHeight: "350px", margin: "0px 0px 10px 0px" }}>
+    <Card sx={{ maxWidth: "100%", maxHeight: "350px", margin: "0px 0px 10px 0px" }} onClick={() => navigate(`/adventure/${adventure.id}`)}>
       <CardActionArea>
         <CardMedia
           component="img"

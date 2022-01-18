@@ -1,28 +1,26 @@
 import React from 'react'
 import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { selectTrip } from './tripSlice'
-import { setAllTripItems, setAllUserItems } from '../item/itemSlice'
-import {setAllAdventures} from '../adventure/adventureSlice'
 import {useParams} from 'react-router-dom'
 import NavBar from '../main/NavBar'
 import Typography from '@mui/material/Typography';
 import {Row, Col, Container} from "react-bootstrap";
-import TextField from '@mui/material/TextField';
-import AdventurerCardContainer from './AdventurerCardContainer'
+import {selectAdventure} from './adventureSlice'
+import AdventurerCardContainer from '../trip/AdventurerCardContainer'
 import TripItemContainer from '../item/TripItemContainer'
 import CreateTripItemForm from '../item/CreateTripItemForm'
 import CreateItemFilter from '../item/CreateItemFilter'
 import UserItemContainer from '../item/UserItemContainer'
-import AddAdventurerForm from './AddAdventurerForm'
 import Button from '@mui/material/Button'
 
 
 
-function TripPage() {
-    const selectedTrip = useParams()
-    const trip = useSelector(state => state.trips.selectedTrip)
+function AdventurePage() {
+    const selectedAdventure = useParams()
+    const adventure = useSelector(state => state.adventures.selectedAdventure)
     const user = useSelector(state => state.user.user)
+
+    console.log("testAdv",adventure)
 
     const dispatch = useDispatch()
     const [toggle, setToggle] = useState(true)
@@ -35,13 +33,12 @@ function TripPage() {
     })
     const [itemCategory, setItemCategory] = useState('tripItem')
     const [toggleItemForm, setToggleItemForm] = useState(false)
-    const [toggleAdventurerForm, setToggleAdventurerForm] = useState(false)
 
     useEffect(() => {
-        fetch(`/trips/${selectedTrip.id}`)
+        fetch(`/user_trips/${selectedAdventure.id}`)
         .then(r => r.json())
         .then(tripObj => {
-            dispatch(selectTrip(tripObj))
+            dispatch(selectAdventure(tripObj))
             setForm({
                 title: tripObj.title,
                 image: tripObj.image,
@@ -51,25 +48,15 @@ function TripPage() {
             })
         })
     }, [toggle])
-
+  
     useEffect(() => {
-        fetch(`/this_trips_items/${selectedTrip.id}`)
+        fetch(`/user_trips/${selectedAdventure.id}`)
         .then(r => r.json())
-        .then(items => dispatch(setAllTripItems(items)))
-    }, [])
-
-    useEffect(() => {
-        fetch(`/this_trips_user_items/${selectedTrip.id}`)
-        .then(r => r.json())
-        .then(items => dispatch(setAllUserItems(items)))
-    }, [])
-    useEffect(() => {
-        fetch(`/adventurers/${selectedTrip.id}`)
-        .then(r => r.json())
-        .then(data => {
-            dispatch(setAllAdventures(data))
+        .then(advObj => {
+            console.log('advObj',advObj)
+            dispatch(selectAdventure(advObj))
         })
-    }, [])
+    }, [dispatch])
 
 
     const containerStyle = {
@@ -91,24 +78,6 @@ function TripPage() {
         setItemCategory(e.target.value)
     }
 
-    function handleInputSubmit(e){
-        e.preventDefault()
-
-        const configObj = {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(form)
-        }
-        fetch(`/trips/${selectedTrip.id}`, configObj)
-        .then(r => r.json())
-        .then(data => {
-            console.log("updated trip:", data)
-            dispatch(selectTrip({...trip, data}))
-        })
-    }
-
     if (user === null){
         return null
     } else {
@@ -121,12 +90,12 @@ function TripPage() {
                             Welcome, {user.first_name} {user.last_name}!
                         </Typography>
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#5D6D7E" }}>
-                            Current Trip: {trip.title}
+                            Current Adventure: {adventure.title}
                         </Typography>
                         <Col style={{"height": '45vh'}}>
                             <Button>Change Image</Button>
                             <Container style={containerStyle} className={containerClass}>
-                                <img src={trip.image} alt={trip.title} style={{'maxHeight': 'auto', 'maxWidth': '100%'}}/>
+                                <img src={adventure.image} alt={adventure.title} style={{'maxHeight': 'auto', 'maxWidth': '100%'}}/>
                             </Container>
                         </Col>
                         <Col>
@@ -142,8 +111,6 @@ function TripPage() {
                             </Container>    
                         </Col>
                         <Col>
-                            <Button onClick={()=>setToggleAdventurerForm(toggleAdventurerForm => !toggleAdventurerForm)}>Add Adventurer</Button>
-                            {toggleAdventurerForm ? <AddAdventurerForm /> : null}
                             <Container style={containerStyle} className={containerClass}>
                                 <AdventurerCardContainer />
                             </Container>    
@@ -151,33 +118,11 @@ function TripPage() {
                     </Row>
                     <Row style={{"paddingTop": "20px"}}>
                         <Col style={{"height": '45vh'}}>
-                            {toggle ? <Container style={containerStyle} className={containerClass} onDoubleClick={() => setToggle(false)}>
+                            <Container style={containerStyle} className={containerClass} onDoubleClick={() => setToggle(false)}>
                                 <Typography variant="h6" component="div" onDoubleClick={() => setToggle(false)} sx={{ flexGrow: 1, color: "#5D6D7E", paddingBottom: '10px' }}>
-                                    {trip.description}
+                                    {adventure.description}
                                 </Typography>
-                            </Container> : 
-                                <Container style={containerStyle} className={containerClass}>
-                                    {<TextField
-                                        margin="normal"
-                                        multiline
-                                        maxRows={Infinity}
-                                        fullWidth
-                                        name="description"
-                                        value={form.description}
-                                        onChange={handleChange}
-                                        onKeyDown={e => {
-                                            if(e.key === 'Enter'){
-                                                handleInputSubmit(e)
-                                                setToggle(true)
-                                            } else if (e.key === 'Escape'){
-                                                setToggle(true)
-                                            }
-                                        }}
-                                        type="textarea"
-                                        id="description"
-                                        />}
-                                </Container>
-                            }
+                            </Container>
                         </Col>
                         <Col>
                             <Container style={containerStyle} className={containerClass}>
@@ -196,4 +141,4 @@ function TripPage() {
     }
 }
 
-export default TripPage
+export default AdventurePage

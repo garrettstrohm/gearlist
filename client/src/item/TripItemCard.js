@@ -10,7 +10,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import { setAllTripItems } from './itemSlice';
 import {useState, useEffect} from 'react'
 
-function ItemCard({item, handleDelete}) {
+function TripItemCard({item, handleDelete}) {
     const [cardItem, setCardItem] = useState({
         acquired: item.acquired
     })
@@ -42,7 +42,9 @@ function ItemCard({item, handleDelete}) {
             setCardItem({acquired: data.acquired})
         })
     }
-
+    if(item === null){
+        return null
+    } else {
     return (
         <div>
             <Box sx={{ minWidth: 275, marginTop: '3px' }}>
@@ -66,5 +68,6 @@ function ItemCard({item, handleDelete}) {
         </div>
     )
 }
+}
 
-export default ItemCard
+export default TripItemCard

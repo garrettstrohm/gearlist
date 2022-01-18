@@ -4,8 +4,14 @@ class UserTripsController < ApplicationController
         render json: current_user.adventures, status: :ok
     end
 
+    def show
+        user = current_user
+        adventure = user.adventures.find(params[:id])
+        render json: adventure, status: :ok
+    end
+
     def create
-        adventure = User.find_by(email: params[:email]).user_trips.create!(trip_id: params[:trip_id])
+        adventure = User.find_by(email: params[:email]).adventures.create!(trip_id: params[:trip_id])
         render json: adventure, status: :created
     end
 

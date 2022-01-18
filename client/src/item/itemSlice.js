@@ -13,7 +13,7 @@ const slice = createSlice({
             state.tripItems = action.payload
         },
         setAllUserItems: (state, action) => {
-            state.useItems = action.payload
+            state.userItems = action.payload
         },
         setAllAdventureItems: (state, action) => {
             state.adventureItems = action.payload

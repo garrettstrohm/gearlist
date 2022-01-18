@@ -11,13 +11,13 @@ import { setAllAdventures } from '../adventure/adventureSlice';
 function HomePage() {
     const dispatch = useDispatch()
     const trips = useSelector(state => state.trips.trips)
-
+    const adventures = useSelector(state => state.adventures.adventures)
+    console.log('adv:', adventures)
     useEffect(() => {
         fetch('/trips')
         .then(r => r.json())
         .then(data => {
             dispatch(setAllTrips(data))
-            console.log(data)
         })
     },[])
 
@@ -26,9 +26,8 @@ function HomePage() {
         .then(r => r.json())
         .then(data => {
             dispatch(setAllAdventures(data))
-            console.log(data)
         })
-    })
+    },[])
 
     return (
 
