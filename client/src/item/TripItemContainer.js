@@ -12,7 +12,6 @@ function TripItemContainer() {
 
     function handleDelete(id){
         fetch(`/trip_items/${id}`, {method: 'DELETE'})
-        .then(r => r.json())
         .then(() => {
             const newItems = items.filter(item => item.id !== id)
             dispatch(setAllTripItems([...newItems]))

@@ -26,7 +26,7 @@ function HomePage() {
         .then(data => {
             dispatch(setAllAdventures(data))
         })
-    })
+    },[])
 
     return (
 
