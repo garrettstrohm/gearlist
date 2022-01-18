@@ -14,7 +14,6 @@ class PasswordsController < ApplicationController
     def reset
         user = find_user
         if user&.authenticate_recovery_password(params[:recovery_password])
-            debugger
             user.update!(password: params[:password], password_confirmation: params[:password_confirmation])
             session[:user_id] = user.id
             render json: user, status: :ok

@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useDispatch, useSelector} from 'react-redux'
 import {setCurrentUser} from './userSlice.js'
 
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {useState} from "react"
 
 function Copyright(props) {
@@ -40,6 +40,7 @@ function ForgotPasswordResetForm() {
         passwordConfirmation: ""
     })
 
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const user = useSelector(state => state.user.user)
     console.log("user on forgot password", user)
@@ -73,6 +74,7 @@ function ForgotPasswordResetForm() {
         .then(user => {
             if(user.error) {
                 alert(user.error)
+                navigate('/login')
             } else {
                 fetch('/me')
                 .then(r => {

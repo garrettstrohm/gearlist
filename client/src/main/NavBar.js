@@ -11,12 +11,15 @@ import Menu from '@mui/material/Menu';
 import {useState} from 'react'
 import SideDrawer from './SideDrawer';
 import LogoutButton from '../userAuth/LogoutButton';
+import { useNavigate } from 'react-router-dom';
 
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = useState(null)
   const [state, setState] = useState({
     left: false,
   });
+
+  const navigate = useNavigate()
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -47,7 +50,7 @@ export default function NavBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#5D6D7E" }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#5D6D7E", cursor: "pointer" }} onClick={() => navigate('/')}>
             GearList
           </Typography>
               <IconButton

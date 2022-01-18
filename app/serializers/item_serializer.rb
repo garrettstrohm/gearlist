@@ -1,3 +1,4 @@
 class ItemSerializer < ActiveModel::Serializer
-  attributes :id, :name, :quantity, :description, :image, :acquired
+  attributes :id, :name, :description, :image
+  has_many :trip_items
 end
