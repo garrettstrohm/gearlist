@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   post '/forgot_password', to: "passwords#forgot"
   post '/reset_password', to: "passwords#reset"
   get '/adventurers/:id', to: "user_trips#adventurers"
+  get '/this_trips_items/:id', to: 'trip_items#index'
 
   get '*path',
       to: 'fallback#index',

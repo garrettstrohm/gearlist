@@ -1,7 +1,7 @@
 class TripItemsController < ApplicationController
 
     def index
-        items = TripItems.find_by(trip_id: params[:id])
+        items = TripItem.where(trip_id: params[:id])
         render json: items, status: :ok
     end
 
@@ -10,10 +10,26 @@ class TripItemsController < ApplicationController
         render json: item, status: :created
     end
 
+    def update
+        target_item = find_item
+        target_item.update!(trip_items_params)
+        render json: target_item, status: :ok
+    end
+
+    def destroy
+        target_item = find_item
+        target_item.destroy
+        head :no_content
+    end
+
     private
 
+    def find_item
+        TripItem.find(params[:id])
+    end
+
     def trip_items_params
-        params.permit(:trip_id, :item_id, :quantity, :acquired)
+        params.permit(:id, :trip_id, :item_id, :quantity, :acquired)
     end
 
     def item_params

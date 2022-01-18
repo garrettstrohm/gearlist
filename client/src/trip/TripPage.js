@@ -2,10 +2,10 @@ import React from 'react'
 import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { selectTrip } from './tripSlice'
+import { setAllTripItems } from '../item/itemSlice'
 import {useParams} from 'react-router-dom'
 import NavBar from '../main/NavBar'
 import Typography from '@mui/material/Typography';
-import {setCurrentUser} from '../userAuth/userSlice.js'
 import {Row, Col, Container} from "react-bootstrap";
 import TextField from '@mui/material/TextField';
 import AdventurerCardContainer from './AdventurerCardContainer'
@@ -20,7 +20,6 @@ function TripPage() {
 
     const dispatch = useDispatch()
     const [toggle, setToggle] = useState(true)
-    const [tripItems, setTripItems] = useState([])
     const [form, setForm] = useState({
         title: "",
         image: "",
@@ -34,7 +33,6 @@ function TripPage() {
         .then(r => r.json())
         .then(tripObj => {
             dispatch(selectTrip(tripObj))
-            setTripItems(tripObj.trip_items)
             setForm({
                 title: tripObj.title,
                 image: tripObj.image,
@@ -45,7 +43,15 @@ function TripPage() {
         })
     }, [toggle])
 
-    console.log(tripItems)
+    useEffect(() => {
+        fetch(`/this_trips_items/${selectedTrip.id}`)
+        .then(r => r.json())
+        .then(items => {
+            console.log(items)
+            dispatch(setAllTripItems(items))
+        })
+    }, [])
+
 
     const containerStyle = {
     padding: "5px", 
@@ -101,7 +107,7 @@ function TripPage() {
                         </Col>
                         <Col>
                             <Container style={containerStyle} className={containerClass}>
-                                <TripItemContainer items={tripItems} setItems={setTripItems}/>
+                                <TripItemContainer />
                             </Container>    
                         </Col>
                         <Col>
