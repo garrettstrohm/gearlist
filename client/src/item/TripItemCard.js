@@ -52,7 +52,7 @@ function TripItemCard({item, handleDelete}) {
                     <React.Fragment>
                         <CardContent>
                             <Typography variant="h5" component="div">
-                                {item.item.name}
+                                {item.item ? item.item.name : null}
                             </Typography>
                             <Typography variant="body2">
                                 Quantity: {item.quantity}

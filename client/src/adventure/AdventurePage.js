@@ -76,12 +76,6 @@ function AdventurePage() {
 
     const containerClass = "border border-dark shadow overflow-auto"
 
-    function handleChange(e){
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value
-        })
-    }
 
     if (user === null){
         return null

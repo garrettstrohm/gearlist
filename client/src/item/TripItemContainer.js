@@ -8,7 +8,6 @@ function TripItemContainer() {
     const items = useSelector(state => state.items.tripItems)
     const itemList = items?.map(item => <TripItemCard key={item.id} item={item} handleDelete={handleDelete}/>)
     const dispatch = useDispatch()
-    console.log("test",items)
 
     function handleDelete(id){
         fetch(`/trip_items/${id}`, {method: 'DELETE'})
@@ -21,7 +20,7 @@ function TripItemContainer() {
     return (
         <div>
             <List sx={{maxHeight: "100vh"}}>
-                    {itemList}
+                    {items.length > 0 ? itemList: null}
             </List>
         </div>
     )
