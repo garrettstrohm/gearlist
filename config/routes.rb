@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :adventure_items
   resources :user_adventure_items
   resources :user_items
   resources :trip_items
@@ -24,7 +25,7 @@ Rails.application.routes.draw do
   get '/adventurers/:id', to: "user_trips#adventurers"
   get '/this_trips_items/:id', to: 'trip_items#index'
   get '/this_trips_user_items/:id', to: 'user_items#index'
-  get '/this_trips_adventure_items/:id', to: 'user_adventure_items#index'
+  get '/this_trips_adventure_items/:id', to: 'adventure_items#index'
 
   get '*path',
       to: 'fallback#index',

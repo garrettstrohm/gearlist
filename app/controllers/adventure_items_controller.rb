@@ -1,0 +1,36 @@
+class AdventureItemsController < ApplicationController
+
+    def index
+        items = AdventureItem.where(user_trip_id: params[:id])
+        render json: items, status: :ok
+    end
+
+    def create
+        item = Item.find_or_create_by(name: params[:name], description: params[:description], image: params[:image])
+        adv_item = item.adventure_items.create(user_trip_id: params[:user_trip_id], quantity: params[:quantity], acquired: params[:acquired])
+        render json: adv_item, status: :created
+    end
+
+    def update
+        target_item = find_item
+        target_item.update!(adventure_items_params)
+        render json: target_item, status: :ok
+    end
+
+    def destroy
+        target_item = find_item
+        target_item.destroy
+        head :no_content
+    end
+
+    private
+
+    def find_item
+        AdventureItem.find(params[:id])
+    end
+
+    def adventure_items_params
+        params.permit(:id, :user_trip_id, :item_id, :quantity, :acquired)
+    end
+
+end

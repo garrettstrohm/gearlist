@@ -6,14 +6,12 @@ import NavBar from '../main/NavBar'
 import Typography from '@mui/material/Typography';
 import {Row, Col, Container} from "react-bootstrap";
 import {selectAdventure, setAllAdventures} from './adventureSlice'
-import { selectTrip } from '../trip/tripSlice'
 import { setAllTripItems, setAllAdventureItems } from '../item/itemSlice'
 import AdventurerCardContainer from '../trip/AdventurerCardContainer'
 import TripItemContainer from '../item/TripItemContainer'
-import CreateTripItemForm from '../item/CreateTripItemForm'
-import CreateItemFilter from '../item/CreateItemFilter'
-import UserItemContainer from '../item/UserItemContainer'
 import Button from '@mui/material/Button'
+import CreateAdventureItemForm from '../item/CreateAdventureItemForm'
+import AdventureItemContainer from '../item/AdventureItemContainer'
 
 
 
@@ -22,9 +20,8 @@ function AdventurePage() {
     const adventure = useSelector(state => state.adventures.selectedAdventure)
     const tripItems = useSelector(state => state.items.tripItems)
     const user = useSelector(state => state.user.user)
-    const trip = useSelector(state => state.trips.selectedTrip)
-    console.log(trip)
-    console.log("testAdv", adventure)
+    const advItems = useSelector(state => state.items.adventureItems)
+    console.log("testAdv", advItems)
 
     const dispatch = useDispatch()
     const [toggle, setToggle] = useState(true)
@@ -35,7 +32,7 @@ function AdventurePage() {
         location: "",
         description: ""
     })
-    const [itemCategory, setItemCategory] = useState('tripItem')
+    const [trip, setTrip] = useState({})
     const [toggleItemForm, setToggleItemForm] = useState(false)
 
   
@@ -43,8 +40,8 @@ function AdventurePage() {
         fetch(`/user_trips/${selectedAdventure.id}`)
         .then(r => r.json())
         .then(advObj => {
+            setTrip(advObj.trip)
             dispatch(selectAdventure(advObj))
-            dispatch(selectTrip(advObj.trip))
         })
     }, [dispatch])
 
@@ -55,7 +52,7 @@ function AdventurePage() {
             console.log("items:",items)
             dispatch(setAllTripItems(items))
         })
-    }, [dispatch])
+    }, [trip, dispatch])
 
     useEffect(() => {
         fetch(`/adventurers/${trip.id}`)
@@ -69,7 +66,7 @@ function AdventurePage() {
         fetch(`/this_trips_adventure_items/${selectedAdventure.id}`)
         .then(r => r.json())
         .then(items => dispatch(setAllAdventureItems(items)))
-    }, [])
+    }, [dispatch])
 
     const containerStyle = {
     padding: "5px", 
@@ -86,10 +83,6 @@ function AdventurePage() {
         })
     }
 
-    function handleCategoryChange(e){
-        setItemCategory(e.target.value)
-    }
-
     if (user === null){
         return null
     } else {
@@ -102,29 +95,24 @@ function AdventurePage() {
                             Welcome, {user.first_name} {user.last_name}!
                         </Typography>
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#5D6D7E" }}>
-                            Current Adventure: {adventure.trip.title}
+                            Current Adventure: {trip.title}
                         </Typography>
                         <Col style={{"height": '45vh'}}>
                             <Button>Change Image</Button>
                             <Container style={containerStyle} className={containerClass}>
-                                <img src={adventure.trip.image} alt={adventure.trip.title} style={{'maxHeight': 'auto', 'maxWidth': '100%'}}/>
+                                <img src={trip.image} alt={trip.title} style={{'maxHeight': 'auto', 'maxWidth': '100%'}}/>
                             </Container>
                         </Col>
                         <Col>
                             <Button onClick={() => setToggleItemForm(toggleItemForm => !toggleItemForm)}>Create Item</Button>
-                            { toggleItemForm ?
-                            <>
-                            <CreateItemFilter handleCategoryChange={handleCategoryChange}/>
-                            <CreateTripItemForm itemCategory={itemCategory}/>
-                            </> : null
-                            }
+                            { toggleItemForm ? <CreateAdventureItemForm /> : null }
                             <Container style={containerStyle} className={containerClass}>
                                 { tripItems.length > 0 ? <TripItemContainer /> : <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#5D6D7E", paddingBottom: '10px' }}>Unfortunately, the creator of this trip hasn't created any trip items yet!</Typography>}
                             </Container>    
                         </Col>
                         <Col>
                             <Container style={containerStyle} className={containerClass}>
-                                <AdventurerCardContainer />
+                                {trip !== null ? <AdventurerCardContainer /> : null}
                             </Container>    
                         </Col>
                     </Row>
@@ -132,13 +120,13 @@ function AdventurePage() {
                         <Col style={{"height": '45vh'}}>
                             <Container style={containerStyle} className={containerClass} onDoubleClick={() => setToggle(false)}>
                                 <Typography variant="h6" component="div" onDoubleClick={() => setToggle(false)} sx={{ flexGrow: 1, color: "#5D6D7E", paddingBottom: '10px' }}>
-                                    {adventure.trip.description}
+                                    {trip.description}
                                 </Typography>
                             </Container>
                         </Col>
                         <Col>
                             <Container style={containerStyle} className={containerClass}>
-                                { tripItems.length > 0 ? <UserItemContainer /> : <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#5D6D7E", paddingBottom: '10px' }}>Unfortunately, the creator of this trip hasn't created any trip items yet!</Typography>}
+                                { advItems.length > 0 ? <AdventureItemContainer /> : <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#5D6D7E", paddingBottom: '10px' }}>Need to make a list of personal items? Click create item at the top of this column and create one!</Typography>}
                             </Container>    
                         </Col>
                         <Col>
