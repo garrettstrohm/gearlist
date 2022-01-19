@@ -48,7 +48,15 @@ export default function CreateTripItemForm({itemCategory}) {
             }
             fetch('/trip_items', configObj)
             .then(r => r.json())
-            .then(data => dispatch(setAllTripItems([data, ...tripItems])))
+            .then(data => {
+                dispatch(setAllTripItems([data, ...tripItems]))
+                setForm({
+                    name:'',
+                    quantity:'',
+                    image: '',
+                    description: ''
+                })
+            })
 
         } else if (itemCategory === 'userItem') {
             const newUserItem = {
@@ -71,7 +79,12 @@ export default function CreateTripItemForm({itemCategory}) {
             .then(r => r.json())
             .then(data => {
                 dispatch(setAllUserItems([data, ...userItems]))
-                console.log(data)
+                setForm({
+                    name:'',
+                    quantity:'',
+                    image: '',
+                    description: ''
+                })
             })
         }
     }

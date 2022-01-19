@@ -11,23 +11,34 @@ import { setAllAdventures } from '../adventure/adventureSlice';
 function HomePage() {
     const dispatch = useDispatch()
     const trips = useSelector(state => state.trips.trips)
+    const user = useSelector(state => state.user.user)
     const adventures = useSelector(state => state.adventures.adventures)
     console.log('adv:', adventures)
     useEffect(() => {
         fetch('/trips')
-        .then(r => r.json())
-        .then(data => {
-            dispatch(setAllTrips(data))
+        .then((r) => {
+            if(r.ok){
+                r.json().then(data => {
+                dispatch(setAllTrips(data))
+             })
+            } else {
+                return null
+            }
         })
-    },[])
+    },[user])
 
     useEffect(() => {
         fetch('/user_trips')
-        .then(r => r.json())
-        .then(data => {
-            dispatch(setAllAdventures(data))
+        .then((r) => {
+            if(r.ok){
+                r.json().then(data => {
+                dispatch(setAllAdventures(data))
+            })
+            } else {
+                return null
+            }
         })
-    },[])
+    },[user])
 
     return (
 

@@ -16,6 +16,7 @@ import CreateItemFilter from '../item/CreateItemFilter'
 import UserItemContainer from '../item/UserItemContainer'
 import AddAdventurerForm from './AddAdventurerForm'
 import Button from '@mui/material/Button'
+import Stack from '@mui/material/Stack'
 
 
 
@@ -104,7 +105,6 @@ function TripPage() {
         fetch(`/trips/${selectedTrip.id}`, configObj)
         .then(r => r.json())
         .then(data => {
-            console.log("updated trip:", data)
             dispatch(selectTrip({...trip, data}))
         })
     }
@@ -117,12 +117,20 @@ function TripPage() {
                 <NavBar />
                 <Container style={{'maxWidth': '95%'}}>
                     <Row style={{"paddingTop": "90px"}}>
-                        <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#5D6D7E", paddingBottom: '10px' }}>
+                        <Stack direction='row' spacing={10}>
+                        <Typography variant="h6" sx={{color: "#5D6D7E", paddingBottom: '10px' }}>
                             Welcome, {user.first_name} {user.last_name}!
                         </Typography>
-                        <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#5D6D7E" }}>
+                        <Typography variant="h6" sx={{ color: "#5D6D7E" }}>
                             Current Trip: {trip.title}
                         </Typography>
+                        <Typography variant="h6" sx={{ color: "#5D6D7E" }}>
+                            Date: {trip.date}
+                        </Typography>
+                        <Typography variant="h6" sx={{ color: "#5D6D7E" }}>
+                            Location: {trip.location}
+                        </Typography>
+                        </Stack>
                         <Col style={{"height": '45vh'}}>
                             <Button>Change Image</Button>
                             <Container style={containerStyle} className={containerClass}>

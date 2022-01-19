@@ -194,8 +194,8 @@ function Signup() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link to="/signup">
-                  "Don't have an account? Sign Up"
+                <Link to="/login">
+                  Already Have An Account? Login
                 </Link>
               </Grid>
             </Grid>

@@ -10,7 +10,6 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import {useState} from 'react'
 import SideDrawer from './SideDrawer';
-import LogoutButton from '../userAuth/LogoutButton';
 import { useNavigate } from 'react-router-dom';
 
 export default function NavBar() {
@@ -36,6 +35,11 @@ export default function NavBar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+    function logout(){
+        fetch("/logout", {method: "DELETE"})
+        .then(()=> navigate('/login'))
+    }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -80,8 +84,8 @@ export default function NavBar() {
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={logout}>Logout</MenuItem>
                 <SideDrawer state={state} setState={setState} toggleDrawer={toggleDrawer}/>
-                <LogoutButton />
               </Menu>
         </Toolbar>
       </AppBar>
