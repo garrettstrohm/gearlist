@@ -1,12 +1,13 @@
 class UserTripsController < ApplicationController
 
     def index
-        render json: current_user.adventures, status: :ok
+        user = current_user
+        adventures = UserTrip.where(user_id: user.id)
+        render json: adventures, status: :ok
     end
 
     def show
-        user = current_user
-        adventure = user.adventures.find(params[:id])
+        adventure = UserTrip.find(params[:id])
         render json: adventure, status: :ok
     end
 
@@ -24,5 +25,11 @@ class UserTripsController < ApplicationController
     def adventurers
         adventurers = UserTrip.where(trip_id: params[:id])
         render json: adventurers, status: :ok
+    end
+
+    private
+
+    def user_trips_params
+        params.permit(:id, :user_id, :trip_id)
     end
 end

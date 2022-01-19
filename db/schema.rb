@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_18_180625) do
+ActiveRecord::Schema.define(version: 2022_01_18_234302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "adventure_items", force: :cascade do |t|
+    t.bigint "user_trip_id", null: false
+    t.bigint "item_id", null: false
+    t.bigint "quantity"
+    t.boolean "acquired"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_adventure_items_on_item_id"
+    t.index ["user_trip_id"], name: "index_adventure_items_on_user_trip_id"
+  end
 
   create_table "items", force: :cascade do |t|
     t.string "name"
@@ -51,6 +62,7 @@ ActiveRecord::Schema.define(version: 2022_01_18_180625) do
     t.bigint "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "quantity"
     t.index ["item_id"], name: "index_user_adventure_items_on_item_id"
     t.index ["user_trip_id"], name: "index_user_adventure_items_on_user_trip_id"
   end
@@ -89,6 +101,8 @@ ActiveRecord::Schema.define(version: 2022_01_18_180625) do
     t.string "recovery_password_digest"
   end
 
+  add_foreign_key "adventure_items", "items"
+  add_foreign_key "adventure_items", "user_trips"
   add_foreign_key "trip_items", "items"
   add_foreign_key "trip_items", "trips"
   add_foreign_key "trips", "users"

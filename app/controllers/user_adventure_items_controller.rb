@@ -1,2 +1,0 @@
-class UserAdventureItemsController < ApplicationController
-end
