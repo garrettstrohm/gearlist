@@ -46,6 +46,8 @@ function Signup() {
 
     })
 
+    console.log('signup form:', form)
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const user = useSelector(state => state.user.user)
@@ -54,12 +56,21 @@ function Signup() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const newUser = {
+          username: form.username,
+          password: form.password,
+          password_confirmation: form.passwordConfirmation,
+          first_name: form.firstName,
+          last_name: form.lastName,
+          email: form.email,
+          phone_number: form.phoneNumber
+        }
         const configObj = {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(form)
+            body: JSON.stringify(newUser)
         }
         fetch('/signup', configObj)
         .then(r => {
