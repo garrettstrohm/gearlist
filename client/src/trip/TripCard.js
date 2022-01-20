@@ -17,25 +17,24 @@ export default function TripCard({trip, handleDelete}) {
         handleDelete(trip.id)
     }
   return (
-        <Card sx={{ maxWidth: "100%", maxHeight: "350px", margin: "0px 0px 10px 0px" }} onClick={() => navigate(`/mytrip/${trip.id}`)}>
+        <Card sx={{ maxWidth: "100%", height: "350px", margin: "0px 0px 20px 0px" }} onClick={() => navigate(`/mytrip/${trip.id}`)}>
             <CardActionArea>
                 <CardMedia
                 component="img"
-                height="160"
+                height="170px"
                 image={trip.image}
                 alt={`${trip.title} image`}
                 />
                 <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="h5" component="div" overflow="hidden">
                     {trip.title}
                 </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{maxWidth: "100%", maxHeight:"50px"}} overflow="auto">
+                <Typography variant="body2" color="text.secondary" sx={{maxWidth: "100%", height:"50px"}} overflow="auto">
                     {trip.description}
                 </Typography>
                 </CardContent>
-                <Stack direction="row" spacing={20} justifyContent="center">
-                    <Button variant="text">Edit</Button>
-                    <Button variant="text" onClick={(e) => onDelete(e)}>Delete</Button>
+                <Stack direction="row" justifyContent="center">
+                    <Button variant="text" sx={{marginBottom: '10px'}} onClick={(e) => onDelete(e)}>Delete</Button>
                 </Stack>
             </CardActionArea>
         </Card>

@@ -76,6 +76,7 @@ function ForgotPasswordResetForm() {
                 .then(r => {
                     if(r.ok){
                         r.json().then(user => {
+                            alert('Password reset successfully!')
                             dispatch(setCurrentUser(user))
                             navigate('/')
                         })

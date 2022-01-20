@@ -5,7 +5,7 @@ import {useParams} from 'react-router-dom'
 import NavBar from '../main/NavBar'
 import Typography from '@mui/material/Typography';
 import {Row, Col, Container} from "react-bootstrap";
-import {selectAdventure, setAllAdventures} from './adventureSlice'
+import {selectAdventure, setAllAdventures, setAllAdventurers} from './adventureSlice'
 import { setAllTripItems, setAllAdventureItems } from '../item/itemSlice'
 import AdventurerCardContainer from '../trip/AdventurerCardContainer'
 import TripItemContainer from '../item/TripItemContainer'
@@ -58,7 +58,8 @@ function AdventurePage() {
         fetch(`/adventurers/${trip.id}`)
         .then(r => r.json())
         .then(data => {
-            dispatch(setAllAdventures(data))
+            console.log('adventurers:', data)
+            dispatch(setAllAdventurers(data))
         })
     }, [adventure])
 

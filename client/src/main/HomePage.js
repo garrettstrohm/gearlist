@@ -32,6 +32,7 @@ function HomePage() {
         .then((r) => {
             if(r.ok){
                 r.json().then(data => {
+                    console.log('adventures:', data)
                 dispatch(setAllAdventures(data))
             })
             } else {
@@ -40,22 +41,26 @@ function HomePage() {
         })
     },[user])
 
+    if (trips === null && adventures === null){
+        return null
+    } else {
     return (
 
-        <div>
-            <NavBar />
-            <Box sx={{position: "fixed", height: '100vh', width: "100%", flexGrow: 1, backgroundColor: "#EAECEE"}}>
-            <Grid container columnSpacing={3} justifyContent="center" padding="100px" overflow="auto">
-                <Grid item xs={6}>
-                    <TripCardContainer />
+            <div>
+                <NavBar />
+                <Box sx={{position: "fixed", height: '100vh', width: "100%", flexGrow: 1, backgroundColor: "#EAECEE"}}>
+                <Grid container columnSpacing={6} justifyContent="center" padding="100px" overflow="auto">
+                    <Grid item xs={6} xl={4}>
+                        <TripCardContainer />
+                    </Grid>
+                    <Grid item xs={6} xl={4}>
+                        <AdventureCardContainer />
+                    </Grid>
                 </Grid>
-                <Grid item xs={6}>
-                    <AdventureCardContainer />
-                </Grid>
-            </Grid>
-            </Box>
-        </div>
-    )
+                </Box>
+            </div>
+        )
+    }
 }
 
 export default HomePage

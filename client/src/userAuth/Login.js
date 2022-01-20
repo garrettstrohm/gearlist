@@ -11,7 +11,6 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
 import {useState} from "react"
 import {useDispatch, useSelector} from 'react-redux'
 import {setCurrentUser} from './userSlice.js'
@@ -43,6 +42,7 @@ function Login() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const user = useSelector(state => state.user.user)
+    const displayErrors = errors?.map(error => <p style={{color: 'red'}}>{error}</p>)
     console.log(user)
 
 const handleSubmit = (e) => {
@@ -61,6 +61,11 @@ const handleSubmit = (e) => {
               dispatch(setCurrentUser(data))
               navigate("/")
             })
+        } else {
+          r.json().then(data => {
+            setErrors(data.errors)
+            console.log(data.errors)
+          })
         }
     })
 };
@@ -113,10 +118,7 @@ const handleSubmit = (e) => {
               type="password"
               id="password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+            {errors ? displayErrors : null }
             <Button
               type="submit"
               fullWidth

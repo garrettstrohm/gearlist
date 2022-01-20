@@ -21,7 +21,7 @@ export default function AdventureCardContainer() {
     return (
         <>
             <h2 style={{textAlign: "center"}}>Your Adventures!</h2>
-            <List sx={{maxHeight: "100vh", overflow: 'auto'}}>
+            <List sx={{maxHeight: "80vh", overflow: 'auto'}}>
                     {adventureCardList}
             </List>
         </>
