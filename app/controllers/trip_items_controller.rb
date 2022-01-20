@@ -6,9 +6,13 @@ class TripItemsController < ApplicationController
     end
 
     def create
-        item = Item.find_or_create_by(name: params[:name], description: params[:description], image: params[:image])
-        trip_item = item.trip_items.create!(trip_id: params[:trip_id], quantity: params[:quantity], acquired: params[:acquired])
-        render json: trip_item, status: :created
+        trip = Trip.find_by(id: params[:trip_id])
+        user = current_user
+        if trip.user_id === user.id
+            item = Item.find_or_create_by(name: params[:name], description: params[:description], image: params[:image])
+            trip_item = item.trip_items.create!(trip_id: params[:trip_id], quantity: params[:quantity], acquired: params[:acquired])
+            render json: trip_item, status: :created
+        end
     end
 
     def update

@@ -26,13 +26,14 @@ function App() {
         r.json().then((user) => {
           dispatch(setCurrentUser(user))
         })
-      } else if (location.pathname !== '/password/reset/edit' || location.pathname !== '/forgotpassword'){
-        // navigate("/login")
+      } else if (location.pathname === '/signup') {
+        return null
+      } else if (location.pathname !== '/password/reset/edit' && location.pathname !== '/forgotpassword'){
+        navigate("/login")
       }
     })
   }, [location.pathname])
 
-  console.log("current user:", user)
 
   return (
     <div className="App">

@@ -4,7 +4,8 @@ const slice = createSlice({
     name: 'adventures',
     initialState: {
         adventures: [],
-        selectedAdventure: {}
+        selectedAdventure: {},
+        adventurers: []
     },
     reducers: {
         setAllAdventures: (state, action) => {
@@ -12,12 +13,15 @@ const slice = createSlice({
         },
         selectAdventure: (state, action) => {
             state.selectedAdventure = action.payload
+        },
+        setAllAdventurers: (state, action) => {
+            state.adventurers = action.payload
         }
     }
 })
 
-const {setAllAdventures, selectAdventure} = slice.actions
+const {setAllAdventures, selectAdventure, setAllAdventurers} = slice.actions
 
-export { setAllAdventures, selectAdventure }
+export { setAllAdventures, selectAdventure, setAllAdventurers }
 
 export default slice.reducer;

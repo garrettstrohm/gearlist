@@ -11,40 +11,56 @@ import { setAllAdventures } from '../adventure/adventureSlice';
 function HomePage() {
     const dispatch = useDispatch()
     const trips = useSelector(state => state.trips.trips)
+    const user = useSelector(state => state.user.user)
     const adventures = useSelector(state => state.adventures.adventures)
     console.log('adv:', adventures)
     useEffect(() => {
         fetch('/trips')
-        .then(r => r.json())
-        .then(data => {
-            dispatch(setAllTrips(data))
+        .then((r) => {
+            if(r.ok){
+                r.json().then(data => {
+                dispatch(setAllTrips(data))
+             })
+            } else {
+                return null
+            }
         })
-    },[])
+    },[user])
 
     useEffect(() => {
         fetch('/user_trips')
-        .then(r => r.json())
-        .then(data => {
-            dispatch(setAllAdventures(data))
+        .then((r) => {
+            if(r.ok){
+                r.json().then(data => {
+                    console.log('adventures:', data)
+                dispatch(setAllAdventures(data))
+            })
+            } else {
+                return null
+            }
         })
-    },[])
+    },[user])
 
+    if (trips === null && adventures === null){
+        return null
+    } else {
     return (
 
-        <div>
-            <NavBar />
-            <Box sx={{position: "fixed", height: '100vh', width: "100%", flexGrow: 1, backgroundColor: "#EAECEE"}}>
-            <Grid container columnSpacing={3} justifyContent="center" padding="100px" overflow="auto">
-                <Grid item xs={6}>
-                    <TripCardContainer />
+            <div>
+                <NavBar />
+                <Box sx={{position: "fixed", height: '100vh', width: "100%", flexGrow: 1, backgroundColor: "#EAECEE"}}>
+                <Grid container columnSpacing={6} justifyContent="center" padding="100px" overflow="auto">
+                    <Grid item xs={6} xl={4}>
+                        <TripCardContainer />
+                    </Grid>
+                    <Grid item xs={6} xl={4}>
+                        <AdventureCardContainer />
+                    </Grid>
                 </Grid>
-                <Grid item xs={6}>
-                    <AdventureCardContainer />
-                </Grid>
-            </Grid>
-            </Box>
-        </div>
-    )
+                </Box>
+            </div>
+        )
+    }
 }
 
 export default HomePage
