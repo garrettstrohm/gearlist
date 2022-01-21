@@ -4,7 +4,8 @@ const slice = createSlice({
     name: 'trips',
     initialState: {
         trips: [],
-        selectedTrip: {}
+        selectedTrip: {},
+        tripMemberships: []
     },
     reducers: {
         setAllTrips: (state, action) => {
@@ -12,12 +13,15 @@ const slice = createSlice({
         },
         selectTrip: (state, action) => {
             state.selectedTrip = action.payload
+        },
+        setTripMemberships: (state, action) => {
+            state.tripMemberships = action.payload
         }
     }
 })
 
-const {setAllTrips, selectTrip} = slice.actions
+const {setAllTrips, selectTrip, setTripMemberships} = slice.actions
 
-export { setAllTrips, selectTrip }
+export { setAllTrips, selectTrip, setTripMemberships }
 
 export default slice.reducer;

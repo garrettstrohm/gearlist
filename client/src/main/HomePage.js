@@ -7,13 +7,15 @@ import {useDispatch, useSelector} from 'react-redux'
 import {setAllTrips} from '../trip/tripSlice.js'
 import Box from '@mui/material/Box';
 import { setAllAdventures } from '../adventure/adventureSlice';
+import {setTripMemberships} from '../trip/tripSlice.js'
 
 function HomePage() {
     const dispatch = useDispatch()
     const trips = useSelector(state => state.trips.trips)
     const user = useSelector(state => state.user.user)
     const adventures = useSelector(state => state.adventures.adventures)
-    console.log('adv:', adventures)
+    const tripMems = useSelector(state => state.trips.tripMemberships)
+    console.log('mems:', tripMems)
     useEffect(() => {
         fetch('/trips')
         .then((r) => {
@@ -40,6 +42,22 @@ function HomePage() {
             }
         })
     },[user])
+
+    useEffect(() => {
+        fetch('/trip_memberships')
+        .then(r => {
+            if(r.ok){
+                r.json().then(data => {
+                    dispatch(setTripMemberships(data))
+                })
+            } else {
+                return null
+            }
+        })
+    },[])
+
+
+
 
     if (trips === null && adventures === null){
         return null

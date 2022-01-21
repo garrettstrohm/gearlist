@@ -16,6 +16,7 @@ class TripsController < ApplicationController
 
     def create
         trip = current_user.trips.create!(trip_params)
+        trip.trip_memberships.create!(user_id: trip.user_id)
         render json: trip, status: :created
     end
 

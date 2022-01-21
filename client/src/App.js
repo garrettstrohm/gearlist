@@ -29,7 +29,7 @@ function App() {
       } else if (location.pathname === '/signup') {
         return null
       } else if (location.pathname !== '/password/reset/edit' && location.pathname !== '/forgotpassword'){
-        navigate("/login")
+        // navigate("/login")
       }
     })
   }, [location.pathname])

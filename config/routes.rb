@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :messages
+  resources :trip_memberships
   resources :adventure_items
   resources :user_adventure_items
   resources :user_items
@@ -31,4 +33,6 @@ Rails.application.routes.draw do
       to: 'fallback#index',
       constraints: ->(req) { !req.xhr? && req.format.html? }
       
+  mount ActionCable.server => '/cable'
+
 end
