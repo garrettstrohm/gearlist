@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { selectTrip } from './tripSlice'
 import { setAllTripItems, setAllUserItems } from '../item/itemSlice'
-import {setAllAdventures} from '../adventure/adventureSlice'
+import {setAllAdventurers} from '../adventure/adventureSlice'
 import {useParams} from 'react-router-dom'
 import NavBar from '../main/NavBar'
 import Typography from '@mui/material/Typography';
@@ -68,7 +68,7 @@ function TripPage() {
         fetch(`/adventurers/${selectedTrip.id}`)
         .then(r => r.json())
         .then(data => {
-            dispatch(setAllAdventures(data))
+            dispatch(setAllAdventurers(data))
         })
     }, [])
 
