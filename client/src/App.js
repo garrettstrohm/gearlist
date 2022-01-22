@@ -8,6 +8,7 @@ import ForgotPassword from "./userAuth/ForgotPassword";
 import ForgotPasswordResetForm from "./userAuth/ForgotPasswordResetForm";
 import {useDispatch, useSelector} from 'react-redux'
 import {setCurrentUser} from './userAuth/userSlice.js'
+import { setMessages } from './messages/messagesSlice.js';
 import CreateTripForm from "./trip/CreateTripForm.js";
 import TripPage from "./trip/TripPage.js";
 import AdventurePage from './adventure/AdventurePage.js'
@@ -33,6 +34,12 @@ function App() {
       }
     })
   }, [location.pathname])
+
+  useEffect(() => {
+    fetch('/messages')
+    .then(r => r.json())
+    .then(data => dispatch(setMessages(data)))
+  }, [])
 
 
   return (

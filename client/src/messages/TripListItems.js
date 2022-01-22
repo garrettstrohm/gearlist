@@ -18,6 +18,7 @@ function TripListItems({mem, trip}) {
           { channel: 'MessagesChannel', id: trip.id },
           {
             received: (data) => {
+                console.log("data:", data)
               dispatch(messageReceived(data))
             },
           }

@@ -6,8 +6,7 @@ class MessagesChannel < ApplicationCable::Channel
   end
 
   def receive(data)
-    user = User.find_by(id: params['userId'])
-    message = @trip.messages.create(content: data['content'], user: user)
+    message = Message.create(content: data['content'], user_id: data['userId'], trip_id: data['tripId'])
     MessageRelayJob.perform_later(message)
   end
 

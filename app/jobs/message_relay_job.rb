@@ -3,6 +3,6 @@ class MessageRelayJob < ApplicationJob
   
     def perform(message)
       trip = message.trip
-      MessagesChannel.broadcast_to(team, JSON.stringify(message))
+      MessagesChannel.broadcast_to(trip, message)
     end
   end
