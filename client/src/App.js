@@ -12,6 +12,7 @@ import { setMessages } from './messages/messagesSlice.js';
 import CreateTripForm from "./trip/CreateTripForm.js";
 import TripPage from "./trip/TripPage.js";
 import AdventurePage from './adventure/AdventurePage.js'
+import {setTripMemberships} from './trip/tripSlice.js'
 
 function App() {
   const user = useSelector(state => state.user.user)
@@ -38,8 +39,23 @@ function App() {
   useEffect(() => {
     fetch('/messages')
     .then(r => r.json())
-    .then(data => dispatch(setMessages(data)))
-  }, [])
+    .then(data => {
+      dispatch(setMessages(data))
+    console.log('data:', data)})
+  }, [user])
+
+  useEffect(() => {
+    fetch('/trip_memberships')
+    .then(r => {
+        if(r.ok){
+            r.json().then(data => {
+                dispatch(setTripMemberships(data))
+            })
+        } else {
+            return null
+        }
+    })
+},[user])
 
 
   return (

@@ -7,7 +7,6 @@ import {useDispatch, useSelector} from 'react-redux'
 import {setAllTrips} from '../trip/tripSlice.js'
 import Box from '@mui/material/Box';
 import { setAllAdventures } from '../adventure/adventureSlice';
-import {setTripMemberships} from '../trip/tripSlice.js'
 
 function HomePage() {
     const dispatch = useDispatch()
@@ -42,22 +41,6 @@ function HomePage() {
             }
         })
     },[user])
-
-    useEffect(() => {
-        fetch('/trip_memberships')
-        .then(r => {
-            if(r.ok){
-                r.json().then(data => {
-                    dispatch(setTripMemberships(data))
-                })
-            } else {
-                return null
-            }
-        })
-    },[])
-
-
-
 
     if (trips === null && adventures === null){
         return null
