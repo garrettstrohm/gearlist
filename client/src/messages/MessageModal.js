@@ -19,7 +19,7 @@ const style = {
 };
 
 export default function MessageModal({open, handleClose, trip, mem}) {
-  console.log('mounted')
+  console.log('re-render')
   return (
     <div>
       <Modal
@@ -29,7 +29,7 @@ export default function MessageModal({open, handleClose, trip, mem}) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <MessageList tripId={trip.id} trip={trip}/>
+          <MessageList tripId={trip.id} trip={trip} open={open}/>
         </Box>
       </Modal>
     </div>
