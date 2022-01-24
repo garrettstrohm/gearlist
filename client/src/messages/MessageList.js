@@ -10,11 +10,15 @@ function MessageList({tripId}) {
     const userId = useSelector(state => state.user.user).id
     const messages = useSelector(state => state.messages.messages)
     const cable = useRef()
+    const scrollRef = useRef(null)
     const dispatch = useDispatch()
  
     useEffect(() => {
         if(!cable.current) {
           cable.current = createConsumer('ws://localhost:3000/cable')
+        }
+        if(scrollRef.current){
+          scrollRef.current.scrollIntoView({ behaviour: "smooth" })
         }
         const paramsToSend = {
           channel: "MessagesChannel",
@@ -41,7 +45,7 @@ function MessageList({tripId}) {
         }
       }, [tripId, messages])
     
-      const messageList = messages?.filter(message => message.trip_id === tripId)?.map(message => <MessageItem key={message.created_at} message={message}/>)
+      const messageList = messages?.filter(message => message.trip_id === tripId)?.map(message => <MessageItem key={message.created_at} message={message} scrollRef={scrollRef}/>)
 
   return (
         <>
