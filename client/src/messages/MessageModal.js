@@ -19,7 +19,7 @@ const style = {
 };
 
 export default function MessageModal({open, handleClose, trip, mem}) {
-
+  console.log('mounted')
   return (
     <div>
       <Modal

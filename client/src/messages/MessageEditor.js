@@ -9,7 +9,6 @@ import Stack from "@mui/material/Stack";
 export default function MessageEditor({tripId, userId, trip}) {
   const [value, setValue] = useState('');
   const user = useSelector(state => state.user.user)
-  console.log(value)
 
 
   function handleSend(e){

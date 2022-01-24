@@ -15,7 +15,7 @@ function MessageList({tripId, trip}) {
  
     useEffect(() => {
         if(!cable.current) {
-          cable.current = createConsumer(process.env.REACT_APP_WS_ROOT)
+          cable.current = createConsumer('wss://mygearlist.herokuapp.com/cable')
         }
         if(scrollRef.current){
           scrollRef.current.scrollIntoView({ behaviour: "smooth" })
@@ -45,8 +45,8 @@ function MessageList({tripId, trip}) {
         }
       }, [tripId, messages])
     
-      const messageList = messages?.filter(message => message.trip_id === tripId)?.map(message => <MessageItem key={message.created_at} message={message} scrollRef={scrollRef}/>)
-
+      const messageList = messages?.filter(message => message.trip_id === tripId)?.map(message => <MessageItem key={message.created_at} message={message} />)
+      console.log('mounted')
   return (
         <>
         <List sx={{overflow: 'auto', height: '350px'}}>
