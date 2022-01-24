@@ -110,7 +110,7 @@ function TripPage() {
         })
     }
 
-    if (user === null){
+    if (trip === null || user === null){
         return null
     } else {
         return (
