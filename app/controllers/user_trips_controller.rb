@@ -12,7 +12,9 @@ class UserTripsController < ApplicationController
     end
 
     def create
-        adventure = User.find_by(email: params[:email]).user_trips.create!(trip_id: params[:trip_id])
+        user = User.find_by(email: params[:email])
+        adventure = user.user_trips.create!(trip_id: params[:trip_id])
+        TripMembership.create!(user_id: user.id, trip_id: params[:trip_id])
         render json: adventure, status: :created
     end
 

@@ -17,10 +17,10 @@ fjord = User.create(username: "stone15", password: "12345", password_confirmatio
 laura = User.create(username: "thelaurab", password: "12345", password_confirmation: "12345", email: "laurab@notreal.com", phone_number: "5555555556", first_name: "Laura", last_name: "Bee")
 
 #Trips
-Trip.create(title: "Kansas Pheasants", image: "http://midwestwhitetailadventures.com/proof/wp-content/uploads/2019/07/kansas-pheasant-hunt-gallery-5.jpg", date: "10/20/22 - 10/30/22", location: "10 Gauge Outfitters - 886 90th Ave, Kinsley, KS 67547", description: "We are headed out on 10/20 to one of the premier pheasant hunting locations within Kansas. The weather is looking to be cooler, highs around the mid-40s so make sure to pack your clothing accordingly. For any questions, touch base with me.", user_id: toby.id)
-Trip.create(title: "Tokyo Trip", image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dG9reW98ZW58MHx8MHx8&w=1000&q=80", date: "05/12/22-06/01/22", location: "Tokyo, Japan", description: "Let's go to Tokyo! It is finally happening! We need to figure out whose house we're meeting up at the day before our flights out to carpool still. Other than that, make sure you have the items listed below!", user_id: laura.id)
-Trip.create(title: "Mountain Climbing in Denver, CO", image: "https://denvermountainguiding.com/static/img/tabletop.jpg", date: "08/21/22", location: "Denver, CO", description: "Our day trip will start at 6am to make sure we get to the climb at a reasonable time. Make sure to remember all of your gear below. Laura, make sure you bring your yeti for drinks. This climb will be pretty challenging, but we won't give up. I don't even know how to climb to be completely honest but I wanted to try something new with y'all.", user_id: alexa.id)
-Trip.create(title: "Fly-Fishing in Scotland!", image: "http://midcurrent.com/wp-content/uploads/2019/03/cast.jpg", date: "03/07/23 - 03/14/23", location: "Scotland", description: "We fishing for fishes in Scotland.", user_id: trent.id)
+Trip.create(title: "Kansas Pheasants", image: "http://midwestwhitetailadventures.com/proof/wp-content/uploads/2019/07/kansas-pheasant-hunt-gallery-5.jpg", date: "10/20/22 - 10/30/22", location: "10 Gauge Outfitters - 886 90th Ave, Kinsley, KS 67547", description: "We are headed out on 10/20 to one of the premier pheasant hunting locations within Kansas. The weather is looking to be cooler, highs around the mid-40s so make sure to pack your clothing accordingly. For any questions, touch base with me.", user_id: toby.id).trip_memberships.create(user_id: toby.id)
+Trip.create(title: "Tokyo Trip", image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dG9reW98ZW58MHx8MHx8&w=1000&q=80", date: "05/12/22-06/01/22", location: "Tokyo, Japan", description: "Let's go to Tokyo! It is finally happening! We need to figure out whose house we're meeting up at the day before our flights out to carpool still. Other than that, make sure you have the items listed below!", user_id: laura.id).trip_memberships.create(user_id: laura.id)
+Trip.create(title: "Mountain Climbing in Denver, CO", image: "https://denvermountainguiding.com/static/img/tabletop.jpg", date: "08/21/22", location: "Denver, CO", description: "Our day trip will start at 6am to make sure we get to the climb at a reasonable time. Make sure to remember all of your gear below. Laura, make sure you bring your yeti for drinks. This climb will be pretty challenging, but we won't give up. I don't even know how to climb to be completely honest but I wanted to try something new with y'all.", user_id: alexa.id).trip_memberships.create(user_id: alexa.id)
+Trip.create(title: "Fly-Fishing in Scotland!", image: "http://midcurrent.com/wp-content/uploads/2019/03/cast.jpg", date: "03/07/23 - 03/14/23", location: "Scotland", description: "We fishing for fishes in Scotland.", user_id: trent.id).trip_memberships.create(user_id: trent.id)
 
 #Items
 Item.create(name: "Soft Shotgun Case", description: "You need a soft case to transport your shotgun in a packed jeep we will be taking to the field.", image: "https://scheels.scene7.com/is/image/Scheels/73761801618?wid=300&hei=300&qlt=60")
@@ -42,17 +42,29 @@ TripItem.create(trip_id: 1, item_id: 7, quantity: 1, acquired: false)
 
 #UserTrips
 UserTrip.create(trip_id: 1, user_id: 1)
+TripMembership.create(trip_id: 1, user_id: 1)
 UserTrip.create(trip_id: 1, user_id: 3)
+TripMembership.create(trip_id: 1, user_id: 3)
 UserTrip.create(trip_id: 1, user_id: 4)
+TripMembership.create(trip_id: 1, user_id: 4)
 UserTrip.create(trip_id: 2, user_id: 1)
+TripMembership.create(trip_id: 2, user_id: 1)
 UserTrip.create(trip_id: 2, user_id: 2)
+TripMembership.create(trip_id: 2, user_id: 2)
 UserTrip.create(trip_id: 2, user_id: 6)
+TripMembership.create(trip_id: 2, user_id: 6)
 UserTrip.create(trip_id: 2, user_id: 4)
+TripMembership.create(trip_id: 2, user_id: 4)
 UserTrip.create(trip_id: 3, user_id: 2)
+TripMembership.create(trip_id: 3, user_id: 2)
 UserTrip.create(trip_id: 3, user_id: 3)
+TripMembership.create(trip_id: 3, user_id: 3)
 UserTrip.create(trip_id: 3, user_id: 7)
+TripMembership.create(trip_id: 3, user_id: 7)
 UserTrip.create(trip_id: 4, user_id: 7)
+TripMembership.create(trip_id: 4, user_id: 7)
 UserTrip.create(trip_id: 4, user_id: 6)
+TripMembership.create(trip_id: 4, user_id: 6)
 
 
 puts "Done seeding.."

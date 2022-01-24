@@ -4,6 +4,8 @@ class User < ApplicationRecord
     has_many :user_items, dependent: :destroy
     has_many :items, through: :user_items
     has_many :trips, dependent: :destroy
+    has_many :trip_memberships
+    has_many :messages
     
     has_secure_password
     has_secure_password :recovery_password, validations: false

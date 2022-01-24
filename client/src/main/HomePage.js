@@ -13,7 +13,8 @@ function HomePage() {
     const trips = useSelector(state => state.trips.trips)
     const user = useSelector(state => state.user.user)
     const adventures = useSelector(state => state.adventures.adventures)
-    console.log('adv:', adventures)
+    const tripMems = useSelector(state => state.trips.tripMemberships)
+    console.log('mems:', tripMems)
     useEffect(() => {
         fetch('/trips')
         .then((r) => {
