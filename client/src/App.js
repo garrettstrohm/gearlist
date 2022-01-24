@@ -39,10 +39,9 @@ function App() {
   useEffect(() => {
     fetch('/messages')
     .then(r => r.json())
-    .then(data => {
-      dispatch(setMessages(data))
-    console.log('data:', data)})
-  }, [user])
+    .then(data =>
+      dispatch(setMessages(data)))
+    },[user])
 
   useEffect(() => {
     fetch('/trip_memberships')
@@ -73,5 +72,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
