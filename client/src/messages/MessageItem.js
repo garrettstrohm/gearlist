@@ -1,16 +1,13 @@
 import React from 'react';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import Stack from '@mui/material/Stack'
 
-function MessageItem({message}) {
+
+function MessageItem({message, scrollRef}) {
 
     return (
-            <ListItem>
-                <Stack direction='row' spacing={2}>
-                    <ListItemText primary={`${message.username}: `}/>
-                    <ListItemText primary={message.content}/>
-                </Stack>
+            <ListItem ref={scrollRef}>
+                <ListItemText primary={`${message.username}: ${message.content}`}/>
             </ListItem>
         );
     }
