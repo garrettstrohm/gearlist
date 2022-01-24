@@ -6,7 +6,7 @@ import MessageItem from './MessageItem.js';
 import {setMessages} from './messagesSlice.js'
 import {createConsumer} from '@rails/actioncable'
 
-function MessageList({tripId}) {
+function MessageList({tripId, trip}) {
     const userId = useSelector(state => state.user.user).id
     const messages = useSelector(state => state.messages.messages)
     const cable = useRef()
@@ -49,10 +49,10 @@ function MessageList({tripId}) {
 
   return (
         <>
-        <List sx={{overflow: 'auto', height: '300px'}}>
+        <List sx={{overflow: 'auto', height: '350px'}}>
             {messageList}
         </List>
-        <MessageEditor tripId={tripId} userId={userId}/>
+        <MessageEditor tripId={tripId} userId={userId} trip={trip}/>
         </>
     );
 }

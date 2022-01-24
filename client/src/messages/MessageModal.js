@@ -2,10 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import MessageList from './MessageList';
-import {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { setMessagesToDisplay } from './messagesSlice';
-
 
 const style = {
   position: 'absolute',
@@ -16,13 +13,12 @@ const style = {
   height: '500px',
   bgcolor: 'background.paper',
   border: '2px solid #000',
+  borderRadius: '10px',
   boxShadow: 24,
   p: 4,
 };
 
 export default function MessageModal({open, handleClose, trip, mem}) {
-    const dispatch = useDispatch()
-    const messages = useSelector(state => state.messages.messages)
 
   return (
     <div>
@@ -33,7 +29,7 @@ export default function MessageModal({open, handleClose, trip, mem}) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <MessageList tripId={trip.id}/>
+          <MessageList tripId={trip.id} trip={trip}/>
         </Box>
       </Modal>
     </div>

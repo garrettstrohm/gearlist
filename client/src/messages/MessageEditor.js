@@ -1,11 +1,12 @@
 import React, { useState} from "react";
 import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button'
+import SendIcon from '@mui/icons-material/Send';
 import {useSelector} from 'react-redux'
+import Box from '@mui/material/Box';
+import Stack from "@mui/material/Stack";
 
-
-
-export default function MessageEditor({tripId, userId}) {
+export default function MessageEditor({tripId, userId, trip}) {
   const [value, setValue] = useState('');
   const user = useSelector(state => state.user.user)
   console.log(value)
@@ -33,18 +34,22 @@ export default function MessageEditor({tripId, userId}) {
 
   return (
     <>
-      <TextField
+    <Box component="form" onSubmit={handleSend}>
+      <Stack direction='row'>
+          <TextField
               margin="normal"
               required
               fullWidth
               id="title"
-              label="Name Your Trip!"
+              label={`Message ${trip.title} Chat...`}
               name="title"
               value={value}
               onChange={e => setValue(e.target.value)}
               autoFocus
             />
-      <Button type='submit' onClick={handleSend}>Send</Button>
+            <Button type='submit' sx={{marginTop: '6px', color: "#ABEBC6"}}><SendIcon fontSize="large"/></Button>
+          </Stack>
+      </Box>
     </>
   );
 }
