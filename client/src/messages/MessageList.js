@@ -43,7 +43,7 @@ function MessageList({tripId, trip}) {
           cable.current = null
           subscription.unsubscribe()
         }
-      }, [tripId, messages])
+      }, [tripId])
     
       const messageList = messages?.filter(message => message.trip_id === tripId)?.map(message => <MessageItem key={message.created_at} message={message} />)
       console.log('mounted')
