@@ -124,11 +124,6 @@ function AdventurePage() {
                                 { advItems.length > 0 ? <AdventureItemContainer /> : <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#5D6D7E", paddingBottom: '10px' }}>Need to make a list of personal items? Click create item at the top of this column and create one!</Typography>}
                             </Container>    
                         </Col>
-                        <Col>
-                            <Container style={containerStyle} className={containerClass}>
-                                Here be the future chat box.
-                            </Container>    
-                        </Col>
                     </Row>
                 </Container>
             </div>

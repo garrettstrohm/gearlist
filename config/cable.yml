@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://redistogo:616ec0455545f365ce29c78ce2ba0ed4@sole.redistogo.com:10399/
+  url: <%= ENV['REDIS_URL'] %>
   # channel_prefix: gearlist_production

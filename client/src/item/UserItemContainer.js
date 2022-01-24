@@ -8,7 +8,6 @@ function UserItemContainer() {
     const items = useSelector(state => state.items.userItems)
     const itemList = items?.map(item => <UserItemCard key={item.id} item={item} handleDelete={handleDelete}/>)
     const dispatch = useDispatch()
-    console.log('itemsnow:', items)
 
     function handleDelete(id){
         fetch(`/user_items/${id}`, {method: 'DELETE'})

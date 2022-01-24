@@ -6,17 +6,16 @@ import MessageItem from './MessageItem.js';
 import {setMessages} from './messagesSlice.js'
 import {createConsumer} from '@rails/actioncable'
 
-function MessageList({tripId, trip, open}) {
+function MessageList({tripId, trip}) {
     const userId = useSelector(state => state.user.user).id
     const messages = useSelector(state => state.messages.messages)
     const cable = useRef()
     const scrollRef = useRef(null)
     const dispatch = useDispatch()
-    console.log(open)
  
     useEffect(() => {
         if(!cable.current) {
-          cable.current = createConsumer('wss://mygearlist.herokuapp.com/cable')
+          cable.current = createConsumer('ws://localhost:3000/cable')
         }
         if(scrollRef.current){
           scrollRef.current.scrollIntoView({ behaviour: "smooth" })
@@ -44,7 +43,7 @@ function MessageList({tripId, trip, open}) {
           cable.current = null
           subscription.unsubscribe()
         }
-      }, [tripId, messages])
+      }, [tripId, messages.length])
     
       const messageList = messages?.filter(message => message.trip_id === tripId)?.map(message => <MessageItem key={message.created_at} message={message} scrollRef={scrollRef}/>)
   return (

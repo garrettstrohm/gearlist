@@ -134,8 +134,8 @@ function TripPage() {
                         </Stack>
                         <Col style={{"height": '45vh'}}>
                             <Button>Change Image</Button>
-                            <Container style={containerStyle} className={containerClass}>
-                                <img src={trip.image} alt={trip.title} style={{'maxHeight': 'auto', 'maxWidth': '100%'}}/>
+                            <Container style={containerStyle} className={"border border-dark shadow overflow-hidden"}>
+                                <img src={trip.image} alt={trip.title} style={{'maxHeight': 'auto', 'maxWidth': '100%', 'margin': '2px'}}/>
                             </Container>
                         </Col>
                         <Col>
@@ -191,11 +191,6 @@ function TripPage() {
                         <Col>
                             <Container style={containerStyle} className={containerClass}>
                                 <UserItemContainer />
-                            </Container>    
-                        </Col>
-                        <Col>
-                            <Container style={containerStyle} className={containerClass}>
-                                <MessageList tripId={selectedTrip.id}/>
                             </Container>    
                         </Col>
                     </Row>
