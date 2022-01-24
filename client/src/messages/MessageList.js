@@ -15,7 +15,7 @@ function MessageList({tripId, trip}) {
  
     useEffect(() => {
         if(!cable.current) {
-          cable.current = createConsumer('ws://localhost:3000/cable')
+          cable.current = createConsumer(process.env.REACT_APP_WS_ROOT)
         }
         if(scrollRef.current){
           scrollRef.current.scrollIntoView({ behaviour: "smooth" })
