@@ -15,12 +15,12 @@ class MessagesController < ApplicationController
         message = Message.create!(message_params)
         trip = Trip.find(message.trip_id)
         MessagesChannel.broadcast_to(trip, message)
-        render json: message, include: ['user'], status: :created
+        render json: message, status: :created
     end
 
     private
 
     def message_params
-        params.permit(:user_id, :trip_id, :content)
+        params.permit(:user_id, :trip_id, :content, :username)
     end
 end

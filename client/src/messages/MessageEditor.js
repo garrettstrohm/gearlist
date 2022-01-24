@@ -1,10 +1,13 @@
 import React, { useState} from "react";
 import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button'
+import {useSelector} from 'react-redux'
+
 
 
 export default function MessageEditor({tripId, userId}) {
   const [value, setValue] = useState('');
+  const user = useSelector(state => state.user.user)
   console.log(value)
 
 
@@ -19,7 +22,8 @@ export default function MessageEditor({tripId, userId}) {
         body: JSON.stringify({
           content: value,
           trip_id: tripId,
-          user_id: userId
+          user_id: userId,
+          username: user.username
         }
         )
       })

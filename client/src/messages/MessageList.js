@@ -1,6 +1,5 @@
-import React, {useEffect, useState, useContext, useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {ActionCableContext} from '../index.js'
 import List from '@mui/material/List'
 import MessageEditor from './MessageEditor.js';
 import MessageItem from './MessageItem.js';
