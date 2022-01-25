@@ -17,9 +17,6 @@ import UserItemContainer from '../item/UserItemContainer'
 import AddAdventurerForm from './AddAdventurerForm'
 import Button from '@mui/material/Button'
 import Stack from '@mui/material/Stack'
-import MessageList from '../messages/MessageList'
-
-
 
 function TripPage() {
     const selectedTrip = useParams()

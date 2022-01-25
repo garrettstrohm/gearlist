@@ -15,7 +15,7 @@ function MessageList({tripId, trip}) {
  
     useEffect(() => {
         if(!cable.current) {
-          cable.current = createConsumer('wss://mygearlist.herokuapp.com/cable')
+          cable.current = createConsumer('ws://localhost:3000/cable')
         }
         if(scrollRef.current){
           scrollRef.current.scrollIntoView({ behaviour: "smooth" })
