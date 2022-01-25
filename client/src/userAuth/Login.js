@@ -15,6 +15,7 @@ import {useState} from "react"
 import {useDispatch, useSelector} from 'react-redux'
 import {setCurrentUser} from './userSlice.js'
 import {Link, useNavigate} from 'react-router-dom'
+import signin from '../assets/sign-in-bg.jpeg'
 
 
 function Copyright(props) {
@@ -28,6 +29,15 @@ function Copyright(props) {
       {'.'}
     </Typography>
   );
+}
+
+const backgroundImageStyle = {
+  backgroundImage: `url(${signin})`,
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+  backgroundOpacity: 0.6,
+  height: '100vh',
+  overflow: 'hidden'
 }
 
 const theme = createTheme();
@@ -78,7 +88,7 @@ const handleSubmit = (e) => {
  }
 
   return (
-    <ThemeProvider theme={theme}>
+      <Box style={backgroundImageStyle}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -106,6 +116,7 @@ const handleSubmit = (e) => {
               value={form.username}
               onChange={handleChange}
               autoFocus
+              sx={{backgroundColor: 'white', borderRadius: '5px'}}
             />
             <TextField
               margin="normal"
@@ -117,6 +128,7 @@ const handleSubmit = (e) => {
               label="Password"
               type="password"
               id="password"
+              sx={{backgroundColor: 'white', borderRadius: '5px'}}
             />
             {errors ? displayErrors : null }
             <Button
@@ -143,7 +155,7 @@ const handleSubmit = (e) => {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    </ThemeProvider>
+      </Box>
   );
 }
 
