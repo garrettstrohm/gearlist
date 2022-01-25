@@ -11,10 +11,11 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import {Link} from 'react-router-dom'
 import TripList from '../messages/TripList'
+import { useNavigate } from 'react-router-dom';
 
 
 export default function SideDrawer({state, setState, toggleDrawer}) {
-
+  const navigate = useNavigate()
   return (
     <>
       {['left'].map((anchor) => (
@@ -26,11 +27,9 @@ export default function SideDrawer({state, setState, toggleDrawer}) {
             onClose={toggleDrawer(anchor, false)}
           >
             <List>
-              <Link to="/createtrip">
-                <ListItem button>
+                <ListItem button onClick={() => navigate('/createtrip')}>
                   <ListItemText primary="Create a Trip" />
                 </ListItem>
-              </Link>
             </List>
             <TripList />
           </Drawer>

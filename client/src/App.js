@@ -30,8 +30,12 @@ function App() {
         })
       } else if (location.pathname === '/signup') {
         return null
-      } else if (location.pathname !== '/password/reset/edit' && location.pathname !== '/forgotpassword'){
-        // navigate("/login")
+      } else if (location.pathname === '/password/reset/edit'){
+        return null
+      } else if  (location.pathname == '/forgotpassword'){
+        return null
+      } else {
+        navigate('/login')
       }
     })
   }, [location.pathname])

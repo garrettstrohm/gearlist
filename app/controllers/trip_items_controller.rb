@@ -23,6 +23,7 @@ class TripItemsController < ApplicationController
 
     def destroy
         target_item = find_item
+        return render json: {error: 'You are not the trip organizer! You can\'t delete a trip item!'}, status: :unauthorized unless target_item.trip.user_id === current_user.id
         target_item.destroy
         head :no_content
     end

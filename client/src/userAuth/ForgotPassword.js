@@ -9,22 +9,23 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {Link, useNavigate} from 'react-router-dom'
 import {useState} from "react"
+import forgotPassword from '../assets/forgot-password-bg.jpeg'
 
 
-function Copyright(props) {
-    return (
-      <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
-        <Link to="/">
-          Your Website
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
-
-const theme = createTheme()
+const backgroundImageStyle = {
+  backgroundImage: `url(${forgotPassword})`,
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+  backgroundOpacity: 0.6,
+  height: '100vh',
+  overflow: 'hidden'
+}
+const linkStyle = {
+  textDecoration: 'none', 
+  color: "#fff",
+  textShadow: '2px 2px #000',
+  textOutline: '2px #000'
+}
 
 function ForgotPassword() {
     const [form, setForm] = useState({
@@ -59,7 +60,7 @@ function ForgotPassword() {
      }
     
       return (
-        <ThemeProvider theme={theme}>
+        <Box style={backgroundImageStyle}>
           <Container component="main" maxWidth="xs">
             <CssBaseline />
             <Box
@@ -70,7 +71,7 @@ function ForgotPassword() {
                 alignItems: 'center',
               }}
             >
-              <Typography component="h1" variant="h5">
+              <Typography component="h1" variant="h5" sx={{color: "#5D6D7E"}}>
                 Password Reset
               </Typography>
               <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
@@ -84,32 +85,32 @@ function ForgotPassword() {
                   value={form.email}
                   onChange={handleChange}
                   autoFocus
+                  sx={{backgroundColor: 'white', borderRadius: '5px', opacity: 0.8}}
                 />
                 <Button
                   type="submit"
                   fullWidth
                   variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
+                  sx={{ mt: 3, mb: 2, backgroundColor: "#ABEBC6", color: "#5D6D7E" }}
                 >
                   Reset Password
                 </Button>
                 </Box>
                 <Grid container>
                   <Grid item>
-                  <Link to="/login">
+                  <Link to="/login" style={linkStyle}>
                     Already Have An Account? Login
                     </Link>
                     <Grid item>
-                    <Link to="/signup">
+                    <Link to="/signup" style={linkStyle}>
                       Sign Up Here
                     </Link>
                     </Grid>
                   </Grid>
                 </Grid>
             </Box>
-            <Copyright sx={{ mt: 8, mb: 4 }} />
           </Container>
-        </ThemeProvider>
+          </Box>
       );
     }
 

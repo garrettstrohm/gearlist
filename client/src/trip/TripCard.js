@@ -29,13 +29,16 @@ export default function TripCard({trip, handleDelete}) {
                 <Typography gutterBottom variant="h5" component="div" overflow="hidden">
                     {trip.title}
                 </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{maxWidth: "100%", height:"50px"}} overflow="auto">
+                <Typography variant="body2" color="text.secondary" sx={{maxWidth: "100%", height:"75px"}} overflow="auto">
                     {trip.description}
                 </Typography>
-                </CardContent>
                 <Stack direction="row" justifyContent="center">
-                    <Button variant="text" sx={{marginBottom: '10px'}} onClick={(e) => onDelete(e)}>Delete</Button>
+                    <Button variant="text" sx={{marginBottom: '10px', color: "#5D6D7E"}} onClick={(e) => onDelete(e)}>Delete</Button>
                 </Stack>
+                </CardContent>
+                {/* <Stack direction="row" justifyContent="center">
+                    <Button variant="text" sx={{marginBottom: '10px'}} onClick={(e) => onDelete(e)}>Delete</Button>
+                </Stack> */}
             </CardActionArea>
         </Card>
   );

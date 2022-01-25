@@ -21,7 +21,7 @@ export default function AdventurerCard({adventurer, adventure, handleDeleteAdven
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small" onClick={() => handleDeleteAdventurer(adventure.id)}>Remove</Button>
+                <Button size="small" onClick={() => handleDeleteAdventurer(adventure.id)} sx={{color: '#FF9B00'}}>Remove</Button>
             </CardActions>
         </React.Fragment>  
         </Card>

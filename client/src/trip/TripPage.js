@@ -15,16 +15,42 @@ import CreateTripItemForm from '../item/CreateTripItemForm'
 import CreateItemFilter from '../item/CreateItemFilter'
 import UserItemContainer from '../item/UserItemContainer'
 import AddAdventurerForm from './AddAdventurerForm'
+import UpdateTripImageForm from './UpdateTripImageForm'
 import Button from '@mui/material/Button'
 import Stack from '@mui/material/Stack'
-import MessageList from '../messages/MessageList'
+import Box from '@mui/material/Box'
+import homepage from '../assets/homepage-bg.jpeg'
+
+const backgroundImageStyle = {
+    backgroundImage: `url(${homepage})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    backgroundAttachment: 'fixed',
+    backgroundPosition: 'fixed',
+    minHeight: '100vh',
+    position: 'absolute',
+    width: "100%",
+    flexGrow: 1
+  }
 
 
+const containerStyle = {
+    padding: "5px", 
+    height: "40vh", 
+    maxWidth: "100%",
+    backgroundColor: '#fff',
+    opacity: 0.9
+    }
+
+const containerClass = "border shadow overflow-auto"
 
 function TripPage() {
     const selectedTrip = useParams()
     const trip = useSelector(state => state.trips.selectedTrip)
     const user = useSelector(state => state.user.user)
+    const userItems = useSelector(state => state.items.userItems)
+    const trips = useSelector(state => state.trips.trips)
+    const [editable, setEditable] = useState(false)
 
     const dispatch = useDispatch()
     const [toggle, setToggle] = useState(true)
@@ -38,6 +64,7 @@ function TripPage() {
     const [itemCategory, setItemCategory] = useState('tripItem')
     const [toggleItemForm, setToggleItemForm] = useState(false)
     const [toggleAdventurerForm, setToggleAdventurerForm] = useState(false)
+    const [toggleImageForm, setToggleImageForm] = useState(false)
 
     useEffect(() => {
         fetch(`/trips/${selectedTrip.id}`)
@@ -52,7 +79,7 @@ function TripPage() {
                 description: tripObj.description
             })
         })
-    }, [toggle])
+    }, [toggle, trips])
 
     useEffect(() => {
         fetch(`/this_trips_items/${selectedTrip.id}`)
@@ -72,15 +99,6 @@ function TripPage() {
             dispatch(setAllAdventurers(data))
         })
     }, [])
-
-
-    const containerStyle = {
-    padding: "5px", 
-    height: "40vh", 
-    maxWidth: "100%"
-    }
-
-    const containerClass = "border border-dark shadow overflow-auto"
 
     function handleChange(e){
         setForm({
@@ -116,6 +134,7 @@ function TripPage() {
         return (
             <div>
                 <NavBar />
+                <Box style={backgroundImageStyle}>
                 <Container style={{'maxWidth': '95%'}}>
                     <Row style={{"paddingTop": "90px"}}>
                         <Stack direction='row' spacing={10}>
@@ -133,13 +152,14 @@ function TripPage() {
                         </Typography>
                         </Stack>
                         <Col style={{"height": '45vh'}}>
-                            <Button>Change Image</Button>
-                            <Container style={containerStyle} className={"border border-dark shadow overflow-hidden"}>
+                            <Button onClick={() => setToggleImageForm(toggleImageForm => !toggleImageForm)} sx={{color: '#FF9B00'}}>Change Image</Button>
+                            {toggleImageForm ? <UpdateTripImageForm/> : null}
+                            <Container style={containerStyle} className={"border shadow overflow-hidden"}>
                                 <img src={trip.image} alt={trip.title} style={{'maxHeight': 'auto', 'maxWidth': '100%', 'margin': '2px'}}/>
                             </Container>
                         </Col>
                         <Col>
-                            <Button onClick={() => setToggleItemForm(toggleItemForm => !toggleItemForm)}>Create Item</Button>
+                            <Button onClick={() => setToggleItemForm(toggleItemForm => !toggleItemForm)} sx={{color: '#FF9B00'}}>Create Item</Button>
                             { toggleItemForm ?
                             <>
                             <CreateItemFilter handleCategoryChange={handleCategoryChange}/>
@@ -151,7 +171,7 @@ function TripPage() {
                             </Container>    
                         </Col>
                         <Col>
-                            <Button onClick={()=>setToggleAdventurerForm(toggleAdventurerForm => !toggleAdventurerForm)}>Add Adventurer</Button>
+                            <Button onClick={()=>setToggleAdventurerForm(toggleAdventurerForm => !toggleAdventurerForm)} sx={{color: '#FF9B00'}}>Add Adventurer</Button>
                             {toggleAdventurerForm ? <AddAdventurerForm /> : null}
                             <Container style={containerStyle} className={containerClass}>
                                 <AdventurerCardContainer />
@@ -161,7 +181,7 @@ function TripPage() {
                     <Row style={{"paddingTop": "20px"}}>
                         <Col style={{"height": '45vh'}}>
                             {toggle ? <Container style={containerStyle} className={containerClass} onDoubleClick={() => setToggle(false)}>
-                                <Typography variant="h6" component="div" onDoubleClick={() => setToggle(false)} sx={{ flexGrow: 1, color: "#5D6D7E", paddingBottom: '10px' }}>
+                                <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#5D6D7E", paddingBottom: '10px' }}>
                                     {trip.description}
                                 </Typography>
                             </Container> : 
@@ -190,11 +210,12 @@ function TripPage() {
                         </Col>
                         <Col>
                             <Container style={containerStyle} className={containerClass}>
-                                <UserItemContainer />
+                                {userItems.length > 0 ? <UserItemContainer /> : <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#5D6D7E", paddingBottom: '10px' }}>You can create a list of personal items for your upcoming trip here. Click create item near the top of the page, and select personal item from the drop down.</Typography>}
                             </Container>    
                         </Col>
                     </Row>
                 </Container>
+                </Box>
             </div>
         )
     }

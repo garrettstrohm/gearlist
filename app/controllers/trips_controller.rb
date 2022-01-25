@@ -21,13 +21,7 @@ class TripsController < ApplicationController
     end
 
     def update
-        # trip = find_trip
-        # if current_user.id == trip.user_id
-        #     trip.update!(trip_params)
-        #     render json: trip, status: :ok
-        # end
         trip = current_user.trips.find(params[:id]).update!(trip_params)
-        
         render json: trip, status: :ok
     end
 
