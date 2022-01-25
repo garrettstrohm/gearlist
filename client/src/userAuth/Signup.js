@@ -26,7 +26,9 @@ const backgroundImageStyle = {
 }
 const linkStyle = {
   textDecoration: 'none', 
-  color: "#5D6D7E"
+  color: "#fff",
+  textShadow: '2px 2px #000',
+  textOutline: '2px #000'
 }
 
 const inputStyleLeft ={
@@ -212,18 +214,18 @@ function Signup() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, backgroundColor: "#ABEBC6", color: "#5D6D7E" }}
             >
               Sign In
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link to="/forgotpassword">
+                <Link to="/forgotpassword" style={linkStyle}>
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link to="/login">
+                <Link to="/login" style={linkStyle}>
                   Already Have An Account? Login
                 </Link>
               </Grid>

@@ -29,7 +29,9 @@ const backgroundImageStyle = {
 }
 const linkStyle = {
   textDecoration: 'none', 
-  color: "#5D6D7E"
+  color: "#fff",
+  textShadow: '2px 2px #000',
+  textOutline: '2px #000'
 }
 
 function Copyright(props) {
