@@ -20,7 +20,6 @@ class UserTripsController < ApplicationController
 
     def destroy
         adventure = UserTrip.find(params[:id])
-        debugger
         return render json: {error: 'You are not the trip organizer! You can\'t delete another adventurer!'}, status: :unauthorized unless adventure.user_id === current_user.id
         adventure.destroy
         head :no_content

@@ -11,9 +11,13 @@ function TripItemContainer() {
 
     function handleDelete(id){
         fetch(`/trip_items/${id}`, {method: 'DELETE'})
-        .then(() => {
-            const newItems = items.filter(item => item.id !== id)
-            dispatch(setAllTripItems([...newItems]))
+        .then((r) => {
+            if(r.ok){
+                const newItems = items.filter(item => item.id !== id)
+                dispatch(setAllTripItems([...newItems]))
+            } else {
+                r.json().then(errors => alert(errors.error))
+            }
         })
     }
 

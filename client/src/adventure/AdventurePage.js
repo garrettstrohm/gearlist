@@ -33,7 +33,7 @@ function AdventurePage() {
     })
     const [trip, setTrip] = useState({})
     const [toggleItemForm, setToggleItemForm] = useState(false)
-
+    console.log(adventure)
   
     useEffect(() => {
         fetch(`/user_trips/${selectedAdventure.id}`)
@@ -89,6 +89,9 @@ function AdventurePage() {
                         <Typography variant="h6" sx={{color: "#5D6D7E", paddingBottom: '10px' }}>
                             Welcome, {user.first_name} {user.last_name}!
                         </Typography>
+                        <Typography variant="h6" sx={{color: "#5D6D7E", paddingBottom: '10px' }}>
+                            Trip Organizer: {user.first_name} {user.last_name}!
+                        </Typography>
                         <Typography variant="h6" sx={{ color: "#5D6D7E" }}>
                             Current Adventure: {trip.title}
                         </Typography>
@@ -100,8 +103,8 @@ function AdventurePage() {
                         </Typography>
                         </Stack>
                         <Col style={{"height": '45vh', 'marginTop': '37px'}}>
-                            <Container style={containerStyle} className={containerClass}>
-                                <img src={trip.image} alt={trip.title} style={{'maxHeight': 'auto', 'maxWidth': '100%'}}/>
+                            <Container style={containerStyle} className={"border shadow overflow-hidden"}>
+                                <img src={trip.image} alt={trip.title} style={{'maxHeight': 'auto', 'maxWidth': '100%', 'margin': '2px'}}/>
                             </Container>
                         </Col>
                         <Col>
