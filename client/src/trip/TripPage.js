@@ -18,6 +18,31 @@ import AddAdventurerForm from './AddAdventurerForm'
 import UpdateTripImageForm from './UpdateTripImageForm'
 import Button from '@mui/material/Button'
 import Stack from '@mui/material/Stack'
+import Box from '@mui/material/Box'
+import homepage from '../assets/homepage-bg.jpeg'
+
+const backgroundImageStyle = {
+    backgroundImage: `url(${homepage})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    backgroundAttachment: 'fixed',
+    backgroundPosition: 'fixed',
+    minHeight: '100vh',
+    position: 'absolute',
+    width: "100%",
+    flexGrow: 1
+  }
+
+
+const containerStyle = {
+    padding: "5px", 
+    height: "40vh", 
+    maxWidth: "100%",
+    backgroundColor: '#fff',
+    opacity: 0.9
+    }
+
+const containerClass = "border shadow overflow-auto"
 
 function TripPage() {
     const selectedTrip = useParams()
@@ -75,15 +100,6 @@ function TripPage() {
         })
     }, [])
 
-
-    const containerStyle = {
-    padding: "5px", 
-    height: "40vh", 
-    maxWidth: "100%"
-    }
-
-    const containerClass = "border shadow overflow-auto"
-
     function handleChange(e){
         setForm({
             ...form,
@@ -118,6 +134,7 @@ function TripPage() {
         return (
             <div>
                 <NavBar />
+                <Box style={backgroundImageStyle}>
                 <Container style={{'maxWidth': '95%'}}>
                     <Row style={{"paddingTop": "90px"}}>
                         <Stack direction='row' spacing={10}>
@@ -135,14 +152,14 @@ function TripPage() {
                         </Typography>
                         </Stack>
                         <Col style={{"height": '45vh'}}>
-                            <Button onClick={() => setToggleImageForm(toggleImageForm => !toggleImageForm)}>Change Image</Button>
+                            <Button onClick={() => setToggleImageForm(toggleImageForm => !toggleImageForm)} sx={{color: '#FF9B00'}}>Change Image</Button>
                             {toggleImageForm ? <UpdateTripImageForm/> : null}
                             <Container style={containerStyle} className={"border shadow overflow-hidden"}>
                                 <img src={trip.image} alt={trip.title} style={{'maxHeight': 'auto', 'maxWidth': '100%', 'margin': '2px'}}/>
                             </Container>
                         </Col>
                         <Col>
-                            <Button onClick={() => setToggleItemForm(toggleItemForm => !toggleItemForm)}>Create Item</Button>
+                            <Button onClick={() => setToggleItemForm(toggleItemForm => !toggleItemForm)} sx={{color: '#FF9B00'}}>Create Item</Button>
                             { toggleItemForm ?
                             <>
                             <CreateItemFilter handleCategoryChange={handleCategoryChange}/>
@@ -154,7 +171,7 @@ function TripPage() {
                             </Container>    
                         </Col>
                         <Col>
-                            <Button onClick={()=>setToggleAdventurerForm(toggleAdventurerForm => !toggleAdventurerForm)}>Add Adventurer</Button>
+                            <Button onClick={()=>setToggleAdventurerForm(toggleAdventurerForm => !toggleAdventurerForm)} sx={{color: '#FF9B00'}}>Add Adventurer</Button>
                             {toggleAdventurerForm ? <AddAdventurerForm /> : null}
                             <Container style={containerStyle} className={containerClass}>
                                 <AdventurerCardContainer />
@@ -198,6 +215,7 @@ function TripPage() {
                         </Col>
                     </Row>
                 </Container>
+                </Box>
             </div>
         )
     }

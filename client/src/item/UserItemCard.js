@@ -125,7 +125,7 @@ function UserItemCard({item, handleDelete}) {
                             Acquired: <Checkbox checked={cardItem.acquired} onChange={() => handleUpdate(item.id)} inputProps={{ 'aria-label': 'controlled' }}/>
                         </CardContent>
                         <CardActions>
-                            <Button size="small" onClick={() => handleDelete(item.id)}>Remove</Button>
+                            <Button size="small" onClick={() => handleDelete(item.id)} sx={{color: '#FF9B00'}}>Remove</Button>
                         </CardActions>
                     </React.Fragment>  
                 </Card>

@@ -13,6 +13,32 @@ import Button from '@mui/material/Button'
 import CreateAdventureItemForm from '../item/CreateAdventureItemForm'
 import AdventureItemContainer from '../item/AdventureItemContainer'
 import Stack from '@mui/material/Stack'
+import Box from '@mui/material/Box'
+import homepage from '../assets/homepage-bg.jpeg'
+
+const backgroundImageStyle = {
+    backgroundImage: `url(${homepage})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    backgroundAttachment: 'fixed',
+    backgroundPosition: 'fixed',
+    minHeight: '100vh',
+    position: 'absolute',
+    width: "100%",
+    flexGrow: 1
+  }
+
+
+const containerStyle = {
+    padding: "5px", 
+    height: "40vh", 
+    maxWidth: "100%",
+    backgroundColor: '#fff',
+    opacity: 0.9
+    }
+
+const containerClass = "border shadow overflow-auto"
+
 
 function AdventurePage() {
     const selectedAdventure = useParams()
@@ -68,21 +94,13 @@ function AdventurePage() {
         .then(items => dispatch(setAllAdventureItems(items)))
     }, [dispatch])
 
-    const containerStyle = {
-    padding: "5px", 
-    height: "40vh", 
-    maxWidth: "100%"
-    }
-
-    const containerClass = "border shadow overflow-auto"
-
-
     if (user === null){
         return null
     } else {
         return (
             <div>
                 <NavBar />
+                <Box style={backgroundImageStyle}>
                 <Container style={{'maxWidth': '95%'}}>
                     <Row style={{"paddingTop": "90px"}}>
                     <Stack direction='row' spacing={10}>
@@ -108,7 +126,7 @@ function AdventurePage() {
                             </Container>
                         </Col>
                         <Col>
-                            <Button onClick={() => setToggleItemForm(toggleItemForm => !toggleItemForm)}>Create Item</Button>
+                            <Button onClick={() => setToggleItemForm(toggleItemForm => !toggleItemForm)} sx={{color: '#FF9B00'}}>Create Item</Button>
                             { toggleItemForm ? <CreateAdventureItemForm /> : null }
                             <Container style={containerStyle} className={containerClass}>
                                 { tripItems.length > 0 ? <TripItemContainer /> : <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#5D6D7E", paddingBottom: '10px' }}>Unfortunately, the creator of this trip hasn't created any trip items yet!</Typography>}
@@ -135,6 +153,7 @@ function AdventurePage() {
                         </Col>
                     </Row>
                 </Container>
+                </Box>
             </div>
         )
     }

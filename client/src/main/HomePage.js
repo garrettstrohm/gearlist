@@ -2,7 +2,7 @@ import NavBar from './NavBar'
 import TripCardContainer from '../trip/TripCardContainer'
 import AdventureCardContainer from '../adventure/AdventureCardContainer';
 import Grid from '@mui/material/Grid';
-import {useEffect, useState} from 'react'
+import {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {setAllTrips} from '../trip/tripSlice.js'
 import Box from '@mui/material/Box';
@@ -27,7 +27,7 @@ function HomePage() {
     const user = useSelector(state => state.user.user)
     const adventures = useSelector(state => state.adventures.adventures)
     const tripMems = useSelector(state => state.trips.tripMemberships)
-    console.log('mems:', tripMems)
+
     useEffect(() => {
         fetch('/trips')
         .then((r) => {
