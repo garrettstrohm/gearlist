@@ -26,13 +26,13 @@ export default function AdventureCard({adventure, handleDelete}) {
           <Typography gutterBottom variant="h5" component="div" overflow="hidden">
             {adventure.trip.title}
           </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{maxWidth: "100%", height:"50px"}} overflow="auto">
+          <Typography variant="body2" color="text.secondary" sx={{maxWidth: "100%", height:"75px"}} overflow="auto">
             {adventure.trip.description}
           </Typography>
-        </CardContent>
         <Stack direction="row" justifyContent="center">
-            <Button variant="text" sx={{marginBottom: '10px'}} onClick={() => handleDelete(adventure.id)}>Delete</Button>
+            <Button variant="text" sx={{marginBottom: '10px', color: "#5D6D7E" }} onClick={() => handleDelete(adventure.id)}>Delete</Button>
         </Stack>
+        </CardContent>
       </CardActionArea>
     </Card>
   );

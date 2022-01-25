@@ -1,14 +1,18 @@
-import Container from '@mui/material/Container';
 import TripCard from './TripCard';
 import {useSelector, useDispatch} from 'react-redux'
 import { setAllTrips } from './tripSlice';
 import List from '@mui/material/List';
-import Grid from '@mui/material/Grid'
+import SearchBar from '../main/SearchBar';
+import {useState} from 'react'
+import Button from '@mui/material/Button'
 
 function TripCardContainer() {
+    const [search, setSearch] = useState('')
+    const [toggleSearch, setToggleSearch] = useState(false)
     const dispatch = useDispatch()
     const trips = useSelector(state => state.trips.trips)
-    const tripCardList = trips?.map(trip => <TripCard key={trip.id} trip={trip} handleDelete={handleDelete}/>)
+    const tripsToDisplay = trips.filter(trip => trip.title.toLowerCase().includes(search.toLowerCase()))
+    const tripCardList = tripsToDisplay?.map(trip => <TripCard key={trip.id} trip={trip} handleDelete={handleDelete}/>)
 
     function handleDelete(id){
         fetch(`/trips/${id}`, {method: "DELETE"})
@@ -20,8 +24,10 @@ function TripCardContainer() {
 
     return (
         <>
-            <h2 style={{textAlign: "center"}}>Your Organized Trips!</h2>
-            <List sx={{maxHeight: "100vh", overflow: 'auto'}}>
+            <h2 style={{textAlign: "center", color: "#5D6D7E"}}>Your Organized Trips!</h2>
+            <Button onClick={() => setToggleSearch(toggleSearch => !toggleSearch)} sx={{color: '#FF9B00'}}>Search Trips</Button>
+            {toggleSearch ? <SearchBar search={search} setSearch={setSearch}/> : null}
+            <List sx={{maxHeight: "80vh", overflow: 'auto'}}>
                     {tripCardList}
             </List>
         </>
