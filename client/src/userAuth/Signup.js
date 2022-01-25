@@ -3,35 +3,44 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import signupBg from '../assets/signup-bg.jpeg'
 import {useState} from "react"
 import {useDispatch, useSelector} from 'react-redux'
 import {setCurrentUser} from './userSlice.js'
 import {Link, useNavigate} from 'react-router-dom'
+import Stack from '@mui/material/Stack';
+import backpack from '../assets/backpack-logo.png'
 
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link to="/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
+const backgroundImageStyle = {
+  backgroundImage: `url(${signupBg})`,
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+  backgroundOpacity: 0.6,
+  height: '100vh',
+  overflow: 'hidden'
+}
+const linkStyle = {
+  textDecoration: 'none', 
+  color: "#5D6D7E"
 }
 
-const theme = createTheme();
+const inputStyleLeft ={
+  backgroundColor: 'white', 
+  borderRadius: '5px', 
+  opacity: 0.8,
+  marginRight: '10px'
+}
+const inputStyleRight ={
+  backgroundColor: 'white', 
+  borderRadius: '5px', 
+  opacity: 0.8,
+  marginLeft: '10px'
+}
 
 function Signup() {
     const [errors, setErrors] = useState([])
@@ -94,8 +103,8 @@ function Signup() {
     }
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+    <Box style={backgroundImageStyle}>
+      <Container component="main" maxWidth="md">
         <CssBaseline />
         <Box
           sx={{
@@ -105,13 +114,14 @@ function Signup() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+          <Avatar sx={{ m: 1 }}>
+            <img src={backpack} style={{'maxWidth': '100%'}}/>
           </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign Up
+          <Typography component="h1" variant="h5" sx={{color: '#fff'}}>
+            Sign Up For GearList!
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <Stack direction='row'>
             <TextField
               margin="normal"
               required
@@ -122,6 +132,7 @@ function Signup() {
               value={form.username}
               onChange={handleChange}
               autoFocus
+              style={inputStyleLeft}
             />
             <TextField
               margin="normal"
@@ -133,6 +144,20 @@ function Signup() {
               label="Password"
               type="password"
               id="password"
+              style={inputStyleRight}
+            />
+            </Stack>
+            <Stack direction='row'>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="firstName"
+              value={form.firstName}
+              onChange={handleChange}
+              label="First Name"
+              id="firstName"
+              style={inputStyleLeft}
             />
             <TextField
               margin="normal"
@@ -144,17 +169,10 @@ function Signup() {
               label="Confirm Your Password"
               type="password"
               id="passwordConfirmation"
+              style={inputStyleRight}
             />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="firstName"
-              value={form.firstName}
-              onChange={handleChange}
-              label="First Name"
-              id="firstName"
-            />
+            </Stack>
+            <Stack direction='row'>
             <TextField
               margin="normal"
               required
@@ -164,6 +182,7 @@ function Signup() {
               onChange={handleChange}
               label="Last Name"
               id="lastName"
+              style={inputStyleLeft}
             />
             <TextField
               margin="normal"
@@ -174,7 +193,9 @@ function Signup() {
               onChange={handleChange}
               label="Email"
               id="email"
+              style={inputStyleRight}
             />
+            </Stack>
             <TextField
               margin="normal"
               required
@@ -184,12 +205,9 @@ function Signup() {
               onChange={handleChange}
               label="Phone Number"
               id="phoneNumber"
+              style={inputStyleLeft}
             />
             {errors ? displayErrors: null }
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <Button
               type="submit"
               fullWidth
@@ -212,9 +230,8 @@ function Signup() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    </ThemeProvider>
+      </Box>
   );
 }
 

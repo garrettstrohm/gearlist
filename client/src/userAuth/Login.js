@@ -16,20 +16,8 @@ import {useDispatch, useSelector} from 'react-redux'
 import {setCurrentUser} from './userSlice.js'
 import {Link, useNavigate} from 'react-router-dom'
 import signin from '../assets/sign-in-bg.jpeg'
+import backpack from '../assets/backpack-logo.png'
 
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link to="/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const backgroundImageStyle = {
   backgroundImage: `url(${signin})`,
@@ -38,6 +26,23 @@ const backgroundImageStyle = {
   backgroundOpacity: 0.6,
   height: '100vh',
   overflow: 'hidden'
+}
+const linkStyle = {
+  textDecoration: 'none', 
+  color: "#5D6D7E"
+}
+
+function Copyright(props) {
+  return (
+    <Typography variant="body2" color="#fff" align="center" {...props}>
+      {'Copyright © '}
+      <Link to="/" style={{'textDecoration': 'none', 'color': "#ABEBC6"}}>
+        mygearlist.herokuapp.com
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
 }
 
 const theme = createTheme();
@@ -99,11 +104,11 @@ const handleSubmit = (e) => {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+          <Avatar sx={{ m: 1 }}>
+            <img src={backpack} style={{'maxWidth': '100%'}}/>
           </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
+          <Typography component="h1" variant="h5" sx={{color: '#fff'}}>
+            Welcome To GearList
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -116,7 +121,7 @@ const handleSubmit = (e) => {
               value={form.username}
               onChange={handleChange}
               autoFocus
-              sx={{backgroundColor: 'white', borderRadius: '5px'}}
+              sx={{backgroundColor: 'white', borderRadius: '5px', opacity: 0.8}}
             />
             <TextField
               margin="normal"
@@ -128,26 +133,26 @@ const handleSubmit = (e) => {
               label="Password"
               type="password"
               id="password"
-              sx={{backgroundColor: 'white', borderRadius: '5px'}}
+              sx={{backgroundColor: 'white', borderRadius: '5px', opacity: 0.8}}
             />
             {errors ? displayErrors : null }
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, backgroundColor: "#ABEBC6", color: "#5D6D7E" }}
             >
               Sign In
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link to="/forgotpassword">
+                <Link to="/forgotpassword" style={linkStyle}>
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link to="/signup">
-                  "Don't have an account? Sign Up"
+                <Link to="/signup" style={linkStyle}>
+                  Don't have an account? Sign Up
                 </Link>
               </Grid>
             </Grid>
