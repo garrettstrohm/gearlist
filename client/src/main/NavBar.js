@@ -11,13 +11,14 @@ import Menu from '@mui/material/Menu';
 import {useState} from 'react'
 import SideDrawer from './SideDrawer';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = useState(null)
   const [state, setState] = useState({
     left: false,
   });
-
+  const user = useSelector(state => state.user.user)
   const navigate = useNavigate()
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -82,8 +83,7 @@ export default function NavBar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={() => navigate(`/myprofile/${user.id}`)}>Profile</MenuItem>
                 <MenuItem onClick={logout}>Logout</MenuItem>
                 <SideDrawer state={state} setState={setState} toggleDrawer={toggleDrawer}/>
               </Menu>

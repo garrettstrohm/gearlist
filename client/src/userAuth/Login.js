@@ -7,7 +7,6 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useState} from "react"
 import {useDispatch, useSelector} from 'react-redux'
 import {setCurrentUser} from './userSlice.js'
@@ -43,8 +42,6 @@ function Copyright(props) {
     </Typography>
   );
 }
-
-const theme = createTheme();
 
 function Login() {
     const [errors, setErrors] = useState([])

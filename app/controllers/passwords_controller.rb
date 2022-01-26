@@ -20,6 +20,17 @@ class PasswordsController < ApplicationController
         end
     end
 
+    def update
+        user = User.find(params[:id])
+        if user&.authenticate(params[:old_password])
+            user.update!(password: params[:password], password_confirmation: params[:password_confirmation])
+            session[:user_id] = user.id
+            render json: user, status: :ok
+        else
+            render json: {error: 'Unable to process request. Please check to make sure your old password is correct, and that your new password and confirmation match.'}, status: :unauthorized
+        end
+    end
+
     private
 
     def find_user
@@ -27,7 +38,7 @@ class PasswordsController < ApplicationController
     end
 
     def password_params
-        params.permit(:password, :password_confirmation)
+        params.permit(:password, :password_confirmation, :old_password)
     end
 
     def generate_base64_token
