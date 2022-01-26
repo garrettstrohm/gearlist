@@ -42,13 +42,16 @@ function App() {
   }, [location.pathname])
 
   useEffect(() => {
+    if(user !== null){
     fetch('/messages')
     .then(r => r.json())
     .then(data =>
       dispatch(setMessages(data)))
+    }
     },[user])
 
   useEffect(() => {
+    if(user !== null){
     fetch('/trip_memberships')
     .then(r => {
         if(r.ok){
@@ -59,6 +62,7 @@ function App() {
             return null
         }
     })
+  }
 },[user])
 
 
