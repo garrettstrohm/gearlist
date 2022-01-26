@@ -5,11 +5,11 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button'
 import {useState} from 'react'
 import {useParams} from 'react-router-dom'
-import {setAllAdventures} from '../adventure/adventureSlice.js'
+import {setAllAdventurers} from '../adventure/adventureSlice.js'
 import { useDispatch, useSelector } from 'react-redux';
 
 
-export default function AddAdventurerForm({setAdventuresToDisplay}) {
+export default function AddAdventurerForm() {
     const [form, setForm] = useState({
         trip_id: "",
         email: "",
@@ -17,7 +17,7 @@ export default function AddAdventurerForm({setAdventuresToDisplay}) {
 
     const selectedTrip = useParams()
     const dispatch = useDispatch()
-    const adventures = useSelector(state => state.adventures.adventures)
+    const adventurers = useSelector(state => state.adventures.adventurers)
 
     function handleSubmit(e){
         e.preventDefault()
@@ -37,12 +37,12 @@ export default function AddAdventurerForm({setAdventuresToDisplay}) {
         fetch('/user_trips', configObj)
         .then(r => r.json())
         .then(data => {
-            console.log(data)
+            console.log('adventurer', data)
             setForm({
                 trip_id: "",
                 email: "",
             })
-            dispatch(setAllAdventures([data, ...adventures]))
+            dispatch(setAllAdventurers([data, ...adventurers]))
         })
     }
 

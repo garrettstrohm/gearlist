@@ -1,5 +1,5 @@
-Welcome to example.com, <%= @user.first_name %>
+Welcome to <%= ENV[FRONTEND_APP_HOST] %>, <%= @user.first_name %> <%= @user.last_name %>
 ===============================================
-You have successfully signed up to mygearlist.com,
+You have successfully signed up to <%= ENV[FRONTEND_APP_HOST] %>,
 your username is: <%= @user.username %>.
 Thanks for joining and have a great day!
