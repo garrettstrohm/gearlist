@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { setCurrentUser } from './userSlice';
 
@@ -21,8 +21,10 @@ function ProfilePage() {
         password: '',
         passwordConfirmation: ''
     })
-    const [toggleForm, setToggleForm] = useState(false)
+    const [togglePasswordForm, setTogglePasswordForm] = useState(false)
+    const [toggleEmailForm, setToggleEmailForm] = useState(false)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     function handleChange(e){
         setForm({
@@ -57,12 +59,46 @@ function ProfilePage() {
                         password: '',
                         passwordConfirmation: ''
                     })
+                    navigate('/')
                 })
             } else {
                 r.json().then(error => alert(error.error))
             }
         })
      }
+
+     function handleEmailSubmit(e){
+         e.preventDefault();
+         const updateEmail = {
+             email: form.email
+         }
+         const configObj = { 
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updateEmail)
+         }
+         fetch(`/users/${userParams.id}`, configObj)
+         .then(r => {
+             if(r.ok){
+                 r.json().then(data => {
+                     alert('Email has been successfully changed.')
+                     dispatch(setCurrentUser(data))
+                     setForm({
+                        email: '',
+                        oldPassword: '',
+                        password: '',
+                        passwordConfirmation: ''
+                    })
+                    navigate('/')
+                 })
+             } else {
+                 alert('Something went wrong. Please enter a valid email address and try again.')
+             }
+         })
+     }
+
      if (user === null){
          return null
      } else {
@@ -94,9 +130,9 @@ function ProfilePage() {
                         Phone Number: {user.phone_number}
                     </Typography>
                 </Box>
-                <Button onClick={() => setToggleForm(toggleForm => !toggleForm)}>Change my Password</Button>
-                <Button>Update my Email</Button>
-                {toggleForm ? <Box component='form' onChange={handleChange} onSubmit={handleSubmit}>
+                <Button onClick={() => setTogglePasswordForm(toggleForm => !toggleForm)}>Change my Password</Button>
+                <Button onClick={() => setToggleEmailForm(toggleEmailForm => !toggleEmailForm)}>Update my Email</Button>
+                {togglePasswordForm ? <Box component='form' onChange={handleChange} onSubmit={handleSubmit}>
                 <TextField
                 margin="normal"
                 required
@@ -131,6 +167,19 @@ function ProfilePage() {
                 autoFocus
                 />
                 <Button type='submit'>Submit Password Changes</Button>
+                </Box> : null}
+                {toggleEmailForm ? <Box component='form' onChange={handleChange} onSubmit={handleEmailSubmit}>
+                <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Enter your New Email"
+                name="email"
+                value={form.email}
+                autoFocus
+                />
+                <Button type='submit'>Change My Email</Button>
                 </Box> : null}
             </Container>
         </Box>
