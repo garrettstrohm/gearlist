@@ -14,11 +14,8 @@ function MessageList({tripId, trip}) {
     const dispatch = useDispatch()
  
     useEffect(() => {
-        // if(!cable.current) {
-        //   cable.current = createConsumer(process.env.REACT_APP_WS_ROOT)
-        // }
         if(!cable.current) {
-          cable.current = createConsumer(process.env.REACT_APP_WS_ROOT_DEVELOPMENT)
+          cable.current = createConsumer(process.env.REACT_APP_WS_ROOT)
         }
         if(scrollRef.current){
           scrollRef.current.scrollIntoView({ behaviour: "smooth" })
