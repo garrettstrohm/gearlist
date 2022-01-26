@@ -129,7 +129,7 @@ function ProfilePage() {
                     alignItems: 'left',
                     backgroundColor: '#e6e6e6',
                     padding: '10px',
-                    borderRadius: '10px',
+                    borderRadius: '5px',
                     boxShadow: '1px 1px 2px 1px #bababa',
                     opacity: 0.8
                 }}>

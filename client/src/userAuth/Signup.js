@@ -110,7 +110,7 @@ function Signup() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 4,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -209,7 +209,9 @@ function Signup() {
               id="phoneNumber"
               style={inputStyleLeft}
             />
-            {errors ? displayErrors: null }
+            <Box sx={{backgroundColor: '#fff', opacity: 0.8, borderRadius: '5px'}}>
+              {errors ? displayErrors : null }
+            </Box>
             <Button
               type="submit"
               fullWidth
