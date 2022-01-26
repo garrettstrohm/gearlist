@@ -35,14 +35,19 @@ export default function AddAdventurerForm() {
         }
 
         fetch('/user_trips', configObj)
-        .then(r => r.json())
-        .then(data => {
-            console.log('adventurer', data)
-            setForm({
-                trip_id: "",
-                email: "",
-            })
-            dispatch(setAllAdventurers([data, ...adventurers]))
+        .then(r => {
+            if (r.ok){
+                r.json().then(data => {
+                    console.log('adventurer', data)
+                    setForm({
+                        trip_id: "",
+                        email: "",
+                    })
+                    dispatch(setAllAdventurers([data, ...adventurers]))
+                })
+            } else {
+                r.json().then(errors => alert(errors.error))
+            }
         })
     }
 
