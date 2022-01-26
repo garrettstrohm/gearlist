@@ -46,7 +46,13 @@ export default function AddAdventurerForm() {
                     dispatch(setAllAdventurers([data, ...adventurers]))
                 })
             } else {
-                r.json().then(errors => alert(errors.error))
+                r.json().then(errors => {
+                    alert(errors.error)
+                    setForm({
+                        trip_id: "",
+                        email: "",
+                    })
+                })
             }
         })
     }
