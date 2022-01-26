@@ -8,6 +8,5 @@ class Trip < ApplicationRecord
   has_many :trip_memberships
   has_many :messages
 
-
-  validates :title, :date, :location, presence: true
+  validates :title, :date, :location, :description, :image, presence: true
 end
