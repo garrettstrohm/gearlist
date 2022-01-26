@@ -22,6 +22,12 @@ const backgroundImageStyle = {
     overflow: 'hidden'
   }
 
+  const inputStyle ={
+    backgroundColor: 'white', 
+    borderRadius: '5px', 
+    opacity: 0.8
+  }
+
 function ProfilePage() {
     const user = useSelector(state => state.user.user)
     const userParams = useParams()
@@ -157,6 +163,7 @@ function ProfilePage() {
                 type='password'
                 value={form.oldPassword}
                 autoFocus
+                style={inputStyle}
                 />
                 <TextField
                 margin="normal"
@@ -168,6 +175,7 @@ function ProfilePage() {
                 type='password'
                 value={form.password}
                 autoFocus
+                style={inputStyle}
                 />
                 <TextField
                 margin="normal"
@@ -179,8 +187,9 @@ function ProfilePage() {
                 name="passwordConfirmation"
                 value={form.passwordConfirmation}
                 autoFocus
+                style={inputStyle}
                 />
-                <Button type='submit'>Submit Password Changes</Button>
+                <Button type='submit' size='small' sx={{backgroundColor: "#ABEBC6", color: "#5D6D7E"}}>Submit Password Changes</Button>
                 </Box> : null}
                 {toggleEmailForm ? <Box component='form' onChange={handleChange} onSubmit={handleEmailSubmit}>
                 <TextField
@@ -191,9 +200,10 @@ function ProfilePage() {
                 label="Enter your New Email"
                 name="email"
                 value={form.email}
+                style={inputStyle}
                 autoFocus
                 />
-                <Button type='submit'>Change My Email</Button>
+                <Button type='submit' size='small' sx={{backgroundColor: "#ABEBC6", color: "#5D6D7E"}}>Change My Email</Button>
                 </Box> : null}
             </Container>
         </Box>
