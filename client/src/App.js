@@ -13,6 +13,7 @@ import CreateTripForm from "./trip/CreateTripForm.js";
 import TripPage from "./trip/TripPage.js";
 import AdventurePage from './adventure/AdventurePage.js'
 import {setTripMemberships} from './trip/tripSlice.js'
+import ProfilePage from './userAuth/ProfilePage.js';
 
 function App() {
   const user = useSelector(state => state.user.user)
@@ -71,6 +72,7 @@ function App() {
         <Route path="/createtrip" element={<CreateTripForm />}/>
         <Route path="/mytrip/:id" element={<TripPage />}/>
         <Route path="/adventure/:id" element={<AdventurePage />}/>
+        <Route path="/myprofile/:id" element={<ProfilePage/>}/>
         <Route exact path="/" element={<HomePage/>}/>
       </Routes>
     </div>

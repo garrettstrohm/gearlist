@@ -19,9 +19,7 @@ Rails.application.routes.draw do
   get '/me', to: 'users#show'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  post "/password/reset", to: "password_resets#create"
-  patch "/password/reset/edit", to: "password_resets#update"
-  patch "/password", to: "passwords#update"
+  patch "/password/:id", to: "passwords#update"
   post '/forgot_password', to: "passwords#forgot"
   post '/reset_password', to: "passwords#reset"
   get '/adventurers/:id', to: "user_trips#adventurers"
