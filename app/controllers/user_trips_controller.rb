@@ -13,9 +13,14 @@ class UserTripsController < ApplicationController
 
     def create
         user = User.find_by(email: params[:email])
-        adventure = user.user_trips.create!(trip_id: params[:trip_id])
-        TripMembership.create!(user_id: user.id, trip_id: params[:trip_id])
-        render json: adventure, status: :created
+        if user
+            adventure = user.user_trips.create!(trip_id: params[:trip_id])
+            TripMembership.create!(user_id: user.id, trip_id: params[:trip_id])
+            UserMailer.added_adventurer_email(user, adventure).deliver_later
+            render json: adventure, status: :created
+        else
+            render json: {error: 'A user with that email cannot be found.'}, status: :unprocessable_entity
+        end
     end
 
     def destroy

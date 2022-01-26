@@ -1,6 +1,6 @@
-<h1>Welcome to example.com, <%= @user.first_name %></h1>
+<h1>Welcome to <%= ENV[FRONTEND_APP_HOST] %>, <%= @user.first_name %> <%= @user.last_name %></h1>
   <p>
-    You have successfully signed up to example.com,
+    You have successfully signed up to <%= ENV[FRONTEND_APP_HOST] %>,
     your username is: <%= @user.username %>.<br>
   </p>
 <p>Thanks for joining and have a great day!</p>

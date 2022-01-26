@@ -36,9 +36,6 @@ export default function TripCard({trip, handleDelete}) {
                     <Button variant="text" sx={{marginBottom: '10px', color: "#5D6D7E"}} onClick={(e) => onDelete(e)}>Delete</Button>
                 </Stack>
                 </CardContent>
-                {/* <Stack direction="row" justifyContent="center">
-                    <Button variant="text" sx={{marginBottom: '10px'}} onClick={(e) => onDelete(e)}>Delete</Button>
-                </Stack> */}
             </CardActionArea>
         </Card>
   );
