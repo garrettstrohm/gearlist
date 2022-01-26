@@ -8,7 +8,7 @@ class UserTripsController < ApplicationController
 
     def show
         adventure = UserTrip.find(params[:id])
-        render json: adventure, status: :ok
+        render json: adventure, include: ['trip.user'], status: :ok
     end
 
     def create

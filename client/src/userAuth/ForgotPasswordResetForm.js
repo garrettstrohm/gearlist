@@ -6,27 +6,25 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useDispatch, useSelector} from 'react-redux'
 import {setCurrentUser} from './userSlice.js'
-
 import {Link, useNavigate} from 'react-router-dom'
 import {useState} from "react"
+import pwdReset from '../assets/password-reset-bg.jpeg'
 
-function Copyright(props) {
-    return (
-      <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
-        <Link to="/">
-          Your Website
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
-
-const theme = createTheme()
+const backgroundImageStyle = {
+  backgroundImage: `url(${pwdReset})`,
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+  backgroundOpacity: 0.6,
+  height: '100vh',
+  overflow: 'hidden'
+}
+const linkStyle = {
+  textDecoration: 'none', 
+  color: "#fff",
+  textShadow: '2px 2px #000',
+}
 
 function ForgotPasswordResetForm() {
     const [form, setForm] = useState({
@@ -95,7 +93,7 @@ function ForgotPasswordResetForm() {
      }
     
       return (
-        <ThemeProvider theme={theme}>
+        <Box style={backgroundImageStyle}>
           <Container component="main" maxWidth="xs">
             <CssBaseline />
             <Box
@@ -106,7 +104,7 @@ function ForgotPasswordResetForm() {
                 alignItems: 'center',
               }}
             >
-              <Typography component="h1" variant="h5">
+              <Typography component="h1" variant="h5" sx={{color: '#fff', textShadow: '1px 1px #000'}}>
                 Password Reset
               </Typography>
               <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
@@ -120,6 +118,7 @@ function ForgotPasswordResetForm() {
                   value={form.email}
                   onChange={handleChange}
                   autoFocus
+                  sx={{backgroundColor: 'white', borderRadius: '5px', opacity: 0.9}}
                 />
               <TextField
                   margin="normal"
@@ -131,6 +130,7 @@ function ForgotPasswordResetForm() {
                   value={form.recoveryPassword}
                   onChange={handleChange}
                   autoFocus
+                  sx={{backgroundColor: 'white', borderRadius: '5px', opacity: 0.9}}
                 />
                 <TextField
                   margin="normal"
@@ -143,6 +143,7 @@ function ForgotPasswordResetForm() {
                   value={form.password}
                   onChange={handleChange}
                   autoFocus
+                  sx={{backgroundColor: 'white', borderRadius: '5px', opacity: 0.9}}
                 />
                 <TextField
                   margin="normal"
@@ -155,12 +156,13 @@ function ForgotPasswordResetForm() {
                   value={form.passwordConfirmation}
                   onChange={handleChange}
                   autoFocus
+                  sx={{backgroundColor: 'white', borderRadius: '5px', opacity: 0.9}}
                 />
                 <Button
                   type="submit"
                   fullWidth
                   variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
+                  sx={{ mt: 3, mb: 2, backgroundColor: "#ABEBC6", color: "#5D6D7E" }}
                 >
                   Reset Password
                 </Button>
@@ -168,16 +170,15 @@ function ForgotPasswordResetForm() {
                   <Grid item xs>
                   </Grid>
                   <Grid item>
-                    <Link to="/signup">
+                    <Link to="/signup" style={linkStyle}>
                       "Don't have an account? Sign Up"
                     </Link>
                   </Grid>
                 </Grid>
               </Box>
             </Box>
-            <Copyright sx={{ mt: 8, mb: 4 }} />
           </Container>
-        </ThemeProvider>
+        </Box>
       );
     }
 

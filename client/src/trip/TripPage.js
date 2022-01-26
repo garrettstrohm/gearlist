@@ -50,7 +50,6 @@ function TripPage() {
     const user = useSelector(state => state.user.user)
     const userItems = useSelector(state => state.items.userItems)
     const trips = useSelector(state => state.trips.trips)
-    const [editable, setEditable] = useState(false)
 
     const dispatch = useDispatch()
     const [toggle, setToggle] = useState(true)

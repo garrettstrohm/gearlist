@@ -46,7 +46,6 @@ function AdventurePage() {
     const tripItems = useSelector(state => state.items.tripItems)
     const user = useSelector(state => state.user.user)
     const advItems = useSelector(state => state.items.adventureItems)
-    console.log("testAdv", advItems)
 
     const dispatch = useDispatch()
     const [toggle, setToggle] = useState(true)
@@ -59,8 +58,7 @@ function AdventurePage() {
     })
     const [trip, setTrip] = useState({})
     const [toggleItemForm, setToggleItemForm] = useState(false)
-    console.log(adventure)
-  
+
     useEffect(() => {
         fetch(`/user_trips/${selectedAdventure.id}`)
         .then(r => r.json())
@@ -74,7 +72,6 @@ function AdventurePage() {
         fetch(`/this_trips_items/${trip.id}`)
         .then(r => r.json())
         .then(items => {
-            console.log("items:",items)
             dispatch(setAllTripItems(items))
         })
     }, [trip, dispatch])
@@ -83,7 +80,6 @@ function AdventurePage() {
         fetch(`/adventurers/${trip.id}`)
         .then(r => r.json())
         .then(data => {
-            console.log('adventurers:', data)
             dispatch(setAllAdventurers(data))
         })
     }, [adventure])
@@ -107,9 +103,9 @@ function AdventurePage() {
                         <Typography variant="h6" sx={{color: "#5D6D7E", paddingBottom: '10px' }}>
                             Welcome, {user.first_name} {user.last_name}!
                         </Typography>
-                        <Typography variant="h6" sx={{color: "#5D6D7E", paddingBottom: '10px' }}>
-                            Trip Organizer: {user.first_name} {user.last_name}!
-                        </Typography>
+                        { trip.user ? <Typography variant="h6" sx={{color: "#5D6D7E", paddingBottom: '10px' }}>
+                            Trip Organizer: {trip.user.first_name} {trip.user.last_name}
+                        </Typography> : null}
                         <Typography variant="h6" sx={{ color: "#5D6D7E" }}>
                             Current Adventure: {trip.title}
                         </Typography>
