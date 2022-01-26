@@ -110,7 +110,7 @@ function Signup() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 4,
+            marginTop: 2,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -216,9 +216,9 @@ function Signup() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, backgroundColor: "#ABEBC6", color: "#5D6D7E" }}
+              sx={{ mt: 2, backgroundColor: "#ABEBC6", color: "#5D6D7E" }}
             >
-              Sign In
+              Sign Up
             </Button>
             <Grid container>
               <Grid item xs>
