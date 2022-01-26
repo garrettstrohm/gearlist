@@ -7,10 +7,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { setCurrentUser } from './userSlice';
+import profileBg from '../assets/profile-bg.jpeg'
 
 const textStyle={
     mt: '10px'
 }
+
+const backgroundImageStyle = {
+    backgroundImage: `url(${profileBg})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    backgroundOpacity: 0.6,
+    height: '100vh',
+    overflow: 'hidden'
+  }
 
 function ProfilePage() {
     const user = useSelector(state => state.user.user)
@@ -103,7 +113,7 @@ function ProfilePage() {
          return null
      } else {
   return (
-        <Box>
+        <Box style={backgroundImageStyle}>
             <Container component="main" maxWidth='xs'>
                 <Box 
                 sx={{
@@ -111,12 +121,16 @@ function ProfilePage() {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'left',
-                    backgroundColor: 'yellow'
+                    backgroundColor: '#e6e6e6',
+                    padding: '10px',
+                    borderRadius: '10px',
+                    boxShadow: '1px 1px 2px 1px #bababa',
+                    opacity: 0.8
                 }}>
                     <Typography component="h1" variant="h5" sx={{color: '#000', textAlign: 'center'}}>
                         My Profile
                     </Typography>
-                    <Box component='div' sx={{mt: 5, backgroundColor: 'yellow'}}></Box>
+                    <Box component='div' sx={{mt: 3, backgroundColor: 'yellow'}}></Box>
                     <Typography component='h2' variant='h5'>
                         Username: {user.username}
                     </Typography>
@@ -130,8 +144,8 @@ function ProfilePage() {
                         Phone Number: {user.phone_number}
                     </Typography>
                 </Box>
-                <Button onClick={() => setTogglePasswordForm(toggleForm => !toggleForm)}>Change my Password</Button>
-                <Button onClick={() => setToggleEmailForm(toggleEmailForm => !toggleEmailForm)}>Update my Email</Button>
+                <Button onClick={() => setTogglePasswordForm(toggleForm => !toggleForm)} variant='contained' size='small' sx={{marginRight: '93px', marginTop: '10px',backgroundColor: "#ABEBC6", color: "#5D6D7E"}}>Change Password</Button>
+                <Button onClick={() => setToggleEmailForm(toggleEmailForm => !toggleEmailForm)} variant='contained' size='small' sx={{marginTop: '10px', backgroundColor: "#ABEBC6", color: "#5D6D7E"}}>Update my Email</Button>
                 {togglePasswordForm ? <Box component='form' onChange={handleChange} onSubmit={handleSubmit}>
                 <TextField
                 margin="normal"
