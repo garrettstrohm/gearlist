@@ -1,11 +1,36 @@
-# README
+# GearList Trip Organization App
 
-If you are anything like me, organizing trips with my friends is nothing short of herding cats. As avid outdoorsman, many of our activities that we embark on during these trips involve a lot of gear that our group will need to get the job done. GearList was created to alleviate the pains of group travel organization through allowing trip organizers to create a list of universal items for their trip-goers, as well as allowing individuals to create their own personal items. Adventurers (trip goers added to an organized trip) can also create personal item lists, to keep track of items that they shouldn't necessarily need someone else to tell them to have... (ie a tooth brush!) and allows them to view all of the items they need for their upcoming trip!
+If you are anything like me, organizing trips with my friends is nothing short of herding cats. As avid outdoorsman, many of our activities that we embark on during these trips involve a lot of gear that our group will need to get the job done. GearList was created to alleviate the pains of group travel organization by allowing users to clearly present all the information a trip-goer may need in one place. 
 
-#Getting Started
+## Technologies
+This project is created with the following technologies:
+- Frontend: React.js with Material Ui and Bootstrap
+- Backend: Ruby on Rails, ActiveRecord, ActiveMailer, and ActiveCable
+- Deployed on Heroku at mygearlist.herokuapp.com
 
-This application can be found in its deployed state at mygearlist.herokuapp.com. If you would like to run this app locally, clone the repo to your computer. Upon opening the application in your IDE, run bundle install. From here, cd into the /client folder and run npm install. From there, in your root directory, run rails s. This will start the ruby on rails backend. In a separate terminal, cd into /client and run npm start. This will run the react front end on localhost:4000.
+## Launch
+Either visit mygearlist.herokuapp.com for the deployed version or:
 
-#The Main Event
+Launch backend
+```
+$ bundle install
+$ rails db:migrate
+$ rails db:seed
+$ Navigate to client/src/messages/MessageList.js -> line-18, change process.env.REACT_APP_WS_ROOT to 'ws://localhost:3000/cable' to enable live chat feature when running locally.
+$ rails s
+```
+Lauch frontend
+```
+$ cd client/
+$ npm install
+$ npm start
+```
+Navigate
+```
+localhost:3000/
+```
+
+
+
 
 

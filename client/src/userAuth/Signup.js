@@ -140,12 +140,11 @@ function Signup() {
               margin="normal"
               required
               fullWidth
-              name="password"
-              value={form.password}
+              name="email"
+              value={form.email}
               onChange={handleChange}
-              label="Password"
-              type="password"
-              id="password"
+              label="Email"
+              id="email"
               style={inputStyleRight}
             />
             </Stack>
@@ -154,11 +153,12 @@ function Signup() {
               margin="normal"
               required
               fullWidth
-              name="firstName"
-              value={form.firstName}
+              name="password"
+              value={form.password}
               onChange={handleChange}
-              label="First Name"
-              id="firstName"
+              label="Password"
+              type="password"
+              id="password"
               style={inputStyleLeft}
             />
             <TextField
@@ -179,22 +179,22 @@ function Signup() {
               margin="normal"
               required
               fullWidth
-              name="lastName"
-              value={form.lastName}
+              name="firstName"
+              value={form.firstName}
               onChange={handleChange}
-              label="Last Name"
-              id="lastName"
+              label="First Name"
+              id="firstName"
               style={inputStyleLeft}
             />
             <TextField
               margin="normal"
               required
               fullWidth
-              name="email"
-              value={form.email}
+              name="lastName"
+              value={form.lastName}
               onChange={handleChange}
-              label="Email"
-              id="email"
+              label="Last Name"
+              id="lastName"
               style={inputStyleRight}
             />
             </Stack>
