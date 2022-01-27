@@ -1,6 +1,6 @@
 # GearList Trip Organization App
 
-If you are anything like me, organizing trips with my friends is nothing short of herding cats. As avid outdoorsman, many of our activities that we embark on during these trips involve a lot of gear that our group will need to get the job done. GearList was created to alleviate the pains of group travel organization by allowing users to clearly present all the information a trip-goer may need in one place. 
+If you are anything like me, organizing trips with my friends is nothing short of herding cats. As avid outdoorsmen, many of our activities that we embark on during these trips involve a lot of gear that our group will need to get the job done. GearList was created to alleviate the pains of group travel organization by allowing users to clearly present all the information a trip-goer may need in one place. 
 
 ## Technologies
 This project is created with the following technologies:
