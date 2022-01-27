@@ -12,6 +12,11 @@ import {useNavigate} from 'react-router-dom'
 export default function AdventureCard({adventure, handleDelete}) {
 
   const navigate = useNavigate()
+
+  function onDelete(e){
+    e.stopPropagation();
+    handleDelete(adventure.id)
+}
  
   return (
     <Card sx={{ maxWidth: "100%", height: "350px", margin: "0px 0px 20px 0px" }} onClick={() => navigate(`/adventure/${adventure.id}`)}>
@@ -30,7 +35,7 @@ export default function AdventureCard({adventure, handleDelete}) {
             {adventure.trip.description}
           </Typography>
         <Stack direction="row" justifyContent="center">
-            <Button variant="text" sx={{marginBottom: '10px', color: "#5D6D7E" }} onClick={() => handleDelete(adventure.id)}>Delete</Button>
+            <Button variant="text" sx={{marginBottom: '10px', color: "#5D6D7E" }} onClick={() => onDelete(adventure.id)}>Delete</Button>
         </Stack>
         </CardContent>
       </CardActionArea>
