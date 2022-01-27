@@ -124,11 +124,10 @@ Adventurers can:
 ## Created By
 
 ### Garrett Strohm
-
-Github: <a href="https://github.com/garrettstrohm/">garrettstrohm</a>
-LinkedIn: <a href='https://www.linkedin.com/in/gstrohm/'>Garrett Strohm's LinkedIn</a>
-Email: <a href='mailto: garres4@vt.edu'>garres4@vt.edu</a>
-Medium: <a href='https://medium.com/@garres4'>@garres4</a>
+- Github: <a href="https://github.com/garrettstrohm/">garrettstrohm</a>
+- LinkedIn: <a href='https://www.linkedin.com/in/gstrohm/'>Garrett Strohm's LinkedIn</a>
+- Email: <a href='mailto: garres4@vt.edu'>garres4@vt.edu</a>
+- Medium: <a href='https://medium.com/@garres4'>@garres4</a>
 
 
 
