@@ -17,7 +17,7 @@ export default function TripCard({trip, handleDelete}) {
         handleDelete(trip.id)
     }
   return (
-        <Card sx={{ maxWidth: "100%", height: "350px", margin: "0px 0px 20px 0px" }} onClick={() => navigate(`/mytrip/${trip.id}`)}>
+        <Card sx={{ maxWidth: "100%", height: "350px", margin: "0px 0px 10px 0px" }} onClick={() => navigate(`/mytrip/${trip.id}`)}>
             <CardActionArea>
                 <CardMedia
                 component="img"
