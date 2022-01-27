@@ -54,6 +54,13 @@ Features
 -An email will be sent with a link to the recover password page along with a recovery password that was generated when the email was sent.
 
 
+<img width="1439" alt="Screen Shot 2022-01-27 at 11 47 41 AM" src="https://user-images.githubusercontent.com/89401426/151424077-c51c204b-7acf-4edb-bc27-b97e9198b857.png">
+
+
+### Reset Forgotten Password
+-Users can reset a forgotten password.
+
+
 <img width="1440" alt="Screen Shot 2022-01-27 at 10 25 27 AM" src="https://user-images.githubusercontent.com/89401426/151419337-463a71c0-e97e-4f67-982f-52e320659587.png">
 
 
@@ -68,6 +75,38 @@ GearList's homepage displays all of the current trips and adventures the user cu
 -Access trip chats
 
 
+<img width="1439" alt="Screen Shot 2022-01-27 at 11 46 26 AM" src="https://user-images.githubusercontent.com/89401426/151424215-8ed79002-9c34-4ba2-b857-2e68dc9259a6.png">
+
+
+### Create a Trip
+-Users can create a new organized trip by selecting the hamburger menu and selecting create a trip.
+
+
+<img width="1440" alt="Screen Shot 2022-01-27 at 11 39 58 AM" src="https://user-images.githubusercontent.com/89401426/151423063-d1a4e4ff-a09f-4028-9e64-878ae82997be.png">
+
+<img width="1440" alt="Screen Shot 2022-01-27 at 11 40 13 AM" src="https://user-images.githubusercontent.com/89401426/151423133-f6ecc45c-a06e-48ee-bb72-2f8ec3c7079c.png">
+
+
+### Trip Page
+Trip organizers can do the following:
+-Change trip image
+-Add trip items that the group need
+-Add personal items
+-Edit the trip description
+-Add trip goers/adventurers
+  -When added, an email will be sent to the added user alerting them that they were added to a trip.
+-Remove trip goers/adventurers
+
+
+![Screen Shot 2022-01-27 at 11 43 10 AM](https://user-images.githubusercontent.com/89401426/151423638-997df9c4-0e00-4948-af88-24d2b925eea3.png)
+
+
+### Adventure Page
+Adventurers can:
+-Create a list of personal items
+-View trip items
+
+
 <img width="1440" alt="Screen Shot 2022-01-27 at 10 26 19 AM" src="https://user-images.githubusercontent.com/89401426/151420065-4255adfa-016c-4080-a12a-f02b7e3ee124.png">
 
 
@@ -80,6 +119,16 @@ GearList's homepage displays all of the current trips and adventures the user cu
 ### Profile Page
 -Users can view their current information
 -Password can be reset, as well as their email.
+
+
+## Created By
+
+### Garrett Strohm
+
+Github: <a href="https://github.com/garrettstrohm/">garrettstrohm</a>
+LinkedIn: <a href='https://www.linkedin.com/in/gstrohm/'>Garrett Strohm's LinkedIn</a>
+Email: <a href='mailto: garres4@vt.edu'>garres4@vt.edu</a>
+Medium: <a href='https://medium.com/@garres4'>@garres4</a>
 
 
 
