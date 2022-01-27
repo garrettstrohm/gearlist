@@ -43,22 +43,22 @@ Features
 
 
 ### Sign Up Screen
--Users can sign up with a new account.
+- Users can sign up with a new account.
 
 
 <img width="1440" alt="Screen Shot 2022-01-27 at 10 23 52 AM" src="https://user-images.githubusercontent.com/89401426/151420036-e280b742-b6df-4813-a394-b4e175b179a0.png">
 
 
 ### Forgot Password
--Users can recover a password using their accounts email.
--An email will be sent with a link to the recover password page along with a recovery password that was generated when the email was sent.
+- Users can recover a password using their accounts email.
+- An email will be sent with a link to the recover password page along with a recovery password that was generated when the email was sent.
 
 
 <img width="1439" alt="Screen Shot 2022-01-27 at 11 47 41 AM" src="https://user-images.githubusercontent.com/89401426/151424077-c51c204b-7acf-4edb-bc27-b97e9198b857.png">
 
 
 ### Reset Forgotten Password
--Users can reset a forgotten password.
+- Users can reset a forgotten password.
 
 
 <img width="1440" alt="Screen Shot 2022-01-27 at 10 25 27 AM" src="https://user-images.githubusercontent.com/89401426/151419337-463a71c0-e97e-4f67-982f-52e320659587.png">
@@ -66,20 +66,20 @@ Features
 
 ### Home Page
 GearList's homepage displays all of the current trips and adventures the user currently has. From here, users can do the following:
--Create a new organized trip
--Delete organized trips and adventures
--Search organized trips and adventures
--Access their profile info
-  -Change password
-  -Change email associated with the account
--Access trip chats
+- Create a new organized trip
+- Delete organized trips and adventures
+- Search organized trips and adventures
+- Access their profile info
+  - Change password
+  - Change email associated with the account
+- Access trip chats
 
 
 <img width="1439" alt="Screen Shot 2022-01-27 at 11 46 26 AM" src="https://user-images.githubusercontent.com/89401426/151424215-8ed79002-9c34-4ba2-b857-2e68dc9259a6.png">
 
 
 ### Create a Trip
--Users can create a new organized trip by selecting the hamburger menu and selecting create a trip.
+- Users can create a new organized trip by selecting the hamburger menu and selecting create a trip.
 
 
 <img width="1440" alt="Screen Shot 2022-01-27 at 11 39 58 AM" src="https://user-images.githubusercontent.com/89401426/151423063-d1a4e4ff-a09f-4028-9e64-878ae82997be.png">
@@ -89,13 +89,13 @@ GearList's homepage displays all of the current trips and adventures the user cu
 
 ### Trip Page
 Trip organizers can do the following:
--Change trip image
--Add trip items that the group need
--Add personal items
--Edit the trip description
--Add trip goers/adventurers
-  -When added, an email will be sent to the added user alerting them that they were added to a trip.
--Remove trip goers/adventurers
+- Change trip image
+- Add trip items that the group need
+- Add personal items
+- Edit the trip description
+- Add trip goers/adventurers
+  - When added, an email will be sent to the added user alerting them that they were added to a trip.
+- Remove trip goers/adventurers
 
 
 ![Screen Shot 2022-01-27 at 11 43 10 AM](https://user-images.githubusercontent.com/89401426/151423638-997df9c4-0e00-4948-af88-24d2b925eea3.png)
@@ -103,22 +103,22 @@ Trip organizers can do the following:
 
 ### Adventure Page
 Adventurers can:
--Create a list of personal items
--View trip items
+- Create a list of personal items
+- View trip items
 
 
 <img width="1440" alt="Screen Shot 2022-01-27 at 10 26 19 AM" src="https://user-images.githubusercontent.com/89401426/151420065-4255adfa-016c-4080-a12a-f02b7e3ee124.png">
 
 
 ### Live Chats
--Users can chat with other users on the same trip with a live chat feature utilizing ActionCable
+- Users can chat with other users on the same trip with a live chat feature utilizing ActionCable
 
 
 <img width="1440" alt="Screen Shot 2022-01-27 at 10 27 52 AM" src="https://user-images.githubusercontent.com/89401426/151420263-41be7bb7-108a-4f36-811d-93c4f2e8b63c.png">
 
 ### Profile Page
--Users can view their current information
--Password can be reset, as well as their email.
+- Users can view their current information
+- Password can be reset, as well as their email.
 
 
 ## Created By
