@@ -27,7 +27,7 @@ function TripCardContainer() {
             <h2 style={{textAlign: "center", color: "#5D6D7E"}}>Your Organized Trips!</h2>
             <Button onClick={() => setToggleSearch(toggleSearch => !toggleSearch)} sx={{color: '#FF9B00'}}>Search Trips</Button>
             {toggleSearch ? <SearchBar search={search} setSearch={setSearch}/> : null}
-            <List sx={{maxHeight: "80vh", overflow: 'auto'}}>
+            <List sx={{maxHeight: "75vh", overflow: 'auto'}}>
                     {tripCardList}
             </List>
         </>

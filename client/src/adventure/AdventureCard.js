@@ -19,7 +19,7 @@ export default function AdventureCard({adventure, handleDelete}) {
 }
  
   return (
-    <Card sx={{ maxWidth: "100%", height: "350px", margin: "0px 0px 20px 0px" }} onClick={() => navigate(`/adventure/${adventure.id}`)}>
+    <Card sx={{ maxWidth: "100%", height: "350px", margin: "0px 0px 10px 0px" }} onClick={() => navigate(`/adventure/${adventure.id}`)}>
       <CardActionArea>
         <CardMedia
           component="img"

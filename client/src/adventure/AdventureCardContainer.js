@@ -29,7 +29,7 @@ export default function AdventureCardContainer() {
             <h2 style={{textAlign: "center", color: "#5D6D7E"}}>Your Adventures!</h2>
             <Button onClick={() => setToggleSearch(toggleSearch => !toggleSearch)} sx={{color: '#FF9B00'}}>Search Adventures</Button>
             {toggleSearch ? <SearchBar search={search} setSearch={setSearch}/> : null}
-            <List sx={{maxHeight: "80vh", overflow: 'auto'}}>
+            <List sx={{maxHeight: "75vh", overflow: 'auto'}}>
                     {adventureCardList}
             </List>
         </>
