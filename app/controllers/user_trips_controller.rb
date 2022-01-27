@@ -30,6 +30,12 @@ class UserTripsController < ApplicationController
         head :no_content
     end
 
+    def destroy_adventure
+        adventure = UserTrip.find(params[:id])
+        adventure.destroy
+        head :no_content
+    end
+
     def adventurers
         adventurers = UserTrip.where(trip_id: params[:id])
         render json: adventurers, status: :ok

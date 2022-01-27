@@ -17,7 +17,7 @@ export default function AdventureCardContainer() {
     const adventureCardList = adventuresToDisplay?.map(adventure => <AdventureCard key={adventure.id} adventure={adventure} handleDelete={handleDelete}/>)
 
     function handleDelete(id){
-        fetch(`/user_trips/${id}`, {method: "DELETE"})
+        fetch(`/user_trips/delete/${id}`, {method: "DELETE"})
         .then(() => {
             const newAdventures = adventures.filter(adventure => adventure.id !== id)
             dispatch(setAllAdventures([...newAdventures]))

@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   post '/forgot_password', to: "passwords#forgot"
   post '/reset_password', to: "passwords#reset"
   get '/adventurers/:id', to: "user_trips#adventurers"
+  delete '/user_trips/delete/:id', to: 'user_trips#destroy_adventure'
   get '/this_trips_items/:id', to: 'trip_items#index'
   get '/this_trips_user_items/:id', to: 'user_items#index'
   get '/this_trips_adventure_items/:id', to: 'adventure_items#index'

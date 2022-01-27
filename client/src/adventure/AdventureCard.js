@@ -35,7 +35,7 @@ export default function AdventureCard({adventure, handleDelete}) {
             {adventure.trip.description}
           </Typography>
         <Stack direction="row" justifyContent="center">
-            <Button variant="text" sx={{marginBottom: '10px', color: "#5D6D7E" }} onClick={() => onDelete(adventure.id)}>Delete</Button>
+            <Button variant="text" sx={{marginBottom: '10px', color: "#5D6D7E" }} onClick={(e) => onDelete(e)}>Delete</Button>
         </Stack>
         </CardContent>
       </CardActionArea>
