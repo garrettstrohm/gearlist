@@ -19,7 +19,7 @@ $ rails db:seed
 $ Navigate to client/src/messages/MessageList.js -> line-18, change process.env.REACT_APP_WS_ROOT to 'ws://localhost:3000/cable' to enable live chat feature when running locally.
 $ rails s
 ```
-Lauch frontend
+Launch frontend
 ```
 $ cd client/
 $ npm install
@@ -29,6 +29,59 @@ Navigate
 ```
 localhost:3000/
 ```
+
+Features
+
+<img width="1440" alt="Screen Shot 2022-01-27 at 10 02 56 AM" src="https://user-images.githubusercontent.com/89401426/151410362-ddea1bde-82e4-4837-881b-cfd7733c1581.png">
+
+
+### Login Screen
+- GearList offers full user authentication utilizing the Bcrypt gem. Users can Login, SignUp, and recover a forgotten password via a recovery token sent to the user via ActiveMailer.
+
+
+<img width="1440" alt="Screen Shot 2022-01-27 at 10 23 14 AM" src="https://user-images.githubusercontent.com/89401426/151420008-4c5934a6-793a-4ca4-9a80-e142d9e2ccf4.png">
+
+
+### Sign Up Screen
+-Users can sign up with a new account.
+
+
+<img width="1440" alt="Screen Shot 2022-01-27 at 10 23 52 AM" src="https://user-images.githubusercontent.com/89401426/151420036-e280b742-b6df-4813-a394-b4e175b179a0.png">
+
+
+### Forgot Password
+-Users can recover a password using their accounts email.
+-An email will be sent with a link to the recover password page along with a recovery password that was generated when the email was sent.
+
+
+<img width="1440" alt="Screen Shot 2022-01-27 at 10 25 27 AM" src="https://user-images.githubusercontent.com/89401426/151419337-463a71c0-e97e-4f67-982f-52e320659587.png">
+
+
+### Home Page
+GearList's homepage displays all of the current trips and adventures the user currently has. From here, users can do the following:
+-Create a new organized trip
+-Delete organized trips and adventures
+-Search organized trips and adventures
+-Access their profile info
+  -Change password
+  -Change email associated with the account
+-Access trip chats
+
+
+<img width="1440" alt="Screen Shot 2022-01-27 at 10 26 19 AM" src="https://user-images.githubusercontent.com/89401426/151420065-4255adfa-016c-4080-a12a-f02b7e3ee124.png">
+
+
+### Live Chats
+-Users can chat with other users on the same trip with a live chat feature utilizing ActionCable
+
+
+<img width="1440" alt="Screen Shot 2022-01-27 at 10 27 52 AM" src="https://user-images.githubusercontent.com/89401426/151420263-41be7bb7-108a-4f36-811d-93c4f2e8b63c.png">
+
+### Profile Page
+-Users can view their current information
+-Password can be reset, as well as their email.
+
+
 
 
 
