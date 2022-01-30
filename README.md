@@ -121,6 +121,10 @@ Adventurers can:
 - Password can be reset, as well as their email.
 
 
+### Video Demo
+https://youtu.be/gFYWwpiAPZk
+
+
 ## Created By
 
 ### Garrett Strohm
