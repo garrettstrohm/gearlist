@@ -3,13 +3,13 @@
 If you are anything like me, organizing trips with my friends is nothing short of herding cats. As avid outdoorsmen, many of our activities that we embark on during these trips involve a lot of gear that our group will need to get the job done. GearList was created to alleviate the pains of group travel organization by allowing users to clearly present all the information a trip-goer may need in one place. 
 
 ## Technologies
-This project is created with the following technologies:
-- Frontend: React.js with Material Ui and Bootstrap
-- Backend: Ruby on Rails, ActiveRecord, ActiveMailer, and ActiveCable
-- Deployed on Heroku at mygearlist.herokuapp.com
+This project uses the following technologies:
+- Frontend: React.js with Material Ui and Bootstrap v5
+- Backend: Ruby on Rails, Postgresql, ActiveRecord, ActiveMailer, and ActiveCable
+- Deployed on Heroku at https://mygearlist.herokuapp.com
 
 ## Launch
-Either visit mygearlist.herokuapp.com for the deployed version or:
+Either visit https://mygearlist.herokuapp.com for the deployed version or:
 
 Launch backend
 ```
@@ -30,7 +30,7 @@ Navigate
 localhost:3000/
 ```
 
-Features
+## Features
 
 <img width="1440" alt="Screen Shot 2022-01-27 at 10 02 56 AM" src="https://user-images.githubusercontent.com/89401426/151410362-ddea1bde-82e4-4837-881b-cfd7733c1581.png">
 
@@ -43,7 +43,7 @@ Features
 
 
 ### Sign Up Screen
-- Users can sign up with a new account.
+- Users can sign up and create a new account.
 
 
 <img width="1440" alt="Screen Shot 2022-01-27 at 10 23 52 AM" src="https://user-images.githubusercontent.com/89401426/151420036-e280b742-b6df-4813-a394-b4e175b179a0.png">
