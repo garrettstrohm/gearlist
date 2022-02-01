@@ -32,14 +32,12 @@ function MessageList({tripId, trip}) {
             console.log('connected')
           },
           disconnected() {
-            console.log('disconnected')
             cable.current = null
           }
         }
 
         const subscription = cable.current.subscriptions.create(paramsToSend, handlers)
         return function cleanup(){
-          console.log('unsubbing from:', tripId)
           cable.current = null
           subscription.unsubscribe()
         }

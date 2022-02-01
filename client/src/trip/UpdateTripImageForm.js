@@ -15,7 +15,7 @@ function UpdateTripImageForm() {
         image: ''
     })
     const dispatch = useDispatch()
-    console.log(form)
+
     function handleChange(e){
         setForm({
             ...form,

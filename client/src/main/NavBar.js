@@ -85,7 +85,7 @@ export default function NavBar() {
               >
                 <MenuItem onClick={() => navigate(`/myprofile/${user.id}`)}>Profile</MenuItem>
                 <MenuItem onClick={logout}>Logout</MenuItem>
-                <SideDrawer state={state} setState={setState} toggleDrawer={toggleDrawer}/>
+                <SideDrawer state={state} toggleDrawer={toggleDrawer}/>
               </Menu>
         </Toolbar>
       </AppBar>

@@ -38,7 +38,6 @@ export default function AddAdventurerForm() {
         .then(r => {
             if (r.ok){
                 r.json().then(data => {
-                    console.log('adventurer', data)
                     setForm({
                         trip_id: "",
                         email: "",

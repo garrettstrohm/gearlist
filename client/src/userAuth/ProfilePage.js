@@ -47,41 +47,41 @@ function ProfilePage() {
             ...form,
             [e.target.name]: e.target.value
         })
-     }
-     console.log('form:', form)
-     function handleSubmit(e){
-         e.preventDefault();
-         const updatePassword ={
-             old_password: form.oldPassword,
-             password: form.password,
-             password_confirmation: form.passwordConfirmation
-         }
-        const configObj = {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updatePassword)
+    }
+    
+    function handleSubmit(e){
+        e.preventDefault();
+        const updatePassword ={
+            old_password: form.oldPassword,
+            password: form.password,
+            password_confirmation: form.passwordConfirmation
         }
-        fetch(`/password/${userParams.id}`, configObj)
-        .then(r => {
-            if(r.ok){
-                r.json().then(data => {
-                    dispatch(setCurrentUser(data))
-                    alert('Password has been reset!')
-                    setForm({
-                        email: '',
-                        oldPassword: '',
-                        password: '',
-                        passwordConfirmation: ''
-                    })
-                    navigate('/')
+    const configObj = {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatePassword)
+    }
+    fetch(`/password/${userParams.id}`, configObj)
+    .then(r => {
+        if(r.ok){
+            r.json().then(data => {
+                dispatch(setCurrentUser(data))
+                alert('Password has been reset!')
+                setForm({
+                    email: '',
+                    oldPassword: '',
+                    password: '',
+                    passwordConfirmation: ''
                 })
-            } else {
-                r.json().then(error => alert(error.error))
-            }
-        })
-     }
+                navigate('/')
+            })
+        } else {
+            r.json().then(error => alert(error.error))
+        }
+    })
+    }
 
      function handleEmailSubmit(e){
          e.preventDefault();

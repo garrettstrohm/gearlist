@@ -14,13 +14,12 @@ import TripList from '../messages/TripList'
 import { useNavigate } from 'react-router-dom';
 
 
-export default function SideDrawer({state, setState, toggleDrawer}) {
+export default function SideDrawer({state, toggleDrawer}) {
   const navigate = useNavigate()
   return (
     <>
       {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
-          {/* <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button> */}
           <Drawer
             anchor={anchor}
             open={state[anchor]}

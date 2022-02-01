@@ -104,6 +104,6 @@ Rails.application.configure do
   enable_starttls_auto: true  
 }
 
-config.web_socket_server_url = "wss://action-cable-example.herokuapp.com/cable"
-config.action_cable.allowed_request_origins = ['https://mygearlist.herokuapp.com']
+config.web_socket_server_url = "wss://mygearlist.herokuapp.com/cable"
+config.action_cable.allowed_request_origins = ['https://mygearlist.herokuapp.com', 'https://mygearlist.herokuapp.com']
 end

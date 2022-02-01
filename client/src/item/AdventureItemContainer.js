@@ -8,7 +8,6 @@ function AdventureItemContainer() {
     const items = useSelector(state => state.items.adventureItems)
     const itemList = items?.map(item => <AdventureItemCard key={item.id} item={item} handleDelete={handleDelete}/>)
     const dispatch = useDispatch()
-    console.log('itemsnow:', items)
 
     function handleDelete(id){
         fetch(`/adventure_items/${id}`, {method: 'DELETE'})

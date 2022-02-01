@@ -46,7 +46,6 @@ function HomePage() {
         .then((r) => {
             if(r.ok){
                 r.json().then(data => {
-                    console.log('adventures:', data)
                 dispatch(setAllAdventures(data))
             })
             } else {

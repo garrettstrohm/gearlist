@@ -57,13 +57,10 @@ function Signup() {
 
     })
 
-    console.log('signup form:', form)
-
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const user = useSelector(state => state.user.user)
     const displayErrors = errors?.map(error => <p style={{color: "red"}}>{error}</p>)
-    console.log(errors)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -88,7 +85,6 @@ function Signup() {
             if (r.ok){
                 r.json().then(data => {
                 dispatch(setCurrentUser(data))
-                console.log(user)
                 navigate("/")
                 })
             } else {

@@ -37,7 +37,6 @@ function ForgotPasswordResetForm() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const user = useSelector(state => state.user.user)
-    console.log("user on forgot password", user)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -55,7 +54,6 @@ function ForgotPasswordResetForm() {
             password: form.password,
             password_confirmation: form.passwordConfirmation
         }
-        console.log(formObj)
         const configObj = {
             method: "POST",
             headers: {

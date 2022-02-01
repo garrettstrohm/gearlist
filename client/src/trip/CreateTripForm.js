@@ -37,7 +37,6 @@ export default function CreateTripForm() {
         description: ""
     })
 
-    console.log(form)
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -48,7 +47,7 @@ export default function CreateTripForm() {
             [e.target.name]: e.target.value
         })
     }
-    console.log(form)
+
     function handleSubmit(e){
         e.preventDefault()
         const newTrip = {
@@ -58,7 +57,6 @@ export default function CreateTripForm() {
             location: form.location,
             description: form.description
         }
-        console.log(newTrip)
         const configObj = {
             method: "POST",
             headers: {
@@ -70,7 +68,6 @@ export default function CreateTripForm() {
         .then(r => {
           if(r.ok){
             r.json().then(data => {
-              console.log(data)
               navigate(`/mytrip/${data.id}`)
           })
           } else {

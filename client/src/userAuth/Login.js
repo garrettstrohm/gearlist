@@ -54,7 +54,6 @@ function Login() {
     const navigate = useNavigate()
     const user = useSelector(state => state.user.user)
     const displayErrors = errors?.map(error => <p style={{color: 'red'}}>{error}</p>)
-    console.log(user)
 
 const handleSubmit = (e) => {
     e.preventDefault();
@@ -75,7 +74,6 @@ const handleSubmit = (e) => {
         } else {
           r.json().then(data => {
             setErrors(data.errors)
-            console.log(data.errors)
           })
         }
     })

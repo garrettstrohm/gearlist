@@ -20,7 +20,6 @@ function App() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const location = useLocation()
-  console.log("location:", location)
 
   useEffect(() => {
     fetch("/me")

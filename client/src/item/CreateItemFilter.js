@@ -27,7 +27,6 @@ function CreateItemFilter({handleCategoryChange}){
               defaultValue="tripItem"
               onChange={handleCategoryChange}
             >
-              {/* <MenuItem value="Select A Category"><em>Select a category...</em></MenuItem> */}
               <MenuItem style ={{color:"#5D6D7E"}} value="tripItem">Trip Item</MenuItem>
               <MenuItem style ={{color:"#5D6D7E"}} value="userItem">Personal Item</MenuItem>
             </Select>
