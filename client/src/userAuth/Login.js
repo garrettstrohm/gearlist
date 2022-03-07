@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {useState} from "react"
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {setCurrentUser} from './userSlice.js'
 import {Link, useNavigate} from 'react-router-dom'
 import signin from '../assets/sign-in-bg.jpeg'
@@ -52,8 +52,7 @@ function Login() {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const user = useSelector(state => state.user.user)
-    const displayErrors = errors?.map(error => <p style={{color: 'red'}}>{error}</p>)
+    const displayErrors = errors?.map(error => <p key={error} style={{color: 'red'}}>{error}</p>)
 
 const handleSubmit = (e) => {
     e.preventDefault();
@@ -99,7 +98,7 @@ const handleSubmit = (e) => {
           }}
         >
           <Avatar sx={{ m: 1 }}>
-            <img src={backpack} style={{'maxWidth': '100%'}}/>
+            <img src={backpack} alt='backpack icon' style={{'maxWidth': '100%'}}/>
           </Avatar>
           <Typography component="h1" variant="h5" sx={{color: '#fff'}}>
             Welcome To GearList

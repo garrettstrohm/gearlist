@@ -6,8 +6,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
-import {useState} from "react"
-import {useDispatch} from 'react-redux'
+import {useState, useRef} from "react"
 import {useNavigate} from 'react-router-dom'
 import createTripBg from '../assets/create-trip-bg.jpeg'
 
@@ -20,7 +19,7 @@ const backgroundImageStyle = {
   height: '100vh',
   overflow: 'hidden'
 }
-const inputStyle ={
+const inputStyle = {
   backgroundColor: 'white', 
   borderRadius: '5px', 
   opacity: 0.8
@@ -28,6 +27,8 @@ const inputStyle ={
 
 export default function CreateTripForm() {
     const [errors, setErrors] = useState([])
+    const [picFile, setPicFile] = useState(null)
+    // const[picPubId, setPicPubId]
     const [form, setForm] = useState({
         title: "",
         image: "",
@@ -37,8 +38,7 @@ export default function CreateTripForm() {
         description: ""
     })
 
-
-    const dispatch = useDispatch()
+    const imageRef = useRef()
     const navigate = useNavigate()
 
     function handleChange(e){
@@ -48,32 +48,70 @@ export default function CreateTripForm() {
         })
     }
 
+    function imageHandleChange(e){
+      console.log(e.target.value)
+      const file = e.target.files[0]
+      console.log(file)
+      if(file.name.endsWith('.jpg') || file.name.endsWith('.jpeg')){
+        setPicFile(file)
+      } else if (file.name.endsWith('.png')){
+        setPicFile(file)
+      } else {
+        alert("The image file you have chosen is not an appropriate image file. Please upload a file ending in '.jpg', '.jpeg', or '.png'.")
+        imageRef.current.value=""
+      }
+    }
+
+
     function handleSubmit(e){
         e.preventDefault()
-        const newTrip = {
-            title: form.title,
-            image: form.image,
-            date: `${form.startDate} - ${form.endDate}`,
-            location: form.location,
-            description: form.description
-        }
-        const configObj = {
+        if(picFile instanceof File){
+          const url = `${process.env.REACT_APP_CLOUDINARY_URL}`
+          const formData = new FormData();
+          formData.append('file', picFile)
+          formData.append('upload_preset', 'gearlist-upload')
+
+          const configPicObj = {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(newTrip)
-        }
-        fetch('/trips', configObj)
+            body: formData
+          }
+        
+        fetch(url, configPicObj)
         .then(r => {
-          if(r.ok){
-            r.json().then(data => {
-              navigate(`/mytrip/${data.id}`)
-          })
-          } else {
-            r.json().then(errors => setErrors(errors.errors))
+          if(r.ok) {
+            r.json()
+            .catch(error => console.log(error))
+            .then(data => {
+              console.log(data.public_id)
+              console.log(data.secure_url)
+            })
           }
         })
+      }
+        // const newTrip = {
+        //     title: form.title,
+        //     image: form.image,
+        //     date: `${form.startDate} - ${form.endDate}`,
+        //     location: form.location,
+        //     description: form.description
+        // }
+        // const configObj = {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify(newTrip)
+        // }
+        // fetch('/trips', configObj)
+        // .then(r => {
+        //   if(r.ok){
+        //     r.json().then(data => {
+        //       navigate(`/mytrip/${data.id}`)
+        //   })
+        //   } else {
+        //     r.json().then(errors => setErrors(errors.errors))
+        //   }
+        // })
     }
 
     const displayErrors = errors?.map(error => <p style={{color: 'red', textShadow: '1px 1px #000'}}>{error}</p>)
@@ -106,15 +144,19 @@ export default function CreateTripForm() {
               autoFocus
               style={inputStyle}
             />
+            <Typography component='p' sx={{color: '#fff', textShadow: "1px 1px #000"}}>
+              Choose a trip photo:
+            </Typography>
             <TextField
               margin="normal"
               required
               fullWidth
               name="image"
               value={form.image}
-              onChange={handleChange}
-              label="Post A Trip Pic!"
+              onChange={imageHandleChange}
               id="image"
+              type="file"
+              ref={imageRef}
               style={inputStyle}
             />
             <Stack direction='row'>

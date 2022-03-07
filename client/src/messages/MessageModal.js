@@ -2,7 +2,6 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import MessageList from './MessageList';
-import { useDispatch, useSelector } from 'react-redux';
 
 const style = {
   position: 'absolute',

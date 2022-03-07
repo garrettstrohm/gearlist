@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {setCurrentUser} from './userSlice.js'
 import {Link, useNavigate} from 'react-router-dom'
 import {useState} from "react"
@@ -36,7 +36,6 @@ function ForgotPasswordResetForm() {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const user = useSelector(state => state.user.user)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -80,7 +79,7 @@ function ForgotPasswordResetForm() {
                 })
             }
         })
-        };
+      };
     }
 
     function handleChange(e){

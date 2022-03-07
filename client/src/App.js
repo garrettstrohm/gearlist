@@ -1,3 +1,4 @@
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect } from "react";
 import HomePage from "./main/HomePage.js"
@@ -32,13 +33,13 @@ function App() {
         return null
       } else if (location.pathname === '/password/reset/edit'){
         return null
-      } else if  (location.pathname == '/forgotpassword'){
+      } else if  (location.pathname === '/forgotpassword'){
         return null
       } else {
         navigate('/login')
       }
     })
-  }, [location.pathname])
+  }, [location.pathname, dispatch, navigate])
 
   useEffect(() => {
     if(user !== null){
@@ -47,7 +48,7 @@ function App() {
     .then(data =>
       dispatch(setMessages(data)))
     }
-    },[user])
+    },[user, dispatch])
 
   useEffect(() => {
     if(user !== null){
@@ -62,7 +63,7 @@ function App() {
         }
     })
   }
-},[user])
+},[user, dispatch])
 
 
   return (

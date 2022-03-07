@@ -26,7 +26,6 @@ function HomePage() {
     const trips = useSelector(state => state.trips.trips)
     const user = useSelector(state => state.user.user)
     const adventures = useSelector(state => state.adventures.adventures)
-    const tripMems = useSelector(state => state.trips.tripMemberships)
 
     useEffect(() => {
         fetch('/trips')
@@ -39,7 +38,7 @@ function HomePage() {
                 return null
             }
         })
-    },[user])
+    },[user, dispatch])
 
     useEffect(() => {
         fetch('/user_trips')
@@ -52,7 +51,7 @@ function HomePage() {
                 return null
             }
         })
-    },[user])
+    },[user, dispatch])
 
     if (trips === null && adventures === null){
         return null

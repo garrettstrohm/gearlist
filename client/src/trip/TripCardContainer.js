@@ -1,10 +1,10 @@
 import TripCard from './TripCard';
-import {useSelector, useDispatch} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux';
 import { setAllTrips } from './tripSlice';
 import List from '@mui/material/List';
 import SearchBar from '../main/SearchBar';
-import {useState} from 'react'
-import Button from '@mui/material/Button'
+import React, {useState} from 'react';
+import Button from '@mui/material/Button';
 
 function TripCardContainer() {
     const [search, setSearch] = useState('')

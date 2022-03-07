@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import signupBg from '../assets/signup-bg.jpeg'
 import {useState} from "react"
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {setCurrentUser} from './userSlice.js'
 import {Link, useNavigate} from 'react-router-dom'
 import Stack from '@mui/material/Stack';
@@ -59,7 +59,6 @@ function Signup() {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const user = useSelector(state => state.user.user)
     const displayErrors = errors?.map(error => <p style={{color: "red"}}>{error}</p>)
 
     const handleSubmit = (e) => {
@@ -113,7 +112,7 @@ function Signup() {
           }}
         >
           <Avatar sx={{ m: 1 }}>
-            <img src={backpack} style={{'maxWidth': '100%'}}/>
+            <img src={backpack} alt='back pack logo' style={{'maxWidth': '100%'}}/>
           </Avatar>
           <Typography component="h1" variant="h5" sx={{color: '#fff'}}>
             Sign Up For GearList!

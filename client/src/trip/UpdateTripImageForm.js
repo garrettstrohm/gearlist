@@ -1,19 +1,22 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux'
 import { useParams } from 'react-router-dom';
-import {selectTrip, setAllTrips} from './tripSlice'
+import {setAllTrips} from './tripSlice'
 import Stack from '@mui/material/Stack';
 import  TextField  from '@mui/material/TextField';
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 
+
 function UpdateTripImageForm() {
-    const trip = useSelector(state => state.trips.selectedTrip)
     const trips = useSelector(state => state.trips.trips)
     const selectedTrip = useParams()
     const [form, setForm] = useState({
         image: ''
     })
+
+    console.log(form)
+
     const dispatch = useDispatch()
 
     function handleChange(e){
@@ -53,7 +56,7 @@ function UpdateTripImageForm() {
         <div>
             <Box component='form' onChange={handleChange} onSubmit={e => handleSubmit(e)}>
                 <Stack direction='row' spacing={2} marginBottom='5px'>
-                    <TextField size='small' variant='standard' name='image' value={form.image} label='Image Address'/>
+                    <TextField size='small' type='file' variant='standard' name='image' value={form.image}/>
                     <Button variant='contained' type='submit' sx={{color: "#5D6D7E", backgroundColor: "#ABEBC6"}}>Submit</Button>
                 </Stack>
             </Box>
