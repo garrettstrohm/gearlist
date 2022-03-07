@@ -28,9 +28,6 @@ const inputStyle = {
 export default function CreateTripForm() {
     const [errors, setErrors] = useState([])
     const [picFile, setPicFile] = useState(null)
-    const [imgUrl, setImgUrl] = useState('')
-    const [publicId, setPublicId] = useState('')
-    // const[picPubId, setPicPubId]
     const [form, setForm] = useState({
         title: "",
         image: "",
