@@ -56,10 +56,9 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :sendmail
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = {from: 'gearlistservice@gmail.com'}
+  config.action_mailer.default_options = {from: ENV["GMAIL_USERNAME"]}
 
   config.action_mailer.delivery_method = :smtp
-  host = 'localhost:3000'
   config.action_mailer.default_url_options = { :host => 'localhost:3000', protocol: 'http' }
   
   config.action_mailer.smtp_settings = {

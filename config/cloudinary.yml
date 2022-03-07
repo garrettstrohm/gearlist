@@ -1,0 +1,11 @@
+development: 
+  cloud_name: "gearlist"
+  api_key: "528166124246286"
+  api_secret: "4TikrWPb3YCCXSLY-z4ykdnhmFs"
+  secure: true
+
+production:
+  cloud_name: "gearlist"
+  api_key: "528166124246286"
+  api_secret: "4TikrWPb3YCCXSLY-z4ykdnhmFs"
+  secure: true

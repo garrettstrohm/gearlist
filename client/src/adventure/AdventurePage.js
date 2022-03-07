@@ -49,13 +49,6 @@ function AdventurePage() {
 
     const dispatch = useDispatch()
     const [toggle, setToggle] = useState(true)
-    const [form, setForm] = useState({
-        title: "",
-        image: "",
-        date: "",
-        location: "",
-        description: ""
-    })
     const [trip, setTrip] = useState({})
     const [toggleItemForm, setToggleItemForm] = useState(false)
 
@@ -66,7 +59,7 @@ function AdventurePage() {
             setTrip(advObj.trip)
             dispatch(selectAdventure(advObj))
         })
-    }, [dispatch])
+    }, [dispatch, selectedAdventure.id])
 
     useEffect(() => {
         fetch(`/this_trips_items/${trip.id}`)
@@ -82,13 +75,13 @@ function AdventurePage() {
         .then(data => {
             dispatch(setAllAdventurers(data))
         })
-    }, [adventure])
+    }, [adventure, dispatch, trip.id])
 
     useEffect(() => {
         fetch(`/this_trips_adventure_items/${selectedAdventure.id}`)
         .then(r => r.json())
         .then(items => dispatch(setAllAdventureItems(items)))
-    }, [dispatch])
+    }, [dispatch, selectedAdventure.id])
 
     if (user === null){
         return null

@@ -9,7 +9,6 @@ import {useSelector, useDispatch} from 'react-redux'
 
 export default function CreateAdventureItemForm() {
     const adventureItems = useSelector(state => state.items.adventureItems)
-    const user = useSelector(state => state.user.user)
     const selectedAdv = useSelector(state => state.adventures.selectedAdventure)
     const[form, setForm] = useState({
         name:'',

@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get '/this_trips_items/:id', to: 'trip_items#index'
   get '/this_trips_user_items/:id', to: 'user_items#index'
   get '/this_trips_adventure_items/:id', to: 'adventure_items#index'
+  post '/images', to: 'images#create'
 
   get '*path',
       to: 'fallback#index',

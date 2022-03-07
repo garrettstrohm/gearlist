@@ -3,9 +3,6 @@ import {setAllAdventurers} from '../adventure/adventureSlice.js'
 import {useDispatch, useSelector} from 'react-redux'
 import List from '@mui/material/List';
 import AdventurerCard from './AdventurerCard.js';
-import {useEffect, useState} from 'react'
-import {useParams} from 'react-router-dom'
-import AddAdventurerForm from './AddAdventurerForm.js';
 
 function AdventurerCardContainer() {
     const adventurers = useSelector(state => state.adventures.adventurers)

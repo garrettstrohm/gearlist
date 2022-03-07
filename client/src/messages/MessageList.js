@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, {useEffect, useRef} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import List from '@mui/material/List'
@@ -15,7 +16,7 @@ function MessageList({tripId, trip}) {
  
     useEffect(() => {
         if(!cable.current) {
-          cable.current = createConsumer(process.env.REACT_APP_WS_ROOT)
+          cable.current = createConsumer('ws://localhost:3000/cable')
         }
         if(scrollRef.current){
           scrollRef.current.scrollIntoView({ behaviour: "smooth" })
@@ -41,7 +42,7 @@ function MessageList({tripId, trip}) {
           cable.current = null
           subscription.unsubscribe()
         }
-      }, [tripId, messages.length])
+      }, [tripId, messages, dispatch])
     
       const messageList = messages?.filter(message => message.trip_id === tripId)?.map(message => <MessageItem key={message.created_at} message={message} scrollRef={scrollRef}/>)
   return (

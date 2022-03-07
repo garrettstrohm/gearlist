@@ -78,26 +78,27 @@ function TripPage() {
                 description: tripObj.description
             })
         })
-    }, [toggle, trips])
+    }, [toggle, trips, dispatch, selectedTrip.id])
 
     useEffect(() => {
         fetch(`/this_trips_items/${selectedTrip.id}`)
         .then(r => r.json())
         .then(items => dispatch(setAllTripItems(items)))
-    }, [])
+    }, [dispatch, selectedTrip.id])
 
     useEffect(() => {
         fetch(`/this_trips_user_items/${selectedTrip.id}`)
         .then(r => r.json())
         .then(items => dispatch(setAllUserItems(items)))
-    }, [])
+    }, [dispatch, selectedTrip.id])
+
     useEffect(() => {
         fetch(`/adventurers/${selectedTrip.id}`)
         .then(r => r.json())
         .then(data => {
             dispatch(setAllAdventurers(data))
         })
-    }, [])
+    }, [dispatch, selectedTrip.id])
 
     function handleChange(e){
         setForm({

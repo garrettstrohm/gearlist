@@ -5,7 +5,7 @@ If you are anything like me, organizing trips with my friends is nothing short o
 ## Technologies
 This project uses the following technologies:
 - Frontend: React.js with Material Ui and Bootstrap v5
-- Backend: Ruby on Rails, Postgresql, ActiveRecord, ActiveMailer, and ActiveCable
+- Backend: Ruby on Rails, Postgresql, ActiveRecord, ActionMailer, and ActionCable
 - Deployed on Heroku at https://mygearlist.herokuapp.com
 
 ## Launch

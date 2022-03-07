@@ -1,4 +1,3 @@
-import Container from '@mui/material/Container';
 import AdventureCard from './AdventureCard';
 import {useSelector, useDispatch} from 'react-redux'
 import { setAllAdventures } from './adventureSlice';
