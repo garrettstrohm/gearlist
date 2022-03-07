@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_07_215530) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_03_07_234104) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,8 +19,8 @@ ActiveRecord::Schema.define(version: 2022_03_07_215530) do
     t.bigint "item_id", null: false
     t.bigint "quantity"
     t.boolean "acquired"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_adventure_items_on_item_id"
     t.index ["user_trip_id"], name: "index_adventure_items_on_user_trip_id"
   end
@@ -30,16 +29,16 @@ ActiveRecord::Schema.define(version: 2022_03_07_215530) do
     t.string "name"
     t.text "description"
     t.string "image"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "messages", force: :cascade do |t|
     t.string "content"
     t.bigint "user_id", null: false
     t.bigint "trip_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "username"
     t.index ["trip_id"], name: "index_messages_on_trip_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
@@ -48,20 +47,21 @@ ActiveRecord::Schema.define(version: 2022_03_07_215530) do
   create_table "trip_items", force: :cascade do |t|
     t.bigint "item_id", null: false
     t.bigint "trip_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "quantity"
     t.boolean "acquired"
+    t.string "public_id"
     t.index ["item_id"], name: "index_trip_items_on_item_id"
     t.index ["trip_id"], name: "index_trip_items_on_trip_id"
   end
 
   create_table "trip_memberships", force: :cascade do |t|
-    t.datetime "last_read_at", precision: 6
+    t.datetime "last_read_at"
     t.bigint "user_id", null: false
     t.bigint "trip_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["trip_id"], name: "index_trip_memberships_on_trip_id"
     t.index ["user_id"], name: "index_trip_memberships_on_user_id"
   end
@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(version: 2022_03_07_215530) do
     t.string "location"
     t.text "description"
     t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "public_id"
     t.index ["user_id"], name: "index_trips_on_user_id"
   end
@@ -82,8 +82,8 @@ ActiveRecord::Schema.define(version: 2022_03_07_215530) do
   create_table "user_items", force: :cascade do |t|
     t.bigint "item_id", null: false
     t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "trip_id", null: false
     t.bigint "quantity"
     t.boolean "acquired"
@@ -95,8 +95,8 @@ ActiveRecord::Schema.define(version: 2022_03_07_215530) do
   create_table "user_trips", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "trip_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["trip_id"], name: "index_user_trips_on_trip_id"
     t.index ["user_id"], name: "index_user_trips_on_user_id"
   end
@@ -107,8 +107,8 @@ ActiveRecord::Schema.define(version: 2022_03_07_215530) do
     t.string "last_name"
     t.string "email"
     t.text "phone_number"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "username"
     t.string "recovery_password_digest"
   end

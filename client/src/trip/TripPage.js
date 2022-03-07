@@ -35,7 +35,7 @@ const backgroundImageStyle = {
 
 
 const containerStyle = {
-    padding: "15px 10px", 
+    padding: "10px 20px", 
     height: "30rem", 
     maxWidth: "100%",
     backgroundColor: '#fff',
@@ -44,13 +44,8 @@ const containerStyle = {
     alignItems: 'center'
 }
 const imageContainerStyle = {
-    padding: "15px 10px", 
-    height: "30rem", 
-    maxWidth: "100%",
-    backgroundColor: '#fff',
-    opacity: 0.9,
-    justifyContent: 'center',
-    alignItems: 'center',
+    ...containerStyle,
+    padding: "15px 10px",
     textAlign: 'center'
 }
 
@@ -87,7 +82,8 @@ function TripPage() {
                 image: tripObj.image,
                 date: tripObj.date,
                 location: tripObj.location,
-                description: tripObj.description
+                description: tripObj.description,
+                public_id: tripObj.public_id
             })
         })
     }, [toggle, trips, dispatch, selectedTrip.id])
