@@ -28,6 +28,8 @@ const inputStyle = {
 export default function CreateTripForm() {
     const [errors, setErrors] = useState([])
     const [picFile, setPicFile] = useState(null)
+    const [imgUrl, setImgUrl] = useState('')
+    const [publicId, setPublicId] = useState('')
     // const[picPubId, setPicPubId]
     const [form, setForm] = useState({
         title: "",
@@ -35,7 +37,8 @@ export default function CreateTripForm() {
         startDate: "",
         endDate: "",
         location: "",
-        description: ""
+        description: "",
+        publicId: ""
     })
 
     const imageRef = useRef()
@@ -82,36 +85,35 @@ export default function CreateTripForm() {
             r.json()
             .catch(error => console.log(error))
             .then(data => {
-              console.log(data.public_id)
-              console.log(data.secure_url)
+              const newTrip = {
+                title: form.title,
+                image: data.secure_url,
+                date: `${form.startDate} - ${form.endDate}`,
+                location: form.location,
+                description: form.description,
+                public_id: data.public_id
+              }
+              const configObj = {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify(newTrip)
+              }
+              fetch('/trips', configObj)
+                .then(r => {
+                if(r.ok){
+                  r.json().then(data => {
+                    navigate(`/mytrip/${data.id}`)
+                })
+                } else {
+                  r.json().then(errors => setErrors(errors.errors))
+                }
+              })
             })
           }
         })
       }
-        // const newTrip = {
-        //     title: form.title,
-        //     image: form.image,
-        //     date: `${form.startDate} - ${form.endDate}`,
-        //     location: form.location,
-        //     description: form.description
-        // }
-        // const configObj = {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify(newTrip)
-        // }
-        // fetch('/trips', configObj)
-        // .then(r => {
-        //   if(r.ok){
-        //     r.json().then(data => {
-        //       navigate(`/mytrip/${data.id}`)
-        //   })
-        //   } else {
-        //     r.json().then(errors => setErrors(errors.errors))
-        //   }
-        // })
     }
 
     const displayErrors = errors?.map(error => <p style={{color: 'red', textShadow: '1px 1px #000'}}>{error}</p>)
@@ -152,7 +154,6 @@ export default function CreateTripForm() {
               required
               fullWidth
               name="image"
-              value={form.image}
               onChange={imageHandleChange}
               id="image"
               type="file"
