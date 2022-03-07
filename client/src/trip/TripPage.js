@@ -35,12 +35,24 @@ const backgroundImageStyle = {
 
 
 const containerStyle = {
-    padding: "5px", 
-    height: "40vh", 
+    padding: "15px 10px", 
+    height: "30rem", 
     maxWidth: "100%",
     backgroundColor: '#fff',
-    opacity: 0.9
-    }
+    opacity: 0.9,
+    justifyContent: 'center',
+    alignItems: 'center'
+}
+const imageContainerStyle = {
+    padding: "15px 10px", 
+    height: "30rem", 
+    maxWidth: "100%",
+    backgroundColor: '#fff',
+    opacity: 0.9,
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center'
+}
 
 const containerClass = "border shadow overflow-auto"
 
@@ -154,8 +166,8 @@ function TripPage() {
                         <Col style={{"height": '45vh'}}>
                             <Button onClick={() => setToggleImageForm(toggleImageForm => !toggleImageForm)} sx={{color: '#FF9B00'}}>Change Image</Button>
                             {toggleImageForm ? <UpdateTripImageForm/> : null}
-                            <Container style={containerStyle} className={"border shadow overflow-hidden"}>
-                                <img src={trip.image} alt={trip.title} style={{'maxHeight': 'auto', 'maxWidth': '100%', 'margin': '2px'}}/>
+                            <Container style={imageContainerStyle} className={"border shadow overflow-hidden"}>
+                                <img src={trip.image} alt={trip.title} style={{'maxHeight': '98%', 'maxWidth': '100%'}}/>
                             </Container>
                         </Col>
                         <Col>
@@ -178,7 +190,7 @@ function TripPage() {
                             </Container>    
                         </Col>
                     </Row>
-                    <Row style={{"paddingTop": "20px"}}>
+                    <Row style={{"padding": "20px 0"}}>
                         <Col style={{"height": '45vh'}}>
                             {toggle ? <Container style={containerStyle} className={containerClass} onDoubleClick={() => setToggle(false)}>
                                 <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#5D6D7E", paddingBottom: '10px' }}>
