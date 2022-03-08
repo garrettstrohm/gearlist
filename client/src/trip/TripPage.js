@@ -20,6 +20,7 @@ import Button from '@mui/material/Button'
 import Stack from '@mui/material/Stack'
 import Box from '@mui/material/Box'
 import homepage from '../assets/homepage-bg.jpeg'
+import { handleChange } from '../functions'
 
 const backgroundImageStyle = {
     backgroundImage: `url(${homepage})`,
@@ -108,13 +109,6 @@ function TripPage() {
         })
     }, [dispatch, selectedTrip.id])
 
-    function handleChange(e){
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value
-        })
-    }
-
     function handleCategoryChange(e){
         setItemCategory(e.target.value)
     }
@@ -201,7 +195,7 @@ function TripPage() {
                                         fullWidth
                                         name="description"
                                         value={form.description}
-                                        onChange={handleChange}
+                                        onChange={(e) => handleChange(e, form, setForm)}
                                         onKeyDown={e => {
                                             if(e.key === 'Enter'){
                                                 handleInputSubmit(e)

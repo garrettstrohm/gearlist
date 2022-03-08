@@ -16,3 +16,29 @@ export const imageHandleChange = (e, setPicFile, imageRef) => {
       imageRef.current.value=""
     }
 };
+
+export const handlePicSubmit = (e, cbFunc, picFile) => {
+    e.preventDefault()
+    if(picFile instanceof File){
+      const url = `${process.env.REACT_APP_CLOUDINARY_URL}`
+      const formData = new FormData();
+      formData.append('file', picFile)
+      formData.append('upload_preset', 'gearlist-upload')
+
+      const configPicObj = {
+        method: "POST",
+        body: formData
+      }
+    
+    fetch(url, configPicObj)
+    .then(r => {
+      if(r.ok) {
+        r.json()
+        .catch(error => console.log(error))
+        .then(data => {
+          cbFunc(data)
+        })
+      }
+    })
+  }
+};

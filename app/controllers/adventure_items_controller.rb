@@ -6,7 +6,7 @@ class AdventureItemsController < ApplicationController
     end
 
     def create
-        item = Item.find_or_create_by(name: params[:name], description: params[:description], image: params[:image])
+        item = Item.find_or_create_by(name: params[:name], description: params[:description], image: params[:image], public_id: params[:public_id])
         adv_item = item.adventure_items.create(user_trip_id: params[:user_trip_id], quantity: params[:quantity], acquired: params[:acquired])
         render json: adv_item, status: :created
     end
@@ -19,6 +19,8 @@ class AdventureItemsController < ApplicationController
 
     def destroy
         target_item = find_item
+        item = target_item.item
+        delete_cloudinary_photo(item.public_id) if item.public_id
         target_item.destroy
         head :no_content
     end

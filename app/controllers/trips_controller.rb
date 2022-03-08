@@ -4,11 +4,6 @@ class TripsController < ApplicationController
     before_action :find_trip
     skip_before_action :find_trip, only: [:index, :create]
 
-    @@auth = {
-        cloud_name: ENV["CLOUD_NAME"],
-        api_key: ENV["API_KEY"],
-        api_secret: ENV["API_SECRET"]
-    }
     
     def index
         user = current_user
@@ -35,7 +30,7 @@ class TripsController < ApplicationController
 
     def destroy
         trip = find_trip
-        delete_cloudinary_photo(trip.public_id) if trip.public_id
+        delete_cloudinary_photo(trip.public_id, @auth) if trip.public_id
         trip.destroy
         head :no_content
     end
@@ -50,8 +45,8 @@ class TripsController < ApplicationController
         params.permit(:id, :title, :image, :date, :location, :description, :user_id, :public_id)
     end
 
-    def delete_cloudinary_photo public_id
-        Cloudinary::Uploader.destroy(public_id, @@auth)
-    end
+    # def delete_cloudinary_photo public_id
+    #     Cloudinary::Uploader.destroy(public_id, @@auth)
+    # end
 
 end
