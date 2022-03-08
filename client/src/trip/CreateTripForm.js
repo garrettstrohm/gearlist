@@ -9,7 +9,7 @@ import Stack from '@mui/material/Stack';
 import {useState, useRef} from "react"
 import {useNavigate} from 'react-router-dom'
 import createTripBg from '../assets/create-trip-bg.jpeg'
-import { imageHandleChange } from '../imageFunctions';
+import { imageHandleChange, handleChange } from '../functions';
 
 
 const backgroundImageStyle = {
@@ -41,14 +41,6 @@ export default function CreateTripForm() {
 
     const imageRef = useRef()
     const navigate = useNavigate()
-
-    function handleChange(e){
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value
-        })
-    }
-
 
     function handleSubmit(e){
         e.preventDefault()

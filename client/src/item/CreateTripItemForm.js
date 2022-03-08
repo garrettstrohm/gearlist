@@ -6,8 +6,7 @@ import Button from '@mui/material/Button'
 import {useState, useRef} from 'react'
 import { setAllTripItems, setAllUserItems } from './itemSlice';
 import {useSelector, useDispatch} from 'react-redux'
-import {imageHandleChange} from '../imageFunctions.js'
-import { handleChange } from '../functions.js'
+import { handleChange, imageHandleChange } from '../functions.js'
 
 export default function CreateTripItemForm({itemCategory}) {
     const tripItems = useSelector(state => state.items.tripItems)
