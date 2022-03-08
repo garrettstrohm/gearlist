@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
     include ActionController::Cookies
+    before_action :set_auth, :current_user
 
     wrap_parameters format: []
 
@@ -22,6 +23,18 @@ private
 
     def current_user
         @current_user ||= User.find_by(id: session[:user_id])
+    end
+
+    def set_auth
+        @auth = {
+            cloud_name: ENV["CLOUD_NAME"],
+            api_key: ENV["API_KEY"],
+            api_secret: ENV["API_SECRET"]
+        }
+    end
+
+    def delete_cloudinary_photo public_id
+        Cloudinary::Uploader.destroy(public_id, @auth)
     end
       
 end

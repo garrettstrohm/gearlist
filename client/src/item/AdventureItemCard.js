@@ -12,6 +12,7 @@ import {useState} from 'react'
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import ItemDetailModal from './ItemDetailModal';
+import { handleChange } from '../functions.js'
 
 function AdventureItemCard({item, handleDelete}) {
     const [cardItem, setCardItem] = useState({
@@ -79,13 +80,6 @@ function AdventureItemCard({item, handleDelete}) {
         })
     }
 
-    function handleChange(e){
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value
-        })
-    }
-
     if(item === null){
         return null
     } else {
@@ -99,7 +93,9 @@ function AdventureItemCard({item, handleDelete}) {
                             <Typography variant="h5" component="div" onClick={handleOpen} sx={{cursor: 'pointer'}}>
                                 {item.item ? item.item.name : null}
                             </Typography>
-                            {toggle ? <Typography variant="body2" onDoubleClick={() => setToggle(false)}>
+                            {
+                            toggle ? 
+                            <Typography variant="body2" onDoubleClick={() => setToggle(false)}>
                                 Quantity: {item.quantity}
                             </Typography> :
                             <Stack direction='row' spacing={5}>
@@ -110,7 +106,7 @@ function AdventureItemCard({item, handleDelete}) {
                                 type='number'
                                 value={form.quantity}
                                 name='quantity'
-                                onChange={handleChange}
+                                onChange={(e) => handleChange(e, form, setForm)}
                                 onKeyDown={e => {
                                     if(e.key === 'Enter'){
                                         handleInputSubmit(e)
@@ -121,7 +117,8 @@ function AdventureItemCard({item, handleDelete}) {
                                 }}
                                 id='quantity'
                             />
-                            </Stack> }
+                            </Stack> 
+                            }
                             Acquired: <Checkbox checked={cardItem.acquired} onChange={() => handleUpdate(item.id)} inputProps={{ 'aria-label': 'controlled' }}/>
                         </CardContent>
                         <CardActions>

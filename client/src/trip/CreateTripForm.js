@@ -9,7 +9,7 @@ import Stack from '@mui/material/Stack';
 import {useState, useRef} from "react"
 import {useNavigate} from 'react-router-dom'
 import createTripBg from '../assets/create-trip-bg.jpeg'
-import { imageHandleChange, handleChange } from '../functions';
+import { imageHandleChange, handleChange, handlePicSubmit } from '../functions';
 
 
 const backgroundImageStyle = {
@@ -42,54 +42,32 @@ export default function CreateTripForm() {
     const imageRef = useRef()
     const navigate = useNavigate()
 
-    function handleSubmit(e){
-        e.preventDefault()
-        if(picFile instanceof File){
-          const url = `${process.env.REACT_APP_CLOUDINARY_URL}`
-          const formData = new FormData();
-          formData.append('file', picFile)
-          formData.append('upload_preset', 'gearlist-upload')
-
-          const configPicObj = {
-            method: "POST",
-            body: formData
-          }
-        
-        fetch(url, configPicObj)
-        .then(r => {
-          if(r.ok) {
-            r.json()
-            .catch(error => console.log(error))
-            .then(data => {
-              const newTrip = {
-                title: form.title,
-                image: data.secure_url,
-                date: `${form.startDate} - ${form.endDate}`,
-                location: form.location,
-                description: form.description,
-                public_id: data.public_id
-              }
-              const configObj = {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json"
-                },
-                body: JSON.stringify(newTrip)
-              }
-              fetch('/trips', configObj)
-                .then(r => {
-                if(r.ok){
-                  r.json().then(data => {
-                    navigate(`/mytrip/${data.id}`)
-                })
-                } else {
-                  r.json().then(errors => setErrors(errors.errors))
-                }
-              })
-            })
-          }
-        })
+    function postTripToDb(data){
+      const newTrip = {
+        title: form.title,
+        image: data.secure_url,
+        date: `${form.startDate} - ${form.endDate}`,
+        location: form.location,
+        description: form.description,
+        public_id: data.public_id
       }
+      const configObj = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newTrip)
+      }
+      fetch('/trips', configObj)
+        .then(r => {
+        if(r.ok){
+          r.json().then(data => {
+            navigate(`/mytrip/${data.id}`)
+        })
+        } else {
+          r.json().then(errors => setErrors(errors.errors))
+        }
+      })
     }
 
     const displayErrors = errors?.map(error => <p style={{color: 'red', textShadow: '1px 1px #000'}}>{error}</p>)
@@ -109,7 +87,7 @@ export default function CreateTripForm() {
           <Typography component="h1" variant="h4" sx={{color: '#fff', textShadow: "1px 1px #000"}}>
             Organize Your Trip here!
           </Typography>
-          <Box component="form" noValidate sx={{ mt: 1 }} onChange={handleChange} onSubmit={handleSubmit}>
+          <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={(e) => handlePicSubmit(e, postTripToDb, picFile)}>
             <TextField
               margin="normal"
               required
@@ -118,7 +96,7 @@ export default function CreateTripForm() {
               label="Name Your Trip!"
               name="title"
               value={form.title}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e, form, setForm)}
               autoFocus
               style={inputStyle}
             />
@@ -144,7 +122,7 @@ export default function CreateTripForm() {
               name="startDate"
               type="date"
               value={form.startDate}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e, form, setForm)}
               helperText="Start Date"
               sx={{marginRight: '5px'}}
               id="outlined-helperText"
@@ -157,7 +135,7 @@ export default function CreateTripForm() {
               name="endDate"
               type="date"
               value={form.endDate}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e, form, setForm)}
               helperText="End Date"
               id="outlined-helperText"
               sx={{marginLeft: '5px'}}
@@ -170,7 +148,7 @@ export default function CreateTripForm() {
               fullWidth
               name="location"
               value={form.location}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e, form, setForm)}
               label="Location"
               id="location"
               style={inputStyle}
@@ -183,7 +161,7 @@ export default function CreateTripForm() {
               fullWidth
               name="description"
               value={form.description}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e, form, setForm)}
               label="Description"
               type="textarea"
               id="description"
