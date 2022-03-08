@@ -9,6 +9,7 @@ import Stack from '@mui/material/Stack';
 import {useState, useRef} from "react"
 import {useNavigate} from 'react-router-dom'
 import createTripBg from '../assets/create-trip-bg.jpeg'
+import { imageHandleChange, handleChange } from '../functions';
 
 
 const backgroundImageStyle = {
@@ -40,28 +41,6 @@ export default function CreateTripForm() {
 
     const imageRef = useRef()
     const navigate = useNavigate()
-
-    function handleChange(e){
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value
-        })
-    }
-
-    function imageHandleChange(e){
-      console.log(e.target.value)
-      const file = e.target.files[0]
-      console.log(file)
-      if(file.name.endsWith('.jpg') || file.name.endsWith('.jpeg')){
-        setPicFile(file)
-      } else if (file.name.endsWith('.png')){
-        setPicFile(file)
-      } else {
-        alert("The image file you have chosen is not an appropriate image file. Please upload a file ending in '.jpg', '.jpeg', or '.png'.")
-        imageRef.current.value=""
-      }
-    }
-
 
     function handleSubmit(e){
         e.preventDefault()
@@ -151,7 +130,7 @@ export default function CreateTripForm() {
               required
               fullWidth
               name="image"
-              onChange={imageHandleChange}
+              onChange={(e) => imageHandleChange(e, setPicFile, imageRef)}
               id="image"
               type="file"
               ref={imageRef}

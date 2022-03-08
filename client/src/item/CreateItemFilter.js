@@ -8,7 +8,6 @@ import Select from '@mui/material/Select';
 
 function CreateItemFilter({handleCategoryChange}){
 
-
     return (
         <Box  sx={{ 
             minWidth: 200,
